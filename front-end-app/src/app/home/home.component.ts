@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { LegendItem, ChartType } from '../lbd/lbd-chart/lbd-chart.component';
 import * as Chartist from 'chartist';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from '../emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import { NewUser, Login, AfterLogin, DatosUsuarios } from '../models/usuarios';
+import { UsuariosServiceService } from '../services/usuarios/usuarios-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +29,10 @@ export class HomeComponent implements OnInit {
     public activityChartOptions: any;
     public activityChartResponsive: any[];
     public activityChartLegendItems: LegendItem[];
-  constructor() { }
+  constructor(
+    public dialogo: MatDialog,
+    private usuariosService: UsuariosServiceService
+    ) { }
 
   ngOnInit() {
       this.emailChartType = ChartType.Pie;
@@ -106,7 +114,79 @@ export class HomeComponent implements OnInit {
         { title: 'BMW 5 Series', imageClass: 'fa fa-circle text-danger' }
       ];
 
+      this.PruebaServicio();
+    }
 
+    UserLogin: Login;
+    afrterLogin: AfterLogin;
+    newUser: NewUser;
+    datosUsuarios: DatosUsuarios;
+
+    PruebaServicio(){
+
+      // this.newUser = new NewUser;
+      // this.newUser.TxtApellidos = "Equite Sierra";
+      // this.newUser.TxtDireccion = "Guatemala";
+      // this.newUser.TxtEmail = "wera@gmail.com";
+      // this.newUser.TxtNombres = "Gyssell Azucena";
+      // this.newUser.TxtPassword = "asdf1234";
+      // this.newUser.TxtToken = this.ObtenerLocalStorage();
+
+      // this.usuariosService.ServerAgregarUsuario(this.newUser).subscribe(resultado =>{
+      //   console.log(resultado);
+      // },
+      // error =>{
+      //   console.log(error);
+      // });
+
+      // this.afrterLogin = new AfterLogin;
+      // this.UserLogin = new Login;
+      // this.UserLogin.TxtEmail = "lsosam2@miumg.edu.gt";
+      // this.UserLogin.TxtPassword = "asdf1234";
+
+      // this.usuariosService.ServerInicioDeSesion(this.UserLogin).subscribe(resultado =>{
+      //   this.afrterLogin = resultado;
+      //   this.AlmacenarLocalStorage(this.afrterLogin[0].TxtToken, this.afrterLogin[0]);
+      //   console.log(this.ObtenerLocalStorage());
+      // },
+      // error =>{
+      //   console.log(error);
+      // });
+
+      this.datosUsuarios = new DatosUsuarios;
+
+      this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
+        this.datosUsuarios = resultado;
+        console.log(this.datosUsuarios);
+      },
+      error =>{
+        console.log(error);
+      });
+    }
+
+    AlmacenarLocalStorage(Token: string, datosUsuario: AfterLogin){
+      localStorage.setItem("TxtToken", Token);
+      localStorage.setItem("DatosUsuario", JSON.stringify(datosUsuario));
+    }
+
+    ObtenerLocalStorage(){
+      return localStorage.getItem("TxtToken");
+      return JSON.parse(localStorage.getItem("DatosUsuario"));
+    }
+
+    mostrarDialogo(): void {
+      this.dialogo
+        .open(DialogoConfirmacionComponent, {
+          data: `¿Te gusta programar en TypeScript?`
+        })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {
+          if (confirmado) {
+            alert("¡A mí también!");
+          } else {
+            alert("Deberías probarlo, a mí me gusta :)");
+          }
+        });
     }
 
 }
