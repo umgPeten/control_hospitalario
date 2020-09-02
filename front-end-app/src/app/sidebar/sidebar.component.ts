@@ -37,4 +37,9 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  deslogueo(){
+    localStorage.setItem("DatosUsuario", "");
+    localStorage.setItem("SessionStarted", "0");
+  }
 }

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   afterLogin: AfterLogin;
   email: string;
   password: string;
+  routerRedirect: string = "";
 
   constructor(
     private usuariosService: UsuariosServiceService,
@@ -36,8 +37,11 @@ export class LoginComponent implements OnInit {
         this.showNotification(this.afterLogin[0].TxtToken);
       }
       else{
+        this.routerRedirect = this.usuariosService.intentoDeAcceso;
+        this.usuariosService.intentoDeAcceso = '';
         this.AlmacenarLocalStorage(this.afterLogin[0]);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([this.routerRedirect]);
+        // this.router.navigate(['/dashboard']);
       }
     },
     error =>{
@@ -46,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   AlmacenarLocalStorage(datosUsuario: AfterLogin){
+    localStorage.setItem("SessionStarted", "1");
     localStorage.setItem("DatosUsuario", JSON.stringify(datosUsuario));
   }
 

@@ -9,6 +9,7 @@ import { NewUser, Login } from '../../models/usuarios';
 export class UsuariosServiceService {
   AUTH_SERVER: string = "http://localhost:50708/api/";
   private TxtToken: String;
+  public intentoDeAcceso = "";
 
   constructor(
     private HttpClient: HttpClient
@@ -24,5 +25,14 @@ export class UsuariosServiceService {
 
   ServerObtenerUsuarios(): Observable<any>{
     return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuario`);
+  }
+
+  IsLoggedIn(url: string){
+    const isLogged = localStorage.getItem("SessionStarted");
+    if(isLogged != "1"){
+      this.intentoDeAcceso = url;
+      return false;
+    }
+    return true;
   }
 }

@@ -63,4 +63,9 @@ export class NavbarComponent implements OnInit{
       }
       return 'Dashboard';
     }
+
+    deslogueo(){
+        localStorage.setItem("DatosUsuario", "");
+        localStorage.setItem("SessionStarted", "0");
+      }
 }
