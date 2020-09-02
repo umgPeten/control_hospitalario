@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DialogoConfirmacionComponent } from './emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DialogoModificarComponent } from './emergentes/dialogo-modificar/dialogo-modificar.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { DialogoModificarComponent } from './emergentes/dialogo-modificar/dialog
     AppComponent,
     AdminLayoutComponent,
     DialogoConfirmacionComponent,
-    DialogoModificarComponent
+    DialogoModificarComponent,
+    LoginComponent
   ],
   providers: [],
   entryComponents: [
