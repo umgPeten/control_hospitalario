@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogoConfirmacionComponent } from "../emergentes/dialogo-confirmacion/dialogo-confirmacion.component"
+import { DialogoConfirmacionComponent } from "../components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component"
 
 @Component({
   selector: 'app-upgrade',

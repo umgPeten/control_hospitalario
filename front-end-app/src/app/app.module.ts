@@ -14,9 +14,10 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { DialogoConfirmacionComponent } from './emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
-import { DialogoModificarComponent } from './emergentes/dialogo-modificar/dialogo-modificar.component';
-import { LoginComponent } from './login/login.component';
+import { DialogoConfirmacionComponent } from './components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import { DialogoModificarComponent } from './components/emergentes/dialogo-modificar/dialogo-modificar.component';
+import { LoginComponent } from './components/login/login.component';
+import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuarios.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { LoginComponent } from './login/login.component';
     AdminLayoutComponent,
     DialogoConfirmacionComponent,
     DialogoModificarComponent,
-    LoginComponent
+    LoginComponent,
+    VistaUsuariosComponent
   ],
   providers: [],
   entryComponents: [
