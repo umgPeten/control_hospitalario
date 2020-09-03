@@ -7,7 +7,7 @@ import { NewUser, Login } from '../../models/usuarios';
   providedIn: 'root'
 })
 export class UsuariosServiceService {
-  AUTH_SERVER: string = "http://localhost:50708/api/";
+  AUTH_SERVER: string = "http://localhost:51366/api/";
   private TxtToken: String;
   public intentoDeAcceso = "";
 
@@ -20,11 +20,11 @@ export class UsuariosServiceService {
   }
 
   ServerAgregarUsuario(user: NewUser): Observable<any>{
-    return this.HttpClient.post(`${this.AUTH_SERVER}agregarusuario`, user);
+    return this.HttpClient.post(`${this.AUTH_SERVER}AgregarUsuario`, user);
   }
 
   ServerObtenerUsuarios(): Observable<any>{
-    return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuario`);
+    return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuarios`);
   }
 
   IsLoggedIn(url: string){
