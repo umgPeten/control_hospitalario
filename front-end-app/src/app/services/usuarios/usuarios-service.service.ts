@@ -24,12 +24,12 @@ export class UsuariosServiceService {
   }
 
   ServerObtenerUsuarios(): Observable<any>{
-    return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuario`);
+    return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuarios`);
   }
 
   IsLoggedIn(url: string){
     const isLogged = localStorage.getItem("SessionStarted");
-    if(isLogged != "1"){
+    if(isLogged !== "1"){
       this.intentoDeAcceso = url;
       return false;
     }
