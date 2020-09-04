@@ -18,6 +18,7 @@ import { DialogoConfirmacionComponent } from './components/emergentes/dialogo-co
 import { DialogoModificarComponent } from './components/emergentes/dialogo-modificar/dialogo-modificar.component';
 import { LoginComponent } from './components/login/login.component';
 import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuarios.component';
+import { DialogAgregarUsuarioComponent } from './components/emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
 
 @NgModule({
   imports: [
@@ -38,12 +39,14 @@ import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuari
     DialogoConfirmacionComponent,
     DialogoModificarComponent,
     LoginComponent,
-    VistaUsuariosComponent
+    VistaUsuariosComponent,
+    DialogAgregarUsuarioComponent
   ],
   providers: [],
   entryComponents: [
     DialogoConfirmacionComponent,
-    DialogoModificarComponent
+    DialogoModificarComponent,
+    DialogAgregarUsuarioComponent
   ],
   bootstrap: [AppComponent]
 })

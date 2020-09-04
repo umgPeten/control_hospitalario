@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Correo electronico</label>
-                                        <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="UsuarioAModificar.TxtEmail" required>
+                                        <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="nuevoUsuario.TxtEmail" required>
                                     </div>
                                 </div>
                             </div>
@@ -27,13 +27,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nombres</label>
-                                        <input type="text" class="form-control" placeholder="Nombres" [(ngModel)]="UsuarioAModificar.TxtNombres" required>
+                                        <input type="text" class="form-control" placeholder="Nombres" [(ngModel)]="nuevoUsuario.TxtNombres" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Apellidos</label>
-                                        <input type="text" class="form-control" placeholder="Apellido" [(ngModel)]="UsuarioAModificar.TxtApellidos" required>
+                                        <input type="text" class="form-control" placeholder="Apellido" [(ngModel)]="nuevoUsuario.TxtApellidos" required>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Direccion</label>
-                                        <input type="text" class="form-control" placeholder="Direccion" [(ngModel)]="UsuarioAModificar.TxtDireccion" required>
+                                        <input type="text" class="form-control" placeholder="Direccion" [(ngModel)]="nuevoUsuario.TxtDireccion" required>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Contraseña</label>
-                                        <input type="password" class="form-control" placeholder="contraseña" [(ngModel)]="UsuarioAModificar.TxtPassword" required>
+                                        <input type="password" class="form-control" placeholder="contraseña" [(ngModel)]="nuevoUsuario.TxtPassword" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-info btn-fill pull-right" (click)="ActualizarUsuario()">Actualizar</button>
+                            <button class="btn btn-info btn-fill pull-right" (click)="AgregarNuevoUsuario()">Agregar</button>
                         </div>
                     </div>
                 </div>

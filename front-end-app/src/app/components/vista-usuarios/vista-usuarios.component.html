@@ -1,10 +1,10 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Tabla de usuarios</h4>
+                        <h2 class="title">Tabla de usuarios</h2>
                         <p class="category">Todos los usuarios</p>
                     </div>
                     <div class="content table-responsive table-full-width">
@@ -12,7 +12,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Email</th>
+                                    <th>Correo</th>
                                     <th>Direccion</th>
                                     <th>Fecha de ingreso</th>
                                     <th colspan="2">Opciones</th>
@@ -23,16 +23,19 @@
                                     <td>{{ element.TxtNombres }}</td>
                                     <td>{{ element.TxtEmail }}</td>
                                     <td>{{ element.TxtDireccion }}</td>
-                                    <td>{{ element.FechaIngreso }}</td>
+                                    <td>{{ element.FechaIngreso | date:'dd-MM-yyyy' }}</td>
                                     <td>
-                                        <button (click)="modificarUsuario(element.IdUsuario)" >Modificar</button>
+                                        <button type="button" class="btn btn-primary btn-fill btn-sm" (click)="modificarUsuario(element.IdUsuario)" >Modificar</button>
                                     </td>
                                     <td>
-                                        <button (click)="eliminarUsuario(element.IdUsuario)" >Eliminar</button>
+                                        <button type="button" class="btn btn-warning btn-fill btn-sm" (click)="eliminarUsuario(element)" >Eliminar</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="col-md-offset-5">
+                        <button class="btn btn-primary btn-fill btn-lg" (click)="AgregarUsuario()">Agregar nuevo usuario</button>
                     </div>
                 </div>
             </div>

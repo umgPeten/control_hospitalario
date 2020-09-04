@@ -90,3 +90,30 @@ export class DatosUsuarios implements IDatosUsuarios{
         this.TxtPassword = '';
     }
 }
+
+export interface IModUsuario{
+    IdUsuario: number;
+    TxtDireccion: string;
+    TxtEmail: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    TxtPassword: string;
+}
+
+export class ModUsuario implements IModUsuario{
+    IdUsuario: number;
+    TxtDireccion: string;
+    TxtEmail: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    TxtPassword: string;
+    
+    constructor(){
+        this.IdUsuario = 0;
+        this.TxtDireccion = '';
+        this.TxtEmail = '';
+        this.TxtNombres = '';
+        this.TxtApellidos = '';
+        this.TxtPassword = '';
+    }
+}

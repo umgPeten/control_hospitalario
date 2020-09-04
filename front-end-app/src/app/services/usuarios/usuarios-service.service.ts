@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { NewUser, Login } from '../../models/usuarios';
+import { NewUser, Login, ModUsuario } from '../../models/usuarios';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,18 @@ export class UsuariosServiceService {
 
   ServerObtenerUsuarios(): Observable<any>{
     return this.HttpClient.get(`${this.AUTH_SERVER}ObtenerUsuarios`);
+  }
+
+  ServerEliminarUsuario(IdUsuario: any): Observable<any>{
+    return this.HttpClient.post(`${this.AUTH_SERVER}EliminarUsuario`, IdUsuario);
+  }
+
+  ServerObtenerDatosUsuario(IdUsuario: any): Observable<any>{
+    return this.HttpClient.post(`${this.AUTH_SERVER}ObtenerDatosUsuario`, IdUsuario);
+  }
+
+  ServerActualizarUsuario(user: ModUsuario): Observable<any>{
+    return this.HttpClient.post(`${this.AUTH_SERVER}ActualizarUsuario`, user);
   }
 
   IsLoggedIn(url: string){
