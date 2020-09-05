@@ -5,17 +5,17 @@
             <div class="logo-img">
                 <img src="/assets/img/angular2-logo-white.png"/>
             </div>
-            Creative Tim
+            UMG Angular
         </a>
     </div>
     <ul class="nav responsive-nav">
-        <li *ngIf="isMobileMenu()">
+        <!-- <li *ngIf="isMobileMenu()">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-dashboard"></i>
-				<p class="hidden-lg hidden-md">Dashboard</p>
+				<p class="hidden-lg hidden-md">menu</p>
             </a>
-        </li>
-        <li class="dropdown" *ngIf="isMobileMenu()">
+        </li> -->
+        <!-- <li class="dropdown" *ngIf="isMobileMenu()">
               <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-globe"></i>
                     <b class="caret hidden-sm hidden-xs"></b>
@@ -32,19 +32,19 @@
                 <li><a href="#">Notification 4</a></li>
                 <li><a href="#">Another notification</a></li>
               </ul>
-        </li>
-        <li *ngIf="isMobileMenu()">
+        </li> -->
+        <!-- <li *ngIf="isMobileMenu()">
            <a>
                 <i class="fa fa-search"></i>
 				<p class="hidden-lg hidden-md">Search</p>
             </a>
-        </li>
-        <li *ngIf="isMobileMenu()">
+        </li> -->
+        <!-- <li *ngIf="isMobileMenu()">
            <a href="">
                <p>Account</p>
             </a>
-        </li>
-        <li class="dropdown" *ngIf="isMobileMenu()">
+        </li> -->
+        <!-- <li class="dropdown" *ngIf="isMobileMenu()">
               <a class="dropdown-toggle" data-toggle="dropdown">
                     <p>
     					Dropdown
@@ -61,13 +61,13 @@
                 <li class="divider"></li>
                 <li><a href="#">Separated link</a></li>
               </ul>
-        </li>
-        <li *ngIf="isMobileMenu()">
+        </li> -->
+        <!-- <li *ngIf="isMobileMenu()">
             <a routerLink="/login" (click)="deslogueo()">
                 <p>Log out</p>
             </a>
-        </li>
-        <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
+        </li> -->
+        <!-- <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li> -->
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
             <a  [routerLink]="[menuItem.path]">
                 <i class="{{menuItem.icon}}"></i>
