@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
@@ -31,7 +32,8 @@ import { DialogAgregarUsuarioComponent } from './components/emergentes/dialog-ag
     SidebarModule,
     AppRoutingModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   declarations: [
     AppComponent,

@@ -15,6 +15,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
   nuevoUsuario: NewUser;
   comprobarContrasenia: string;
   DatosUsuarioActivo: AfterLogin;
+  mostrar: boolean;
 
   constructor(
     private usuariosService: UsuariosServiceService,
@@ -25,6 +26,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
     this.DatosUsuarioActivo = JSON.parse(localStorage.getItem("DatosUsuario"));;
     this.nuevoUsuario = new NewUser;
     this.comprobarContrasenia = '';
+    this.mostrar = false;
   }
 
   AgregarNuevoUsuario(){
