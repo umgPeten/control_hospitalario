@@ -1,11 +1,12 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
@@ -34,7 +35,8 @@ import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotr
     AppRoutingModule,
     MatDialogModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxSpinnerModule
   ],
   declarations: [
     AppComponent,
@@ -53,6 +55,9 @@ import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotr
     DialogAgregarUsuarioComponent,
     DialogoNosotrosComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AfterLogin } from 'app/models/usuarios';
 import { NewUser } from './../../../models/usuarios';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,8 @@ export class DialogAgregarUsuarioComponent implements OnInit {
 
   constructor(
     private usuariosService: UsuariosServiceService,
-    public dialogo: MatDialogRef<DialogAgregarUsuarioComponent>
+    public dialogo: MatDialogRef<DialogAgregarUsuarioComponent>,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,9 @@ export class DialogAgregarUsuarioComponent implements OnInit {
             this.dialogo.close(this.nuevoUsuario.TxtNombres + " " + this.nuevoUsuario.TxtApellidos);
           }
           else{
+            localStorage.setItem("DatosUsuario", "");
+            localStorage.setItem("SessionStarted", "0");
+            this.router.navigate(['/dashboard']);
             this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
           }
         },

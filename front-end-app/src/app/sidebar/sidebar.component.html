@@ -1,7 +1,7 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text">
+        <a href="#" class="simple-text">
             <div class="logo-img">
                 <img src="/assets/img/angular2-logo-white.png"/>
             </div>
@@ -62,11 +62,11 @@
                 <li><a href="#">Separated link</a></li>
               </ul>
         </li> -->
-        <!-- <li *ngIf="isMobileMenu()">
+        <li *ngIf="isMobileMenu()">
             <a routerLink="/login" (click)="deslogueo()">
-                <p>Log out</p>
+                <p>Cerrar sesion</p>
             </a>
-        </li> -->
+        </li>
         <!-- <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li> -->
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
             <a  [routerLink]="[menuItem.path]">

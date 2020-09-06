@@ -8,7 +8,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes =[
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full',}, 
+  { path: '', redirectTo: 'usuarios', pathMatch: 'full',}, 
   { path: '', component: AdminLayoutComponent, canActivate: [CanActivateGuard],
     children: 
     [

@@ -5,6 +5,7 @@ import { UsuariosServiceService } from '../../services/usuarios/usuarios-service
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAgregarUsuarioComponent } from '../emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 declare var $:any;
 
@@ -21,7 +22,8 @@ export class VistaUsuariosComponent implements OnInit {
 
   constructor(
     private usuariosService: UsuariosServiceService,
-    public dialogo: MatDialog
+    public dialogo: MatDialog,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -30,11 +32,14 @@ export class VistaUsuariosComponent implements OnInit {
   }
 
   cargarUsuarios(){
+    this.spinner.show();
     this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
+      this.spinner.hide();
       this.allUsers = resultado;
     },
     error =>{
-      console.log(error);
+      this.spinner.hide();
+      this.Mensaje(error.statusText, 4, 1, 1);
     })
   }
 
