@@ -54,22 +54,22 @@
                     <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource" matSort>
                       
-                            <ng-container matColumnDef="nombre">
+                            <ng-container matColumnDef="TxtNombres">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                                 <td mat-cell *matCellDef="let row"> {{row.TxtNombres}} </td>
                             </ng-container>
                       
-                            <ng-container matColumnDef="direccion">
+                            <ng-container matColumnDef="TxtDireccion">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </th>
                                 <td mat-cell *matCellDef="let row"> {{row.TxtDireccion}} </td>
                             </ng-container>
                       
-                            <ng-container matColumnDef="correo">
+                            <ng-container matColumnDef="TxtEmail">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
                                 <td mat-cell *matCellDef="let row"> {{row.TxtEmail}} </td>
                             </ng-container>
                       
-                            <ng-container matColumnDef="fecha">
+                            <ng-container matColumnDef="FechaIngreso">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
                                 <td mat-cell *matCellDef="let row"> {{row.FechaIngreso | date:'dd-MM-yyyy'}} </td>
                             </ng-container>
