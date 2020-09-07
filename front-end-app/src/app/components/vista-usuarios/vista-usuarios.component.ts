@@ -22,7 +22,7 @@ export class VistaUsuariosComponent implements OnInit  {
   IdUser = {
       IdUsuario: 0
     };
-  displayedColumns: string[] = ['nombre', 'direccion', 'correo', 'fecha', 'opciones'];
+  displayedColumns: string[] = ['nombre', 'direccion', 'correo', 'fecha', 'opciones', 'opciones2'];
   dataSource: MatTableDataSource<DatosUsuarios>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

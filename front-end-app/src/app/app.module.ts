@@ -27,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuarios.component';
 import { DialogAgregarUsuarioComponent } from './components/emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
 import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotr
     MatButtonModule,
     MatCheckboxModule,
     NgxSpinnerModule,
+    BrowserModule,
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
