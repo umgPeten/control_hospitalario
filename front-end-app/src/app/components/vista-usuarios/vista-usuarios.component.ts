@@ -35,6 +35,7 @@ export class VistaUsuariosComponent implements OnInit  {
   ) { }
 
   ngOnInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     // this.allUsers = new DatosUsuarios;
     this.cargarUsuarios();
   }
