@@ -2,10 +2,13 @@ import { DialogoModificarComponent } from './../emergentes/dialogo-modificar/dia
 import { DialogoConfirmacionComponent } from '../emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DatosUsuarios } from '../../models/usuarios';
 import { UsuariosServiceService } from '../../services/usuarios/usuarios-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAgregarUsuarioComponent } from '../emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 declare var $:any;
 
@@ -14,28 +17,47 @@ declare var $:any;
   templateUrl: './vista-usuarios.component.html',
   styleUrls: ['./vista-usuarios.component.css']
 })
-export class VistaUsuariosComponent implements OnInit {
-  allUsers: DatosUsuarios;
+export class VistaUsuariosComponent implements OnInit  {
+  // allUsers: DatosUsuarios;
   IdUser = {
       IdUsuario: 0
     };
+  displayedColumns: string[] = ['nombre', 'direccion', 'correo', 'fecha', 'opciones'];
+  dataSource: MatTableDataSource<DatosUsuarios>;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private usuariosService: UsuariosServiceService,
     public dialogo: MatDialog,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
-    this.allUsers = new DatosUsuarios;
+    // this.allUsers = new DatosUsuarios;
     this.cargarUsuarios();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   cargarUsuarios(){
     this.spinner.show();
     this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
       this.spinner.hide();
-      this.allUsers = resultado;
+      this.dataSource = new MatTableDataSource(resultado);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      // this.allUsers = resultado;
+
     },
     error =>{
       this.spinner.hide();
