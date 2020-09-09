@@ -78,7 +78,8 @@
                                 <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" > Opciones </th>
                                 <td mat-cell *matCellDef="let row">
                                     <button type="button" class="btn btn-primary btn-fill btn-sm" (click)="modificarUsuario(row.IdUsuario)">
-                                        <i class="pe-7s-user-female"></i>
+                                        <!-- <i class="pe-7s-user-female"></i> -->
+                                        <i class="fas fa-user-edit"></i>
                                     </button>
                                 </td>
                             </ng-container>
@@ -87,7 +88,8 @@
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td  mat-cell *matCellDef="let row">
                                     <button type="button" class="btn btn-danger btn-fill btn-sm" (click)="eliminarUsuario(row)">
-                                        <i class="pe-7s-trash"></i>
+                                        <!-- <i class="pe-7s-trash"></i> -->
+                                        <i class="fas fa-user-times"></i>
                                     </button>
                                 </td>
                             </ng-container>
@@ -105,7 +107,8 @@
 
                     <div class="col-md-offset-5">
                         <button class="btn btn-primary btn-fill btn-lg" (click)="AgregarUsuario()">
-                            <i class="pe-7s-add-user"></i>
+                            <!-- <i class="pe-7s-add-user"></i> -->
+                            <i class="fas fa-user-plus"></i>
                         </button>
                     </div>
 
