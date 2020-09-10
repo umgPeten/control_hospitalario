@@ -28,7 +28,7 @@ export class SpotifyService {
       'Authorization': this.Token
     });
 
-    return this.httpClient.get(`${this.URL_SPOTIFY}search?q=${ buscar }&type=artist`, { headers }).pipe(
+    return this.httpClient.get(`${this.URL_SPOTIFY}search?q=${ buscar }&type=artist&limit=5`, { headers }).pipe(
       map( data =>{
         return data['artists'].items;
       })
