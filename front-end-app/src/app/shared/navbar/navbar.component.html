@@ -44,12 +44,14 @@
             </ul> -->
 
             <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a>
-                        <i class="fa fa-search"></i>
-                        <!-- <p class="hidden-lg hidden-md">Search</p> -->
-                        <input type="Buscar" class="buscador">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- <i class="fa fa-search"></i> -->
+                        <input #dato type="text" class="buscador" (keyup)="buscador(dato.value)">
                     </a>
+                    <ul class="dropdown-menu" *ngIf="buscar">
+                        <li *ngFor="let artista of buscar"><a href=""> {{ artista.name }} </a></li>
+                    </ul>
                 </li>
             </ul>
 

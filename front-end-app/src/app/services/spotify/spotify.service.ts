@@ -7,11 +7,11 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
   URL_SPOTIFY: string = 'https://api.spotify.com/v1/';
-  Token: string = 'Bearer BQA0DpcQcQ7DJM8o2LaNowKqBVUYV7DL_gNH3D4BAB5LYuJG2UQ8EqaFydVwTtTFSRxR6rsiU0fwdOgwajk'
+  Token: string = 'Bearer BQCs6KyI4ezw5tsaStYJHc1jP1Du9NezAvh6vXepSzYWR9XCBLhQ_cS0bWk5rKA06FnNlJtIGP6lAgJ_5Jk'
 
   constructor(private httpClient: HttpClient) { }
 
-  GetNewReleases(){
+  getNewReleases(){
     const headers = new HttpHeaders({
       'Authorization': this.Token
     });
@@ -23,7 +23,7 @@ export class SpotifyService {
     );
   }
 
-  GetArtistas(buscar: string){
+  getArtistas(buscar: string){
     const headers = new HttpHeaders({
       'Authorization': this.Token
     });
@@ -35,7 +35,7 @@ export class SpotifyService {
     );
   }
 
-  GetArtista(id: string){
+  getArtista(id: string){
     const headers = new HttpHeaders({
       'Authorization': this.Token
     });
@@ -43,7 +43,7 @@ export class SpotifyService {
     return this.httpClient.get(`${this.URL_SPOTIFY}artists/${ id }`, { headers });
   }
 
-  GetTopTracksArtista(id: string){
+  getTopTracksArtista(id: string){
     const headers = new HttpHeaders({
       'Authorization': this.Token
     });

@@ -1,3 +1,4 @@
+import { SpotifyService } from './../../services/spotify/spotify.service';
 import { DialogoNosotrosComponent } from './../../components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';
@@ -16,11 +17,13 @@ export class NavbarComponent implements OnInit{
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    buscar: any;
 
     constructor(
         location: Location,
         private element: ElementRef,
-        public dialogo: MatDialog
+        public dialogo: MatDialog,
+        private spotify: SpotifyService
         ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -78,5 +81,20 @@ export class NavbarComponent implements OnInit{
 
     mostrarNosotros(){
         this.dialogo.open(DialogoNosotrosComponent)
+    }
+
+    buscador(buscar: string){
+        if(buscar){
+            this.spotify.getArtistas(buscar).subscribe(resultado => {
+                this.buscar = resultado;
+                console.log(resultado);
+            },
+            error => {
+                console.log(error);
+            })
+        }
+        else{
+            this.buscar = null
+        }
     }
 }
