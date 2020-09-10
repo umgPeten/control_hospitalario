@@ -28,6 +28,8 @@ import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuari
 import { DialogAgregarUsuarioComponent } from './components/emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
 import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { DomseguroPipe } from './pipes/domseguro/domseguro.pipe';
+import { NoimagePipe } from './pipes/noimage/noimage.pipe';
 
 @NgModule({
   imports: [
@@ -58,7 +60,9 @@ import { BrowserModule } from '@angular/platform-browser';
     LoginComponent,
     VistaUsuariosComponent,
     DialogAgregarUsuarioComponent,
-    DialogoNosotrosComponent
+    DialogoNosotrosComponent,
+    DomseguroPipe,
+    NoimagePipe
   ],
   providers: [],
   entryComponents: [
