@@ -7,7 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
     // moduleId: module.id,
     selector: 'navbar-cmp',
-    templateUrl: 'navbar.component.html'
+    templateUrl: 'navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
 
 export class NavbarComponent implements OnInit{
@@ -67,7 +68,7 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-      return 'Dashboard';
+      return 'Inicio';
     }
 
     deslogueo(){
