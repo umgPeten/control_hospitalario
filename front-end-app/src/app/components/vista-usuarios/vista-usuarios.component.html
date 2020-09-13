@@ -75,24 +75,37 @@
                             </ng-container>
 
                             <ng-container matColumnDef="opciones">
-                                <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" > Opciones </th>
+                                <th mat-header-cell *matHeaderCellDef> Opciones </th>
                                 <td mat-cell *matCellDef="let row">
-                                    <button type="button" class="btn btn-primary btn-fill btn-sm" (click)="modificarUsuario(row.IdUsuario)">
-                                        <!-- <i class="pe-7s-user-female"></i> -->
+                                    <!-- <button type="button" class="btn btn-primary btn-fill btn-sm" (click)="modificarUsuario(row.IdUsuario)">
                                         <i class="fas fa-user-edit"></i>
-                                    </button>
+                                    </button> -->
+
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                      </button>
+                                      <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="modificarUsuario(row.IdUsuario)">
+                                            <i class="fas fa-user-edit"></i>
+                                            <span> Modificar</span>
+                                        </button>
+                                        <button mat-menu-item (click)="eliminarUsuario(row)">
+                                            <i class="fas fa-user-times"></i>
+                                            <span> Eliminar</span>
+                                        </button>
+                                      </mat-menu>
+
                                 </td>
                             </ng-container>
 
-                            <ng-container matColumnDef="opciones2">
+                            <!-- <ng-container matColumnDef="opciones2">
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td  mat-cell *matCellDef="let row">
                                     <button type="button" class="btn btn-danger btn-fill btn-sm" (click)="eliminarUsuario(row)">
-                                        <!-- <i class="pe-7s-trash"></i> -->
                                         <i class="fas fa-user-times"></i>
                                     </button>
                                 </td>
-                            </ng-container>
+                            </ng-container> -->
                       
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
