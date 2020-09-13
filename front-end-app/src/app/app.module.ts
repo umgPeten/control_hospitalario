@@ -32,6 +32,15 @@ import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotr
 import { BrowserModule } from '@angular/platform-browser';
 import { DomseguroPipe } from './pipes/domseguro/domseguro.pipe';
 import { NoimagePipe } from './pipes/noimage/noimage.pipe';
+import { PermisosMenuComponent } from './components/permisos-menu/permisos-menu.component';
+import { CatalogosComponent } from './components/menu/catalogos/catalogos.component';
+import { EspecialidadesComponent } from './components/menu/especialidades/especialidades.component';
+import { PuestosComponent } from './components/menu/puestos/puestos.component';
+import { RenglonesComponent } from './components/menu/renglones/renglones.component';
+import { EvaluacionesComponent } from './components/menu/evaluaciones/evaluaciones.component';
+import { EmpleadosComponent } from './components/menu/empleados/empleados.component';
+import { CrearEvaluacionComponent } from './components/menu/crear-evaluacion/crear-evaluacion.component';
+import { ServiciosComponent } from './components/menu/servicios/servicios.component';
 
 @NgModule({
   imports: [
@@ -66,7 +75,16 @@ import { NoimagePipe } from './pipes/noimage/noimage.pipe';
     DialogAgregarUsuarioComponent,
     DialogoNosotrosComponent,
     DomseguroPipe,
-    NoimagePipe
+    NoimagePipe,
+    PermisosMenuComponent,
+    CatalogosComponent,
+    EspecialidadesComponent,
+    PuestosComponent,
+    RenglonesComponent,
+    EvaluacionesComponent,
+    EmpleadosComponent,
+    CrearEvaluacionComponent,
+    ServiciosComponent
   ],
   providers: [],
   entryComponents: [

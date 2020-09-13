@@ -1,4 +1,6 @@
+import { UsuariosServiceService } from 'app/services/usuarios/usuarios-service.service';
 import { Component, OnInit } from '@angular/core';
+import { AfterLogin, Menu, ObtenerMenu } from 'app/models/usuarios';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -16,6 +18,7 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },
     // { path: '/notifications', title: 'Notifications',  icon:'pe-7s-bell', class: '' },
     { path: '/usuarios', title: 'Usuarios', icon: 'pe-7s-user', class:''},
+    { path: '/menus', title: 'Menus', icon: 'pe-7s-user', class:''},
     // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'pe-7s-rocket', class: 'active-pro' },
 ];
 
@@ -25,12 +28,40 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  
+  menuItemsUsers: Menu;
+  obtener: ObtenerMenu;
+  usuario: AfterLogin;
 
-  constructor() { }
+  constructor(
+    private usuariosService: UsuariosServiceService,
+  ) { }
 
   ngOnInit() {
+    this.obtener = new ObtenerMenu;
+    // this.menuItemsUser = new Menu;
+    this.usuario = new AfterLogin;
+
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    console.log(this.menuItems);
+    this.cargarUserMenu();
   }
+  
+  cargarUserMenu(){
+
+    this.usuario = JSON.parse(localStorage.getItem("DatosUsuario"));
+    this.obtener.IdModulo = 1;
+    this.obtener.TxtToken = this.usuario.TxtToken;
+
+    this.usuariosService.ServerMenuUsuario(this.obtener).subscribe( resultado =>{
+      console.log(resultado);
+      this.menuItemsUsers = resultado;
+    },
+    error =>{
+      console.log(error)
+    })
+  }
+
   isMobileMenu() {
       if ($(window).width() > 991) {
           return false;
