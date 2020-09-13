@@ -16,7 +16,8 @@ export class DialogoModificarComponent implements OnInit {
     IdUsuario: 0
   };
   comprobarContrasenia: string;
-  mostrar: boolean;
+  // mostrar: boolean;
+  hide = true;
 
   constructor(
     private usuariosService: UsuariosServiceService,
@@ -30,7 +31,7 @@ export class DialogoModificarComponent implements OnInit {
     this.UsuarioAModificar = new ModUsuario;
     this.comprobarContrasenia = '';
     this.ObtenerDatosUsuario();
-    this.mostrar = false;
+    // this.mostrar = false;
   }
 
   ObtenerDatosUsuario(){
