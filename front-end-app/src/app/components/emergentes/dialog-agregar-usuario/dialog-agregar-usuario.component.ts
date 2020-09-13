@@ -26,7 +26,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DatosUsuarioActivo = JSON.parse(localStorage.getItem("DatosUsuario"));;
+    this.DatosUsuarioActivo = JSON.parse(localStorage.getItem("DatosUsuario"));
     this.nuevoUsuario = new NewUser;
     this.comprobarContrasenia = '';
     // this.mostrar = false;

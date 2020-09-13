@@ -52,13 +52,13 @@ export class VistaUsuariosComponent implements OnInit  {
   cargarUsuarios(){
     this.spinner.show();
     this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
-      this.spinner.hide();
       this.dataSource = new MatTableDataSource(resultado);
-
+      
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       // this.allUsers = resultado;
-
+      
+      this.spinner.hide();
     },
     error =>{
       this.spinner.hide();
