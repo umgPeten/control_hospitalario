@@ -27,49 +27,65 @@
                       
                             <ng-container matColumnDef="Agregar">
                                 <th mat-header-cell *matHeaderCellDef> Agregar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Agregar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon>
+                                </td>
                             </ng-container>
                       
                             <ng-container matColumnDef="ModificarActualizar">
                                 <th mat-header-cell *matHeaderCellDef> ModificarActualizar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.ModificarActualizar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Eliminar">
                                 <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Eliminar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Consultar">
                                 <th mat-header-cell *matHeaderCellDef> Consultar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Consultar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Imprimir">
                                 <th mat-header-cell *matHeaderCellDef> Imprimir </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Imprimir}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Aprobar">
                                 <th mat-header-cell *matHeaderCellDef> Aprobar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Aprobar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Reversa">
                                 <th mat-header-cell *matHeaderCellDef> Reversa </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Reversa}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="Finalizar">
                                 <th mat-header-cell *matHeaderCellDef> Finalizar </th>
-                                <td mat-cell *matCellDef="let row"> {{row.Finalizar}} </td>
+                                <td mat-cell *matCellDef="let row"> 
+                                    <mat-icon>{{row.Agregar ? 'done' : 'clear'}}</mat-icon> 
+                                </td>
                             </ng-container>
                       
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                       
                             <tr class="mat-row" *matNoDataRow>
-                                <td class="mat-cell" colspan="5">No se encontraron datos con los parametros "{{input.value}}"</td>
+                                <td class="mat-cell" colspan="9">No se encontraron datos con los parametros "{{input.value}}"</td>
                             </tr>
                         </table>
                       
