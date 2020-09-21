@@ -1,4 +1,4 @@
-import { UsuariosServiceService } from './../../../services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from '../../../services/usuarios-service.service';
 import { DatosUsuarios, ModUsuario } from './../../../models/usuarios';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

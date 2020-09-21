@@ -1,4 +1,4 @@
-import { SpotifyService } from './../../services/spotify/spotify.service';
+import { SpotifyService } from '../../services/spotify.service';
 import { DialogoNosotrosComponent } from './../../components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';

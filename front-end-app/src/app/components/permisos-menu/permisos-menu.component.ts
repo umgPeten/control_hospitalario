@@ -1,6 +1,6 @@
 import { AfterLogin } from 'app/models/usuarios';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UsuariosServiceService } from 'app/services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from 'app/services/usuarios-service.service';
 import { Menu, ObtenerMenu } from './../../models/usuarios';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';

@@ -5,7 +5,7 @@ import * as Chartist from 'chartist';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from '../components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { NewUser, Login, AfterLogin, DatosUsuarios } from '../models/usuarios';
-import { UsuariosServiceService } from '../services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from '../services/usuarios-service.service';
 import { Observable } from 'rxjs';
 
 @Component({

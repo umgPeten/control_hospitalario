@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { UsuariosServiceService } from '../../services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from '../../services/usuarios-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Login, AfterLogin } from 'app/models/usuarios';
 import { NgxSpinnerService } from 'ngx-spinner';

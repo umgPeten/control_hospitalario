@@ -3,7 +3,7 @@ import { AfterLogin } from 'app/models/usuarios';
 import { NewUser } from './../../../models/usuarios';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UsuariosServiceService } from 'app/services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from 'app/services/usuarios-service.service';
 
 declare var $:any;
 

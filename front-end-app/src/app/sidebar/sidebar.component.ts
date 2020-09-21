@@ -1,4 +1,4 @@
-import { UsuariosServiceService } from 'app/services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from 'app/services/usuarios-service.service';
 import { Component, OnInit } from '@angular/core';
 import { AfterLogin, Menu, ObtenerMenu } from 'app/models/usuarios';
 

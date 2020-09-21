@@ -1,7 +1,7 @@
 import { DialogoModificarComponent } from './../emergentes/dialogo-modificar/dialogo-modificar.component';
 import { DialogoConfirmacionComponent } from '../emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DatosUsuarios } from '../../models/usuarios';
-import { UsuariosServiceService } from '../../services/usuarios/usuarios-service.service';
+import { UsuariosServiceService } from '../../services/usuarios-service.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAgregarUsuarioComponent } from '../emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
