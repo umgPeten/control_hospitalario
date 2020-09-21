@@ -15,7 +15,7 @@ declare var $:any;
 export class DialogAgregarUsuarioComponent implements OnInit {
   nuevoUsuario: NewUser;
   comprobarContrasenia: string;
-  DatosUsuarioActivo: AfterLogin;
+  // DatosUsuarioActivo: AfterLogin;
   hide = true;
   // mostrar: boolean;
 
@@ -26,7 +26,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DatosUsuarioActivo = JSON.parse(sessionStorage.getItem("DatosUsuario"));
+    // this.DatosUsuarioActivo = JSON.parse(sessionStorage.getItem("DatosUsuario"));
     this.nuevoUsuario = new NewUser;
     this.comprobarContrasenia = '';
     // this.mostrar = false;
@@ -34,7 +34,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
 
   AgregarNuevoUsuario(){
     if(this.comprobar()){
-      this.nuevoUsuario.TxtToken = this.DatosUsuarioActivo.TxtToken;
+      // this.nuevoUsuario.TxtToken = this.DatosUsuarioActivo.TxtToken;
       if((this.nuevoUsuario.TxtPassword === this.comprobarContrasenia) && this.nuevoUsuario.TxtPassword !== ''){
         this.usuariosService.ServerAgregarUsuario(this.nuevoUsuario).subscribe(resultado =>{
           if(resultado[0].EstadoToken !== 0){
