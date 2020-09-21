@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 })
 export class SpotifyService {
   URL_SPOTIFY: string = 'https://api.spotify.com/v1/';
-  Token: string = 'Bearer BQCs6KyI4ezw5tsaStYJHc1jP1Du9NezAvh6vXepSzYWR9XCBLhQ_cS0bWk5rKA06FnNlJtIGP6lAgJ_5Jk'
 
   constructor(private httpClient: HttpClient) { }
 
