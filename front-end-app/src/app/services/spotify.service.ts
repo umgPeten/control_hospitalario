@@ -13,7 +13,7 @@ export class SpotifyService {
 
   getNewReleases(){
     const headers = new HttpHeaders({
-      'Authorization': sessionStorage.getItem('token')
+      'Authorization': sessionStorage.getItem('spotify')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}browse/new-releases`, { headers }).pipe(
@@ -25,7 +25,7 @@ export class SpotifyService {
 
   getArtistas(buscar: string){
     const headers = new HttpHeaders({
-      'Authorization': sessionStorage.getItem('token')
+      'Authorization': sessionStorage.getItem('spotify')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}search?q=${ buscar }&type=artist&limit=5`, { headers }).pipe(
@@ -37,7 +37,7 @@ export class SpotifyService {
 
   getArtista(id: string){
     const headers = new HttpHeaders({
-      'Authorization': sessionStorage.getItem('token')
+      'Authorization': sessionStorage.getItem('spotify')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}artists/${ id }`, { headers });
@@ -45,7 +45,7 @@ export class SpotifyService {
 
   getTopTracksArtista(id: string){
     const headers = new HttpHeaders({
-      'Authorization': sessionStorage.getItem('token')
+      'Authorization': sessionStorage.getItem('spotify')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}artists/${ id }/top-tracks?country=ES`, { headers }).pipe(
