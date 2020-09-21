@@ -13,7 +13,7 @@ export class SpotifyService {
 
   getNewReleases(){
     const headers = new HttpHeaders({
-      'Authorization': this.Token
+      'Authorization': localStorage.getItem('token')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}browse/new-releases`, { headers }).pipe(
@@ -25,7 +25,7 @@ export class SpotifyService {
 
   getArtistas(buscar: string){
     const headers = new HttpHeaders({
-      'Authorization': this.Token
+      'Authorization': localStorage.getItem('token')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}search?q=${ buscar }&type=artist&limit=5`, { headers }).pipe(
@@ -37,7 +37,7 @@ export class SpotifyService {
 
   getArtista(id: string){
     const headers = new HttpHeaders({
-      'Authorization': this.Token
+      'Authorization': localStorage.getItem('token')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}artists/${ id }`, { headers });
@@ -45,7 +45,7 @@ export class SpotifyService {
 
   getTopTracksArtista(id: string){
     const headers = new HttpHeaders({
-      'Authorization': this.Token
+      'Authorization': localStorage.getItem('token')
     });
 
     return this.httpClient.get(`${this.URL_SPOTIFY}artists/${ id }/top-tracks?country=ES`, { headers }).pipe(
@@ -53,5 +53,9 @@ export class SpotifyService {
         return data['tracks'];
       })
     );
+  }
+
+  getToken(){
+    return this.httpClient.get(`https://spotify-get-token.herokuapp.com/spotify/8fc714e5e5ea4ae8bd244388f3f16bf2/cb2f790b0bb249fe8093fc5a436a62ba`);
   }
 }

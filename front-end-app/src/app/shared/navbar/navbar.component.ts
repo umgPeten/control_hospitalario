@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit{
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+      this.obtenerTokenSpotify();
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -96,5 +97,16 @@ export class NavbarComponent implements OnInit{
         else{
             this.buscar = null
         }
+    }
+
+    obtenerTokenSpotify(){
+        setInterval(() => {
+            this.spotify.getToken().subscribe( resultado =>{
+              localStorage.setItem('token', `Bearer ${resultado['access_token']}`);
+            },
+            error =>{
+              console.log(error);
+            });
+        }, 6 * 10000 * 30);// tiempo en milisegundos ( 6 * 10000 * 30) = 1800000 = 30 minutos
     }
 }
