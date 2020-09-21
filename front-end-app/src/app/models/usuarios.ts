@@ -98,6 +98,7 @@ export interface IModUsuario{
     TxtNombres: string;
     TxtApellidos: string;
     TxtPassword: string;
+    TxtToken: string;
 }
 
 export class ModUsuario implements IModUsuario{
@@ -107,6 +108,7 @@ export class ModUsuario implements IModUsuario{
     TxtNombres: string;
     TxtApellidos: string;
     TxtPassword: string;
+    TxtToken: string;
     
     constructor(){
         this.IdUsuario = 0;
@@ -115,6 +117,7 @@ export class ModUsuario implements IModUsuario{
         this.TxtNombres = '';
         this.TxtApellidos = '';
         this.TxtPassword = '';
+        this.TxtToken = '';
     }
 }
 

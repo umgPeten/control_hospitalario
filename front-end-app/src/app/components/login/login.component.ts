@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         this.routerRedirect = this.usuariosService.intentoDeAcceso;
         this.usuariosService.intentoDeAcceso = '';
-        this.AlmacenarLocalStorage(this.afterLogin[0]);
+        this.AlmacenarSessionStorage(this.afterLogin[0]);
         this.router.navigate([this.routerRedirect]);
         // this.router.navigate(['/dashboard']);
       }
@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  AlmacenarLocalStorage(datosUsuario: AfterLogin){
-    localStorage.setItem("SessionStarted", "1");
-    localStorage.setItem("DatosUsuario", JSON.stringify(datosUsuario));
+  AlmacenarSessionStorage(datosUsuario: AfterLogin){
+    sessionStorage.setItem("SessionStarted", "1");
+    sessionStorage.setItem("DatosUsuario", JSON.stringify(datosUsuario));
   }
 
   showNotification(mensaje: string){

@@ -26,7 +26,7 @@ export class DialogAgregarUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.DatosUsuarioActivo = JSON.parse(localStorage.getItem("DatosUsuario"));
+    this.DatosUsuarioActivo = JSON.parse(sessionStorage.getItem("DatosUsuario"));
     this.nuevoUsuario = new NewUser;
     this.comprobarContrasenia = '';
     // this.mostrar = false;
@@ -41,8 +41,8 @@ export class DialogAgregarUsuarioComponent implements OnInit {
             this.dialogo.close(this.nuevoUsuario.TxtNombres + " " + this.nuevoUsuario.TxtApellidos);
           }
           else{
-            localStorage.setItem("DatosUsuario", "");
-            localStorage.setItem("SessionStarted", "0");
+            sessionStorage.setItem("DatosUsuario", "");
+            sessionStorage.setItem("SessionStarted", "0");
             this.router.navigate(['/dashboard']);
             this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
           }

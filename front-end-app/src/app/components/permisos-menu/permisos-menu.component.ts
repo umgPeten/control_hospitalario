@@ -40,7 +40,7 @@ export class PermisosMenuComponent implements OnInit {
   cargarMenu(){
     this.spinner.show();
 
-    this.usuario = JSON.parse(localStorage.getItem("DatosUsuario"));
+    this.usuario = JSON.parse(sessionStorage.getItem("DatosUsuario"));
     this.obtener.IdModulo = 1;
     this.obtener.TxtToken = this.usuario.TxtToken;
 

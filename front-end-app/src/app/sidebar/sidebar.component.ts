@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
   
   cargarUserMenu(){
 
-    this.usuario = JSON.parse(localStorage.getItem("DatosUsuario"));
+    this.usuario = JSON.parse(sessionStorage.getItem("DatosUsuario"));
     this.obtener.IdModulo = 1; //TODO: que modulo mostrar cambiar de manera dinamica
     this.obtener.TxtToken = this.usuario.TxtToken;
 
@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
   };
 
   deslogueo(){
-    localStorage.setItem("DatosUsuario", "");
-    localStorage.setItem("SessionStarted", "0");
+    sessionStorage.setItem("DatosUsuario", "");
+    sessionStorage.setItem("SessionStarted", "0");
   }
 }

@@ -44,7 +44,7 @@ export class UsuariosServiceService {
   }
 
   IsLoggedIn(url: string){
-    const isLogged = localStorage.getItem("SessionStarted");
+    const isLogged = sessionStorage.getItem("SessionStarted");
     if(isLogged !== "1"){
       this.intentoDeAcceso = url;
       return false;

@@ -76,8 +76,8 @@ export class NavbarComponent implements OnInit{
     }
 
     deslogueo(){
-        localStorage.setItem("DatosUsuario", "");
-        localStorage.setItem("SessionStarted", "0");
+        sessionStorage.setItem("DatosUsuario", "");
+        sessionStorage.setItem("SessionStarted", "0");
     }
 
     mostrarNosotros(){
@@ -102,7 +102,7 @@ export class NavbarComponent implements OnInit{
     obtenerTokenSpotify(){
         setInterval(() => {
             this.spotify.getToken().subscribe( resultado =>{
-              localStorage.setItem('token', `Bearer ${resultado['access_token']}`);
+                sessionStorage.setItem('token', `Bearer ${resultado['access_token']}`);
             },
             error =>{
               console.log(error);
