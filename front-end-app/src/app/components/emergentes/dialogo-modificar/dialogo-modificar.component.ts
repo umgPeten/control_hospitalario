@@ -13,7 +13,8 @@ declare var $:any;
 export class DialogoModificarComponent implements OnInit {
   UsuarioAModificar: ModUsuario;
   IdUser = {
-    IdUsuario: 0
+    IdUsuario: 0,
+    TxtToken: ''
   };
   comprobarContrasenia: string;
   // mostrar: boolean;

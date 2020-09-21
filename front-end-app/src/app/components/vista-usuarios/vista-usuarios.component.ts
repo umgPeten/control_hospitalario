@@ -20,7 +20,8 @@ declare var $:any;
 export class VistaUsuariosComponent implements OnInit  {
   // allUsers: DatosUsuarios;
   IdUser = {
-      IdUsuario: 0
+      IdUsuario: 0,
+      TxtToken: ''
     };
   displayedColumns: string[] = ['TxtNombres', 'TxtDireccion', 'TxtEmail', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosUsuarios>;
