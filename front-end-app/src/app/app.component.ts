@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
     });
 
     setInterval(() => {
-      console.log("Hola si tiene token y lo pide");
         this.spotify.getToken().subscribe( resultado =>{
             sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
         },

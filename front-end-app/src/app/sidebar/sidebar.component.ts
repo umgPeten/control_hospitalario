@@ -73,4 +73,8 @@ export class SidebarComponent implements OnInit {
     sessionStorage.setItem("DatosUsuario", "");
     sessionStorage.setItem("SessionStarted", "0");
   }
+
+  getUser(){
+    return JSON.parse(sessionStorage.getItem("DatosUsuario")).TxtUsuario;
+  }
 }
