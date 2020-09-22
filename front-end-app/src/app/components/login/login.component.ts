@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.usuariosService.ServerInicioDeSesion(this.loginUser).subscribe(resultado =>{
       this.afterLogin = resultado;
+      this.AlmacenarSessionStorage(this.afterLogin[0]);
       if(this.afterLogin[0].IntResultado === 0){
         this.spinner.hide();
         this.showNotification(this.afterLogin[0].TxtToken);
@@ -44,7 +45,6 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         this.routerRedirect = this.usuariosService.intentoDeAcceso;
         this.usuariosService.intentoDeAcceso = '';
-        this.AlmacenarSessionStorage(this.afterLogin[0]);
         this.router.navigate([this.routerRedirect]);
         // this.router.navigate(['/dashboard']);
       }
