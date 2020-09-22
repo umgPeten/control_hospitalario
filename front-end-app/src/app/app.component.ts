@@ -31,7 +31,8 @@ export class AppComponent implements OnInit {
       }
     }
 
-    obtenerTokenSpotify(){
+  obtenerTokenSpotify(){
+    setInterval(() => {
       if(sessionStorage.getItem('spotify') !== null){
         setInterval(() => {
             this.spotify.getToken().subscribe( resultado =>{
@@ -50,5 +51,6 @@ export class AppComponent implements OnInit {
           console.log(error);
         });
       }
+    }, 1000 );// tiempo en milisegundos 1000 = 1 segundo
   }
 }
