@@ -32,25 +32,21 @@ export class AppComponent implements OnInit {
     }
 
   obtenerTokenSpotify(){
+    this.spotify.getToken().subscribe( resultado =>{
+      sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
+    },
+    error =>{
+      console.log(error);
+    });
+
     setInterval(() => {
-      if(sessionStorage.getItem('spotify') !== null){
-        setInterval(() => {
-            this.spotify.getToken().subscribe( resultado =>{
-                sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
-            },
-            error =>{
-              console.log(error);
-            });
-        }, 6 * 10000 * 30);// tiempo en milisegundos ( 6 * 10000 * 30) = 1800000 = 30 minutos
-      }
-      else{
+      console.log("Hola si tiene token y lo pide");
         this.spotify.getToken().subscribe( resultado =>{
-          sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
+            sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
         },
         error =>{
           console.log(error);
         });
-      }
-    }, 1000 );// tiempo en milisegundos 1000 = 1 segundo
+    }, 6 * 10000 * 30);// tiempo en milisegundos ( 6 * 10000 * 30) = 1800000 = 30 minutos
   }
 }
