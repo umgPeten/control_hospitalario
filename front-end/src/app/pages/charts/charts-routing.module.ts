@@ -8,17 +8,11 @@ import { ChartjsComponent } from './chartjs/chartjs.component';
 
 const routes: Routes = [{
   path: '',
-  component: ChartsComponent,
-  children: [{
-    path: 'echarts',
-    component: EchartsComponent,
-  }, {
-    path: 'd3',
-    component: D3Component,
-  }, {
-    path: 'chartjs',
-    component: ChartjsComponent,
-  }],
+  component: ChartsComponent, children: [
+    { path: 'echarts', component: EchartsComponent, }, 
+    { path: 'd3', component: D3Component, }, 
+    { path: 'chartjs', component: ChartjsComponent, }
+  ],
 }];
 
 @NgModule({
