@@ -71,14 +71,14 @@ export class VistaUsuariosComponent implements OnInit  {
     this.IdUser.IdUsuario = user.IdUsuario;
     this.dialogo
       .open(DialogoConfirmacionComponent, {
-        data: user
+        data: `eliminar usuario '${user.TxtNombres}'`
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.usuariosService.ServerEliminarUsuario(this.IdUser).subscribe(resultado =>{
             if(resultado !== 0){
-              this.Mensaje("Usuario: '" + user.TxtNombres + "' eliminado", 2, 1, 3);
+              this.Mensaje(`Usuario '${user.TxtNombres}' eliminado`, 2, 1, 3);
               this.cargarUsuarios();
             }
             else{
