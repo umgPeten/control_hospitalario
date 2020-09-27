@@ -18,7 +18,8 @@ export class PermisosMenuComponent implements OnInit {
   obtener: ObtenerMenu;
   usuario: AfterLogin;
   
-  displayedColumns: string[] = ['TxtNombre', 'Agregar', 'ModificarActualizar', 'Eliminar', 'Consultar', 'Imprimir', 'Aprobar', 'Reversa', 'Finalizar'];
+  displayedColumns: string[] = ['TxtNombre', 'Agregar', 'Modificar/Actualizar', 'Eliminar', 'Consultar', 'Imprimir', 'Aprobar', 'Reversa', 'Finalizar'];
+  headers: string[] = ['Agregar', 'Eliminar', 'Consultar', 'Imprimir', 'Aprobar', 'Reversa', 'Finalizar']
   dataSource: MatTableDataSource<Menu>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

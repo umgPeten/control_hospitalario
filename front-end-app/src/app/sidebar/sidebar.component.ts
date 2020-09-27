@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
     this.usuario = new AfterLogin;
 
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-    console.log(this.menuItems);
+    // console.log(this.menuItems);
     this.cargarUserMenu();
   }
   
@@ -54,11 +54,11 @@ export class SidebarComponent implements OnInit {
     this.obtener.TxtToken = this.usuario.TxtToken;
 
     this.usuariosService.ServerMenuUsuario(this.obtener).subscribe( resultado =>{
-      console.log(resultado);
+      // console.log(resultado);
       this.menuItemsUsers = resultado;
     },
     error =>{
-      console.log(error)
+      // console.log(error)
     })
   }
 
@@ -72,5 +72,9 @@ export class SidebarComponent implements OnInit {
   deslogueo(){
     sessionStorage.setItem("DatosUsuario", "");
     sessionStorage.setItem("SessionStarted", "0");
+  }
+
+  getUser(){
+    return JSON.parse(sessionStorage.getItem("DatosUsuario")).TxtUsuario;
   }
 }
