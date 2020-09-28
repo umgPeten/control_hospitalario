@@ -10,6 +10,10 @@ export class UsuariosServiceService {
   AUTH_SERVER: string = "http://localhost:50708/api/";
   // private TxtToken: String;
   public intentoDeAcceso = "";
+  IdUser = {
+    IdUsuario: 0,
+    TxtToken: ''
+  };
 
   constructor(
     private HttpClient: HttpClient
@@ -33,10 +37,10 @@ export class UsuariosServiceService {
     return this.HttpClient.post(`${this.AUTH_SERVER}ObtenerUsuarios`, token);
   }
 
-  ServerEliminarUsuario(IdUsuario: any): Observable<any>{
-    IdUsuario.TxtToken = this.getToken().TxtToken;
+  ServerEliminarUsuario(TxtToken: any): Observable<any>{
+    TxtToken.TxtToken = this.getToken().TxtToken;
 
-    return this.HttpClient.post(`${this.AUTH_SERVER}EliminarUsuario`, IdUsuario);
+    return this.HttpClient.post(`${this.AUTH_SERVER}EliminarUsuario`, TxtToken);
   }
 
   ServerObtenerDatosUsuario(IdUsuario: any): Observable<any>{
