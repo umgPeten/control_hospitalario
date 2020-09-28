@@ -1,0 +1,143 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="header" *ngIf="mensaje">
+                        <h4 class="title">Actualizar empleado {{ empleado.TxtNombres }} {{ empleado.TxtApellidos }}</h4>
+                    </div>
+                    <div class="header" *ngIf="!mensaje">
+                        <h4 class="title">Agregar nuevo empleado</h4>
+                    </div>
+                    <div class="content">
+                        <div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Nombres</mat-label>
+                                            <input matInput placeholder="Nombres" [(ngModel)]="empleado.TxtNombres">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Apellidos</mat-label>
+                                            <input matInput placeholder="Apellidos" [(ngModel)]="empleado.TxtApellidos">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>NIT</mat-label>
+                                            <input matInput placeholder="NIT" [(ngModel)]="empleado.TxtNit">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>DPI</mat-label>
+                                            <input matInput placeholder="DPI" [(ngModel)]="empleado.TxtDpi">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Puesto</mat-label>
+                                            <mat-select [(value)]="puesto">
+                                                <mat-option disabled [value]="0">seleccione un puesto</mat-option>
+                                                <mat-option [value]="1">seleccion1</mat-option>
+                                                <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Especialidad</mat-label>
+                                            <mat-select [(value)]="especialidad">
+                                                <mat-option disabled [value]="0">seleccione una especialidad</mat-option>
+                                                <mat-option [value]="1">seleccion1</mat-option>
+                                                <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Servicio</mat-label>
+                                            <mat-select [(value)]="servicio">
+                                                <mat-option disabled [value]="0">seleccione un servicio</mat-option>
+                                                <mat-option [value]="1">seleccion1</mat-option>
+                                                <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Renglon</mat-label>
+                                            <mat-select [(value)]="renglon">
+                                                <mat-option disabled [value]="0">seleccione un renglon</mat-option>
+                                                <mat-option [value]="1">seleccion1</mat-option>
+                                                <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Institucion</mat-label>
+                                            <mat-select [(value)]="institucion">
+                                                <mat-option disabled [value]="0">seleccione una institucion</mat-option>
+                                                <mat-option [value]="1">seleccion1</mat-option>
+                                                <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
