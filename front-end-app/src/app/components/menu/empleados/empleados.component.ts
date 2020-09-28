@@ -1,3 +1,4 @@
+import { DialogoEmpleadoComponent } from './../../emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { EmpleadosService } from './../../../services/empleados.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DatosEmpleado } from 'app/models/empleados';
 import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 
 declare var $:any;
 
@@ -62,6 +64,58 @@ export class EmpleadosComponent implements OnInit {
       this.spinner.hide();
       this.Mensaje(error.statusText, 4, 1, 1);
     });
+  }
+
+  agregarEmpleado(){
+    this.dialogo.open(DialogoEmpleadoComponent).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Empleado ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        this.cargarEmpleados();
+      }
+      else{
+        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+      }
+    });
+  }
+
+  actualizarEmpleado(empleado: DatosEmpleado){
+    this.dialogo.open(DialogoEmpleadoComponent, {
+      data: empleado.IdEmpleado
+    }).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Empleado '${empleado.TxtNombres} ${empleado.TxtApellidos}' modificado exitosamente`, 2, 1, 3);
+        this.cargarEmpleados();
+      }
+      else{
+        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+      }
+    });
+  }
+
+  eliminarEmpleado(empleado: DatosEmpleado){
+    this.dialogo
+      .open(DialogoConfirmacionComponent, {
+        data: `eliminar empleado '${empleado.TxtNombres}'`
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.empleadosService.ServerEliminarEmpleado(empleado).subscribe(resultado =>{
+            if(resultado !== 0){
+              this.Mensaje(`Empleado '${empleado.TxtNombres}' eliminado`, 2, 1, 3);
+              this.cargarEmpleados();
+            }
+            else{
+              this.Mensaje("Error del servidor", 3, 1, 1);
+            }
+          },
+          error =>{
+            this.Mensaje(error.statusText, 4, 1, 1);
+          })
+        } else {
+          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        }
+      });
   }
 
   applyFilter(event: Event) {

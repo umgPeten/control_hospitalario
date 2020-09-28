@@ -42,3 +42,45 @@ export class DatosEmpleado implements IDatosEmpleado{
         this.EstadoToken = '';
     }
 }
+
+export interface IActualizarAgregarEmpleado {
+    IdEmpleado: number;
+    TxtNit: string;
+    TxtDpi: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    IdPuesto: number;
+    IdEspecialidad: number;
+    IdServicio: number;
+    IdRenglon: number;
+    IdInstitucion: number;
+    TxtToken: string;
+}
+
+export class ActualizarAgregarEmpleado implements IActualizarAgregarEmpleado {
+    IdEmpleado: number;
+    TxtNit: string;
+    TxtDpi: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    IdPuesto: number;
+    IdEspecialidad: number;
+    IdServicio: number;
+    IdRenglon: number;
+    IdInstitucion: number;
+    TxtToken: string;
+
+    constructor(){
+        this.IdEmpleado = 0;
+        this.TxtNit = '';
+        this.TxtDpi = '';
+        this.TxtNombres = '';
+        this.TxtApellidos = '';
+        this.IdPuesto = 0;
+        this.IdEspecialidad = 0;
+        this.IdServicio = 0;
+        this.IdRenglon = 0;
+        this.IdInstitucion = 0;
+        this.TxtToken = '';
+    }
+}

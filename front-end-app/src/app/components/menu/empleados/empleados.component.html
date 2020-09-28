@@ -53,11 +53,11 @@
                                         <mat-icon>more_vert</mat-icon>
                                       </button>
                                       <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="actualizarEmpleado(row)">
                                             <i class="fas fa-user-edit"></i>
                                             <span> Modificar</span>
                                         </button>
-                                        <button mat-menu-item >
+                                        <button mat-menu-item (click)="eliminarEmpleado(row)">
                                             <i class="fas fa-user-times"></i>
                                             <span> Eliminar</span>
                                         </button>
@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="col-md-offset-5">
-                        <button class="btn btn-primary btn-fill btn-lg">
+                        <button class="btn btn-primary btn-fill btn-lg" (click)="agregarEmpleado()">
                             <i class="fas fa-user-plus"></i>
                         </button>
                     </div>

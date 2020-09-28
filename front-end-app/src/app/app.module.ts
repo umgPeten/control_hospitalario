@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
@@ -41,6 +42,9 @@ import { EvaluacionesComponent } from './components/menu/evaluaciones/evaluacion
 import { EmpleadosComponent } from './components/menu/empleados/empleados.component';
 import { CrearEvaluacionComponent } from './components/menu/crear-evaluacion/crear-evaluacion.component';
 import { ServiciosComponent } from './components/menu/servicios/servicios.component';
+import { DialogoAgregarEmpleadoComponent } from './components/emergentes/menu/dialogo-agregar-empleado/dialogo-agregar-empleado.component';
+import { DialogoModificarEmpleadoComponent } from './components/emergentes/menu/dialogo-modificar-empleado/dialogo-modificar-empleado.component';
+import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 
 @NgModule({
   imports: [
@@ -63,7 +67,8 @@ import { ServiciosComponent } from './components/menu/servicios/servicios.compon
     MatPaginatorModule,
     MatSortModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
@@ -84,14 +89,18 @@ import { ServiciosComponent } from './components/menu/servicios/servicios.compon
     EvaluacionesComponent,
     EmpleadosComponent,
     CrearEvaluacionComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    DialogoAgregarEmpleadoComponent,
+    DialogoModificarEmpleadoComponent,
+    DialogoEmpleadoComponent
   ],
   providers: [],
   entryComponents: [
     DialogoConfirmacionComponent,
     DialogoModificarComponent,
     DialogAgregarUsuarioComponent,
-    DialogoNosotrosComponent
+    DialogoNosotrosComponent,
+    DialogoEmpleadoComponent
   ],
   bootstrap: [AppComponent],
   schemas: [
