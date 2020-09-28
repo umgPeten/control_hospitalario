@@ -45,12 +45,11 @@ export class EmpleadosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEmpleados();
   }
 
   cargarEmpleados(){
-    // console.log("carga de empleados");
     this.spinner.show();
     this.empleadosService.ServicioObtenerEmpleados().subscribe( resultado => {
       this.dataSource = new MatTableDataSource(resultado);
