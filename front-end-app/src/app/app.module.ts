@@ -42,8 +42,6 @@ import { EvaluacionesComponent } from './components/menu/evaluaciones/evaluacion
 import { EmpleadosComponent } from './components/menu/empleados/empleados.component';
 import { CrearEvaluacionComponent } from './components/menu/crear-evaluacion/crear-evaluacion.component';
 import { ServiciosComponent } from './components/menu/servicios/servicios.component';
-import { DialogoAgregarEmpleadoComponent } from './components/emergentes/menu/dialogo-agregar-empleado/dialogo-agregar-empleado.component';
-import { DialogoModificarEmpleadoComponent } from './components/emergentes/menu/dialogo-modificar-empleado/dialogo-modificar-empleado.component';
 import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 
 @NgModule({
@@ -90,8 +88,6 @@ import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-e
     EmpleadosComponent,
     CrearEvaluacionComponent,
     ServiciosComponent,
-    DialogoAgregarEmpleadoComponent,
-    DialogoModificarEmpleadoComponent,
     DialogoEmpleadoComponent
   ],
   providers: [],
