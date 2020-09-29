@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { ActualizarAgregarEmpleado } from './../models/empleados';
 import { DatosEmpleado } from 'app/models/empleados';
 import { UsuariosServiceService } from 'app/services/usuarios-service.service';
@@ -22,33 +23,33 @@ export class EmpleadosService {
   ServicioObtenerEmpleados(): Observable<any>{
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerEmpleados`, this.IdEmpleado);
+    return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerEmpleados`, this.IdEmpleado);
   }
 
   ServicioObtenerDatosEmpleado(empleado: number): Observable<any>{
     this.IdEmpleado.IdEmpleado = empleado;
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerDatosEmpleado`, this.IdEmpleado);
+    return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosEmpleado`, this.IdEmpleado);
   }
 
   ServerEliminarEmpleado(empleado: DatosEmpleado): Observable<any>{
     this.IdEmpleado.IdEmpleado = empleado.IdEmpleado;
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}EliminarEmpleado`, this.IdEmpleado);
+    return this.httpClient.post(`${environment.AUTH_SERVER}EliminarEmpleado`, this.IdEmpleado);
   }
 
   ServerAgregarEmpleado(empleado: ActualizarAgregarEmpleado): Observable<any>{
     empleado.TxtToken = this.getToken().TxtToken;
 
-    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}AgregarEmpleado`, empleado);
+    return this.httpClient.post(`${environment.AUTH_SERVER}AgregarEmpleado`, empleado);
   }
 
   ServerActualizarEmpleado(empleado: ActualizarAgregarEmpleado): Observable<any>{
     empleado.TxtToken = this.getToken().TxtToken;
     
-    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ActualizarEmpleado`, empleado);
+    return this.httpClient.post(`${environment.AUTH_SERVER}ActualizarEmpleado`, empleado);
   }
 
   getToken(){
