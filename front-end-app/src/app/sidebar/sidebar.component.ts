@@ -77,4 +77,11 @@ export class SidebarComponent implements OnInit {
   getUser(){
     return JSON.parse(sessionStorage.getItem("DatosUsuario")).TxtUsuario;
   }
+
+  tipoMenu(menu: Menu){
+    if(menu.TxtLink !== '#'){
+      return true;
+    }
+    return false;
+  }
 }

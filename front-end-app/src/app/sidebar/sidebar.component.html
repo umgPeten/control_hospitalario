@@ -74,8 +74,8 @@
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItemsUsers">
-            <a [routerLink]="[menuItem.TxtLink]">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItemsUsers" [ngClass]="{'separator': menuItem.TxtLink === '#'}">
+            <a *ngIf="tipoMenu(menuItem)" routerLink="/{{ menuItem.TxtLink }}">
                 <i class="{{menuItem.TxtImagen}}"></i>
                 <p>{{menuItem.TxtNombre}}</p>
             </a>
