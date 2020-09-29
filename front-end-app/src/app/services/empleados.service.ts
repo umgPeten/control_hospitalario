@@ -15,40 +15,40 @@ export class EmpleadosService {
   };
   
   constructor(
-    private HttpClient: HttpClient,
+    private httpClient: HttpClient,
     private usuariosService: UsuariosServiceService
   ) { }
 
   ServicioObtenerEmpleados(): Observable<any>{
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.HttpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerEmpleados`, this.IdEmpleado);
+    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerEmpleados`, this.IdEmpleado);
   }
 
   ServicioObtenerDatosEmpleado(empleado: number): Observable<any>{
     this.IdEmpleado.IdEmpleado = empleado;
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.HttpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerDatosEmpleado`, this.IdEmpleado);
+    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ObtenerDatosEmpleado`, this.IdEmpleado);
   }
 
   ServerEliminarEmpleado(empleado: DatosEmpleado): Observable<any>{
     this.IdEmpleado.IdEmpleado = empleado.IdEmpleado;
     this.IdEmpleado.TxtToken = this.getToken().TxtToken;
 
-    return this.HttpClient.post(`${this.usuariosService.AUTH_SERVER}EliminarEmpleado`, this.IdEmpleado);
+    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}EliminarEmpleado`, this.IdEmpleado);
   }
 
   ServerAgregarEmpleado(empleado: ActualizarAgregarEmpleado): Observable<any>{
     empleado.TxtToken = this.getToken().TxtToken;
 
-    return this.HttpClient.post(`${this.usuariosService.AUTH_SERVER}AgregarEmpleado`, empleado);
+    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}AgregarEmpleado`, empleado);
   }
 
   ServerActualizarEmpleado(empleado: ActualizarAgregarEmpleado): Observable<any>{
     empleado.TxtToken = this.getToken().TxtToken;
     
-    return this.HttpClient.post(`${this.usuariosService.AUTH_SERVER}ActualizarEmpleado`, empleado);
+    return this.httpClient.post(`${this.usuariosService.AUTH_SERVER}ActualizarEmpleado`, empleado);
   }
 
   getToken(){

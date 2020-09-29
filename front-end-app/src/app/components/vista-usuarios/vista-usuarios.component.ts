@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 declare var $:any;
 
@@ -33,6 +34,7 @@ export class VistaUsuariosComponent implements OnInit  {
     private usuariosService: UsuariosServiceService,
     public dialogo: MatDialog,
     private spinner: NgxSpinnerService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -53,28 +55,34 @@ export class VistaUsuariosComponent implements OnInit  {
   cargarUsuarios(){
     this.spinner.show();
     this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
-      this.dataSource = new MatTableDataSource(resultado);
-      
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      // this.allUsers = resultado;
-      
-      this.spinner.hide();
+      if(resultado[0].EstadoToken !== 0){
+        this.dataSource = new MatTableDataSource(resultado);
+        
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        // this.allUsers = resultado;
+        
+        this.spinner.hide();
+      }
+      else{
+        sessionStorage.setItem("DatosUsuario", "");
+        sessionStorage.setItem("SessionStarted", "0");
+        this.router.navigate(['/login']);
+        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+      }
     },
     error =>{
       this.spinner.hide();
       this.Mensaje(error.statusText, 4, 1, 1);
-    })
+    });
   }
 
   eliminarUsuario(user: DatosUsuarios){
     this.IdUser.IdUsuario = user.IdUsuario;
-    this.dialogo
-      .open(DialogoConfirmacionComponent, {
+    
+    this.dialogo.open(DialogoConfirmacionComponent, {
         data: `eliminar usuario '${user.TxtNombres}'`
-      })
-      .afterClosed()
-      .subscribe((confirmado: Boolean) => {
+      }).afterClosed().subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.usuariosService.ServerEliminarUsuario(this.IdUser).subscribe(resultado =>{
             if(resultado !== 0){

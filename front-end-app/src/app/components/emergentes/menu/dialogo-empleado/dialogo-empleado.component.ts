@@ -43,12 +43,20 @@ export class DialogoEmpleadoComponent implements OnInit {
 
   cargarInformacionEmpleado(){
     this.empleadosService.ServicioObtenerDatosEmpleado(this.mensaje).subscribe(resultado => {
-      this.empleado = resultado[0];
-      this.puesto = this.empleado.IdPuesto;
-      this.especialidad = this.empleado.IdEspecialidad;
-      this.servicio = this.empleado.IdServicio;
-      this.renglon = this.empleado.IdRenglon;
-      this.institucion = this.empleado.IdInstitucion;
+      if(resultado[0].EstadoToken !== 0){
+        this.empleado = resultado[0];
+        this.puesto = this.empleado.IdPuesto;
+        this.especialidad = this.empleado.IdEspecialidad;
+        this.servicio = this.empleado.IdServicio;
+        this.renglon = this.empleado.IdRenglon;
+        this.institucion = this.empleado.IdInstitucion;
+      }
+      else{
+        sessionStorage.setItem("DatosUsuario", "");
+        sessionStorage.setItem("SessionStarted", "0");
+        this.router.navigate(['/login']);
+        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+      }
     },
     error => {
       this.Mensaje(error.statusText, 4, 1, 1);
@@ -126,7 +134,7 @@ export class DialogoEmpleadoComponent implements OnInit {
       });
     }
     else{
-      this.Mensaje("Porfavor completar todos los campos", 3, 1, 1);
+      this.Mensaje("Por favor completar todos los campos", 3, 1, 1);
     }
   }
 
@@ -148,7 +156,7 @@ export class DialogoEmpleadoComponent implements OnInit {
       });
     }
     else{
-      this.Mensaje("Porfavor completar todos los campos", 3, 1, 1);
+      this.Mensaje("Por favor completar todos los campos", 3, 1, 1);
     }
   }
 
@@ -195,13 +203,5 @@ export class DialogoEmpleadoComponent implements OnInit {
             align: align[posX]
         }
     });
-  }
-
-  cerrarDialogo(): void {
-    this.dialogo.close(false);
-  }
-
-  confirmado(): void {
-    this.dialogo.close(true);
   }
 }
