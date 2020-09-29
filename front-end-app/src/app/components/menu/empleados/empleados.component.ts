@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DialogoEmpleadoComponent } from './../../emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { EmpleadosService } from './../../../services/empleados.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -44,6 +45,7 @@ export class EmpleadosComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private empleadosService: EmpleadosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,11 +56,20 @@ export class EmpleadosComponent implements OnInit {
   cargarEmpleados(){
     this.spinner.show();
     this.empleadosService.ServicioObtenerEmpleados().subscribe( resultado => {
-      this.dataSource = new MatTableDataSource(resultado);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.spinner.hide();
+      if(resultado[0].EstadoToken !== '0'){
+        this.dataSource = new MatTableDataSource(resultado);
+  
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.spinner.hide();
+      }
+      else{
+        this.spinner.hide();
+        sessionStorage.setItem("DatosUsuario", "");
+        sessionStorage.setItem("SessionStarted", "0");
+        this.router.navigate(['/login']);
+        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+      }
     },
     error => {
       this.spinner.hide();
@@ -102,8 +113,17 @@ export class EmpleadosComponent implements OnInit {
         if (confirmado) {
           this.empleadosService.ServerEliminarEmpleado(empleado).subscribe(resultado =>{
             if(resultado !== 0){
-              this.Mensaje(`Empleado '${empleado.TxtNombres}' eliminado`, 2, 1, 3);
-              this.cargarEmpleados();
+              if(resultado[0].EstadoToken !== '0'){
+                this.Mensaje(`Empleado '${empleado.TxtNombres}' eliminado`, 2, 1, 3);
+                this.cargarEmpleados();
+              }
+              else{
+                this.spinner.hide();
+                sessionStorage.setItem("DatosUsuario", "");
+                sessionStorage.setItem("SessionStarted", "0");
+                this.router.navigate(['/login']);
+                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+              }
             }
             else{
               this.Mensaje("Error del servidor", 3, 1, 1);

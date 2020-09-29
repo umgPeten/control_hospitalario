@@ -37,13 +37,14 @@ export class DialogAgregarUsuarioComponent implements OnInit {
       // this.nuevoUsuario.TxtToken = this.DatosUsuarioActivo.TxtToken;
       if((this.nuevoUsuario.TxtPassword === this.comprobarContrasenia) && this.nuevoUsuario.TxtPassword !== ''){
         this.usuariosService.ServerAgregarUsuario(this.nuevoUsuario).subscribe(resultado =>{
-          if(resultado[0].EstadoToken !== 0){
+          if(resultado[0].EstadoToken !== '0'){
             this.dialogo.close(this.nuevoUsuario.TxtNombres + " " + this.nuevoUsuario.TxtApellidos);
           }
           else{
+            this.dialogo.close();
             sessionStorage.setItem("DatosUsuario", "");
             sessionStorage.setItem("SessionStarted", "0");
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/login']);
             this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
           }
         },

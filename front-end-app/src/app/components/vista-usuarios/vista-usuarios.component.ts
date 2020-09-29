@@ -55,7 +55,7 @@ export class VistaUsuariosComponent implements OnInit  {
   cargarUsuarios(){
     this.spinner.show();
     this.usuariosService.ServerObtenerUsuarios().subscribe(resultado =>{
-      if(resultado[0].EstadoToken !== 0){
+      if(resultado[0].EstadoToken !== '0'){
         this.dataSource = new MatTableDataSource(resultado);
         
         this.dataSource.paginator = this.paginator;
@@ -65,6 +65,7 @@ export class VistaUsuariosComponent implements OnInit  {
         this.spinner.hide();
       }
       else{
+        this.spinner.hide();
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
@@ -86,8 +87,19 @@ export class VistaUsuariosComponent implements OnInit  {
         if (confirmado) {
           this.usuariosService.ServerEliminarUsuario(this.IdUser).subscribe(resultado =>{
             if(resultado !== 0){
-              this.Mensaje(`Usuario '${user.TxtNombres}' eliminado`, 2, 1, 3);
-              this.cargarUsuarios();
+              if(resultado[0].EstadoToken !== '0'){
+                this.Mensaje(`Usuario '${user.TxtNombres}' eliminado`, 2, 1, 3);
+                this.cargarUsuarios();
+                
+                this.spinner.hide();
+              }
+              else{
+                this.spinner.hide();
+                sessionStorage.setItem("DatosUsuario", "");
+                sessionStorage.setItem("SessionStarted", "0");
+                this.router.navigate(['/login']);
+                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+              }
             }
             else{
               this.Mensaje("Error del servidor", 3, 1, 1);

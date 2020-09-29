@@ -43,7 +43,7 @@ export class DialogoEmpleadoComponent implements OnInit {
 
   cargarInformacionEmpleado(){
     this.empleadosService.ServicioObtenerDatosEmpleado(this.mensaje).subscribe(resultado => {
-      if(resultado[0].EstadoToken !== 0){
+      if(resultado[0].EstadoToken !== '0'){
         this.empleado = resultado[0];
         this.puesto = this.empleado.IdPuesto;
         this.especialidad = this.empleado.IdEspecialidad;
@@ -52,6 +52,7 @@ export class DialogoEmpleadoComponent implements OnInit {
         this.institucion = this.empleado.IdInstitucion;
       }
       else{
+        this.dialogo.close();
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
@@ -119,10 +120,11 @@ export class DialogoEmpleadoComponent implements OnInit {
   actualizarEmpleado(){
     if(this.comprobarCampos()){
       this.empleadosService.ServerActualizarEmpleado(this.empleado).subscribe( resultado => {
-        if(resultado[0].EstadoToken !== 0){
+        if(resultado[0].EstadoToken !== '0'){
           this.dialogo.close(true);
         }
         else{
+          this.dialogo.close();
           sessionStorage.setItem("DatosUsuario", "");
           sessionStorage.setItem("SessionStarted", "0");
           this.router.navigate(['/login']);
@@ -141,10 +143,11 @@ export class DialogoEmpleadoComponent implements OnInit {
   agregarEmpleado(){
     if(this.comprobarCampos()){
       this.empleadosService.ServerAgregarEmpleado(this.empleado).subscribe( resultado => {
-        if(resultado[0].EstadoToken !== 0){
+        if(resultado[0].EstadoToken !== '0'){
           this.dialogo.close(this.empleado.TxtNombres + " " + this.empleado.TxtApellidos);
         }
         else{
+            this.dialogo.close();
             sessionStorage.setItem("DatosUsuario", "");
             sessionStorage.setItem("SessionStarted", "0");
             this.router.navigate(['/login']);
