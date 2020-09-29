@@ -13,7 +13,7 @@
                                     <div class="form-group">
                                         <!-- <label>Institucion</label>
                                         <input type="text" class="form-control" disabled placeholder="Institucion" value="UMG"> -->
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Institucion</mat-label>
                                             <input matInput disabled placeholder="Institucion" value="UMG">
                                         </mat-form-field>
@@ -23,7 +23,7 @@
                                     <div class="form-group">
                                         <!-- <label for="exampleInputEmail1">Correo electronico</label>
                                         <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="nuevoUsuario.TxtEmail"> -->
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Correo electronico</mat-label>
                                             <input matInput placeholder="Correo" [(ngModel)]="nuevoUsuario.TxtEmail">
                                         </mat-form-field>
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <!-- <label>Nombres</label>
                                         <input type="text" class="form-control" placeholder="Nombres" [(ngModel)]="nuevoUsuario.TxtNombres"> -->
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Nombres</mat-label>
                                             <input matInput placeholder="Nombres" [(ngModel)]="nuevoUsuario.TxtNombres">
                                         </mat-form-field>
@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <!-- <label>Apellidos</label>
                                         <input type="text" class="form-control" placeholder="Apellido" [(ngModel)]="nuevoUsuario.TxtApellidos"> -->
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Apellidos</mat-label>
                                             <input matInput placeholder="Apellido" [(ngModel)]="nuevoUsuario.TxtApellidos">
                                         </mat-form-field>
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <!-- <label>Direccion</label>
                                         <input type="text" class="form-control" placeholder="Direccion" [(ngModel)]="nuevoUsuario.TxtDireccion"> -->
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Direccion</mat-label>
                                             <input matInput placeholder="Direccion" [(ngModel)]="nuevoUsuario.TxtDireccion">
                                         </mat-form-field>
@@ -70,7 +70,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Contraseña</mat-label>
                                             <input matInput [type]="hide ? 'password' : 'text'" placeholder="contraseña" [(ngModel)]="nuevoUsuario.TxtPassword">
                                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <mat-form-field appearance="fill">
+                                        <mat-form-field appearance="fill" class="input">
                                             <mat-label>Verificar</mat-label>
                                             <input matInput [type]="hide ? 'password' : 'text'" placeholder="contraseña" [(ngModel)]="comprobarContrasenia">
                                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
