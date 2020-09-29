@@ -1,10 +1,20 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
@@ -18,6 +28,21 @@ import { DialogoConfirmacionComponent } from './components/emergentes/dialogo-co
 import { DialogoModificarComponent } from './components/emergentes/dialogo-modificar/dialogo-modificar.component';
 import { LoginComponent } from './components/login/login.component';
 import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuarios.component';
+import { DialogAgregarUsuarioComponent } from './components/emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
+import { DialogoNosotrosComponent } from './components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { DomseguroPipe } from './pipes/domseguro/domseguro.pipe';
+import { NoimagePipe } from './pipes/noimage/noimage.pipe';
+import { PermisosMenuComponent } from './components/permisos-menu/permisos-menu.component';
+import { CatalogosComponent } from './components/menu/catalogos/catalogos.component';
+import { EspecialidadesComponent } from './components/menu/especialidades/especialidades.component';
+import { PuestosComponent } from './components/menu/puestos/puestos.component';
+import { RenglonesComponent } from './components/menu/renglones/renglones.component';
+import { EvaluacionesComponent } from './components/menu/evaluaciones/evaluaciones.component';
+import { EmpleadosComponent } from './components/menu/empleados/empleados.component';
+import { CrearEvaluacionComponent } from './components/menu/crear-evaluacion/crear-evaluacion.component';
+import { ServiciosComponent } from './components/menu/servicios/servicios.component';
+import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 
 @NgModule({
   imports: [
@@ -30,7 +55,18 @@ import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuari
     SidebarModule,
     AppRoutingModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule,
+    NgxSpinnerModule,
+    BrowserModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
@@ -38,13 +74,33 @@ import { VistaUsuariosComponent } from './components/vista-usuarios/vista-usuari
     DialogoConfirmacionComponent,
     DialogoModificarComponent,
     LoginComponent,
-    VistaUsuariosComponent
+    VistaUsuariosComponent,
+    DialogAgregarUsuarioComponent,
+    DialogoNosotrosComponent,
+    DomseguroPipe,
+    NoimagePipe,
+    PermisosMenuComponent,
+    CatalogosComponent,
+    EspecialidadesComponent,
+    PuestosComponent,
+    RenglonesComponent,
+    EvaluacionesComponent,
+    EmpleadosComponent,
+    CrearEvaluacionComponent,
+    ServiciosComponent,
+    DialogoEmpleadoComponent
   ],
   providers: [],
   entryComponents: [
     DialogoConfirmacionComponent,
-    DialogoModificarComponent
+    DialogoModificarComponent,
+    DialogAgregarUsuarioComponent,
+    DialogoNosotrosComponent,
+    DialogoEmpleadoComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule { }

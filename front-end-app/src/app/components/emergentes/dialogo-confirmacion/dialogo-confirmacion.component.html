@@ -1,8 +1,14 @@
 <h1 mat-dialog-title>Confirmación</h1>
 <div mat-dialog-content>
-    <p>{{mensaje}}</p>
+    <p>¿Desea {{mensaje}}?</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="cerrarDialogo()">No</button>
-    <button mat-button (click)="confirmado()" cdkFocusInitial>Sí</button>
+    <button mat-button type="button" class="btn btn-danger btn-fill btn-sm" (click)="cerrarDialogo()">
+        <!-- <i class="pe-7s-close"></i> -->
+        <i class="fas fa-times"></i>
+    </button>
+    <button mat-button type="button" class="btn btn-primary btn-fill btn-sm" (click)="confirmado()">
+        <!-- <i class="pe-7s-check"></i> -->
+        <i class="fas fa-check"></i>
+    </button>
 </div>

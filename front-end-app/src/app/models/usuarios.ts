@@ -90,3 +90,96 @@ export class DatosUsuarios implements IDatosUsuarios{
         this.TxtPassword = '';
     }
 }
+
+export interface IModUsuario{
+    IdUsuario: number;
+    TxtDireccion: string;
+    TxtEmail: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    TxtPassword: string;
+    TxtToken: string;
+}
+
+export class ModUsuario implements IModUsuario{
+    IdUsuario: number;
+    TxtDireccion: string;
+    TxtEmail: string;
+    TxtNombres: string;
+    TxtApellidos: string;
+    TxtPassword: string;
+    TxtToken: string;
+    
+    constructor(){
+        this.IdUsuario = 0;
+        this.TxtDireccion = '';
+        this.TxtEmail = '';
+        this.TxtNombres = '';
+        this.TxtApellidos = '';
+        this.TxtPassword = '';
+        this.TxtToken = '';
+    }
+}
+
+export interface IObtenerMenu{
+    TxtToken: string;
+    IdModulo: number;
+}
+
+export class ObtenerMenu implements IObtenerMenu{
+    TxtToken: string;
+    IdModulo: number;
+
+    constructor(){
+        this.TxtToken = '';
+        this.IdModulo = 0;
+    }
+}
+
+export interface IMenu{
+    IdMenu: number;
+    TxtNomnre: string;
+    TxtLink: string;
+    IdMenuPadre: number;
+    TxtImagen: string;
+    Agregar: boolean;
+    ModificarActualizar: boolean;
+    Eliminar: boolean;
+    consultar: boolean;
+    Imprimir: boolean;
+    Aprobar: boolean;
+    Reversa: boolean;
+    Finalizar: boolean;
+}
+
+export class Menu implements IMenu{
+    IdMenu: number;
+    TxtNomnre: string;
+    TxtLink: string;
+    IdMenuPadre: number;
+    TxtImagen: string;
+    Agregar: boolean;
+    ModificarActualizar: boolean;
+    Eliminar: boolean;
+    consultar: boolean;
+    Imprimir: boolean;
+    Aprobar: boolean;
+    Reversa: boolean;
+    Finalizar: boolean;
+
+    constructor(){
+        this.IdMenu = 0;
+        this.TxtNomnre = '';
+        this.TxtLink = '';
+        this.IdMenuPadre = 0;
+        this.TxtImagen = '';
+        this.Agregar = null;
+        this.ModificarActualizar = null;
+        this.Eliminar = null;
+        this.consultar = null;
+        this.Imprimir = null;
+        this.Aprobar = null;
+        this.Reversa = null;
+        this.Finalizar = null;
+    }
+}
