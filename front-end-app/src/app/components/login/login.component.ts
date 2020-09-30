@@ -12,6 +12,7 @@ declare var $:any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   loginUser: Login;
   afterLogin: AfterLogin;
   email: string;
