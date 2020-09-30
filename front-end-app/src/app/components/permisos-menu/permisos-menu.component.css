@@ -1,8 +1,50 @@
 table {
-    width: 100%;
-  }
+  width: 100%;
+  min-width: 650PX;
+}
+  
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  min-width: 650PX;
+}
 
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
+mat-paginator{
+  width: 100%;
+  min-width: 650PX;
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px;
+}
+
+.tabla{
+  width: 100%;
+  overflow: auto;
+}
+
+.tabla::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.tabla::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.tabla::-webkit-scrollbar-button:increment,.tabla::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.tabla::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.tabla::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.tabla::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}

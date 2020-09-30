@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="">
+                <div class="tabla">
                     <!-- <div class="header">
                         <h2 class="title">Tabla de usuarios</h2>
                         <p class="category">Todos los usuarios</p>
@@ -54,7 +54,7 @@
                     <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource" matSort>
                       
-                            <ng-container matColumnDef="TxtNombres">
+                            <ng-container matColumnDef="TxtNombres" sticky>
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                                 <td mat-cell *matCellDef="let row"> {{row.TxtNombres}} </td>
                             </ng-container>
@@ -118,13 +118,13 @@
                         <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
                     </div>
 
-                    <div class="col-md-offset-5">
-                        <button class="btn btn-primary btn-fill btn-lg" (click)="AgregarUsuario()">
-                            <!-- <i class="pe-7s-add-user"></i> -->
-                            <i class="fas fa-user-plus"></i>
-                        </button>
-                    </div>
-
+                    
+                </div>
+                <div class="col-md-offset-5">
+                    <button class="btn btn-primary btn-fill btn-lg" (click)="AgregarUsuario()">
+                        <!-- <i class="pe-7s-add-user"></i> -->
+                        <i class="fas fa-user-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
