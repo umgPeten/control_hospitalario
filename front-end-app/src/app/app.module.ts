@@ -41,6 +41,8 @@ import { EmpleadosComponent } from './components/menu/empleados/empleados.compon
 import { CrearEvaluacionComponent } from './components/menu/crear-evaluacion/crear-evaluacion.component';
 import { ServiciosComponent } from './components/menu/servicios/servicios.component';
 import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -64,7 +66,8 @@ import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-e
     MatSortModule,
     MatMenuModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent,
