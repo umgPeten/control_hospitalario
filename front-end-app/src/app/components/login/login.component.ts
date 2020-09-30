@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginUser: Login;
   afterLogin: AfterLogin;
-  email: string;
-  password: string;
   routerRedirect: string = "";
 
   constructor(
@@ -31,29 +29,44 @@ export class LoginComponent implements OnInit {
   }
 
   InisiarSesion(){
-    this.loginUser.TxtEmail = this.email;
-    this.loginUser.TxtPassword = this.password;
-    
     this.spinner.show();
-    this.usuariosService.ServerInicioDeSesion(this.loginUser).subscribe(resultado =>{
-      this.afterLogin = resultado;
-      this.AlmacenarSessionStorage(this.afterLogin[0]);
-      if(this.afterLogin[0].IntResultado === 0){
+    if(this.comprobarCampos()){
+      this.usuariosService.ServerInicioDeSesion(this.loginUser).subscribe(resultado =>{
+        this.afterLogin = resultado;
+        this.AlmacenarSessionStorage(this.afterLogin[0]);
+        if(this.afterLogin[0].IntResultado === 0){
+          this.spinner.hide();
+          this.Mensaje(this.afterLogin[0].TxtToken, 4, 1, 1);
+        }
+        else{
+          this.spinner.hide();
+          this.routerRedirect = this.usuariosService.intentoDeAcceso;
+          this.usuariosService.intentoDeAcceso = '';
+          this.router.navigate([this.routerRedirect]);
+          // this.router.navigate(['/dashboard']);
+        }
+      },
+      error =>{
         this.spinner.hide();
-        this.showNotification(this.afterLogin[0].TxtToken);
-      }
-      else{
-        this.spinner.hide();
-        this.routerRedirect = this.usuariosService.intentoDeAcceso;
-        this.usuariosService.intentoDeAcceso = '';
-        this.router.navigate([this.routerRedirect]);
-        // this.router.navigate(['/dashboard']);
-      }
-    },
-    error =>{
+        this.Mensaje(error.statusText, 4, 1, 1);
+      });
+    }
+    else{
       this.spinner.hide();
-      this.showNotification("Problemas tecnicos :3");
-    });
+      this.Mensaje("Por favor completar todos los campos", 3, 1, 1);
+    }
+  }
+
+  comprobarCampos(){
+    if(
+        this.loginUser.TxtEmail !== '' &&
+        this.loginUser.TxtPassword !== ''
+      ){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   AlmacenarSessionStorage(datosUsuario: AfterLogin){
@@ -61,20 +74,22 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("DatosUsuario", JSON.stringify(datosUsuario));
   }
 
-  showNotification(mensaje: string){
+  Mensaje(mensaje: any, color: number, posY:number, posX: number){
     const type = ['','info','success','warning','danger'];
+    const from = ['', 'top', 'bottom'];
+    const align = ['', 'left', 'center', 'right'];
 
     $.notify({
         icon: "",
         message: mensaje
     },{
-        type: type[4],
+        type: type[color],
         timer: 1000,
         placement: {
-            from: "top",
-            align: "left"
+            from: from[posY],
+            align: align[posX]
         }
     });
-}
+  }
 
 }
