@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 
 declare var $:any;
 
@@ -16,7 +17,7 @@ declare var $:any;
   styleUrls: ['./renglones.component.css']
 })
 export class RenglonesComponent implements OnInit {
-  displayedColumns: string[] = ['TxtNombres', 'TxtDireccion', 'TxtEmail', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtRenglon', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosRenglones>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -66,6 +67,40 @@ export class RenglonesComponent implements OnInit {
       this.spinner.hide();
       this.Mensaje(error.statusText, 4, 1, 1);
     });
+  }
+
+  eliminarRenglon(renglon: DatosRenglones){
+    this.dialogo.open(DialogoConfirmacionComponent, {
+        data: `eliminar renglon '${renglon.TxtRenglon}'`
+      }).afterClosed().subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.renglonesService.ServerEliminarRenglon(renglon).subscribe(resultado =>{
+            if(resultado !== 0){
+              if(resultado[0].EstadoToken !== '0'){
+                this.Mensaje(`Usuario '${renglon.TxtRenglon}' eliminado`, 2, 1, 3);
+                this.cargarRenglones();
+                
+                this.spinner.hide();
+              }
+              else{
+                this.spinner.hide();
+                sessionStorage.setItem("DatosUsuario", "");
+                sessionStorage.setItem("SessionStarted", "0");
+                this.router.navigate(['/login']);
+                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+              }
+            }
+            else{
+              this.Mensaje("Error del servidor", 3, 1, 1);
+            }
+          },
+          error =>{
+            this.Mensaje(error.statusText, 4, 1, 1);
+          })
+        } else {
+          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        }
+      });
   }
 
   Mensaje(mensaje: any, color: number, posY:number, posX: number){
