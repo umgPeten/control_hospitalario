@@ -18,6 +18,15 @@ export class AppComponent implements OnInit {
 
     ngOnInit(){
       this.obtenerTokenSpotify();
+      this.onFullScreen();
+    }
+
+    onFullScreen(){
+      let fullscreenElement = document.documentElement;
+        
+        if (fullscreenElement.requestFullscreen) {
+          fullscreenElement.requestFullscreen();
+        }
     }
 
     isMap(path){
