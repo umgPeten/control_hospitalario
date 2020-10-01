@@ -40,7 +40,7 @@
                         <i class="fa fa-search"></i>
                         <p class="hidden-lg hidden-md">Search</p>
                     </a>
-                </li> 
+                </li>
             </ul> -->
 
             <!-- <ul class="nav navbar-nav navbar-left">
@@ -79,7 +79,13 @@
                     </ul>
                 </li> -->
                 <li>
-                    <a (click)="mostrarNosotros()">
+                    <a class="cursor-p" (click)="onFullScreen()">
+                        <!-- <i [ngClass]="{'fas fa-expand': hide, 'fas fa-compress': !hide}"></i> -->
+                        <mat-icon>{{hide ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon>
+                    </a>
+                </li>
+                <li>
+                    <a class="cursor-p" (click)="mostrarNosotros()">
                         <p>Nosotros</p>
                     </a>
                 </li>

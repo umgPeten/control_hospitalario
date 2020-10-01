@@ -1,9 +1,10 @@
 import { SpotifyService } from '../../services/spotify.service';
 import { DialogoNosotrosComponent } from './../../components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Inject } from '@angular/core';
 import { ROUTES } from '../../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     // moduleId: module.id,
@@ -18,12 +19,14 @@ export class NavbarComponent implements OnInit{
     private toggleButton: any;
     private sidebarVisible: boolean;
     buscar: any;
+    hide = true;
 
     constructor(
         location: Location,
         private element: ElementRef,
         public dialogo: MatDialog,
-        private spotify: SpotifyService
+        private spotify: SpotifyService,
+        @Inject(DOCUMENT) private document: Document
         ) {
         this.location = location;
         this.sidebarVisible = false;
@@ -96,6 +99,31 @@ export class NavbarComponent implements OnInit{
         }
         else{
             this.buscar = null
+        }
+    }
+
+    onFullScreen(){
+        if (this.document['webkitIsFullScreen']) {
+            this.hide = true;
+            this._exitFullscreen();
+        } 
+        else {
+            this.hide = false;
+            this._activateFullscreen();
+        }
+    }
+
+    private _activateFullscreen() {
+        let fullscreenElement = document.documentElement;
+        
+        if (fullscreenElement.requestFullscreen) {
+          fullscreenElement.requestFullscreen();
+        }
+    }
+
+    private _exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
         }
     }
 
