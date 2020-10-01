@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 
 declare var $:any;
 
@@ -16,7 +17,7 @@ declare var $:any;
   styleUrls: ['./especialidades.component.css']
 })
 export class EspecialidadesComponent implements OnInit {
-  displayedColumns: string[] = ['TxtNombres', 'TxtDireccion', 'TxtEmail', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtEspecialidad', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEspecialidades>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -64,6 +65,40 @@ export class EspecialidadesComponent implements OnInit {
       this.spinner.hide();
       this.Mensaje(error.statusText, 4, 1, 1);
     });
+  }
+
+  eliminarEspecialidad(especialidad: DatosEspecialidades){
+    this.dialogo.open(DialogoConfirmacionComponent, {
+        data: `eliminar especialidad '${especialidad.TxtEspecialidad}'`
+      }).afterClosed().subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.especialidadesService.ServerEliminarEspecialidad(especialidad).subscribe(resultado =>{
+            if(resultado !== 0){
+              if(resultado[0].EstadoToken !== '0'){
+                this.Mensaje(`Especialidad '${especialidad.TxtEspecialidad}' eliminada`, 2, 1, 3);
+                this.cargarEspecialidades();
+                
+                this.spinner.hide();
+              }
+              else{
+                this.spinner.hide();
+                sessionStorage.setItem("DatosUsuario", "");
+                sessionStorage.setItem("SessionStarted", "0");
+                this.router.navigate(['/login']);
+                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+              }
+            }
+            else{
+              this.Mensaje("Error del servidor", 3, 1, 1);
+            }
+          },
+          error =>{
+            this.Mensaje(error.statusText, 4, 1, 1);
+          })
+        } else {
+          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        }
+      });
   }
 
   Mensaje(mensaje: any, color: number, posY:number, posX: number){
