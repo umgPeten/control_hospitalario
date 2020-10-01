@@ -1,8 +1,12 @@
+import { RenglonesService } from './../../../../services/renglones.service';
+import { EspecialidadesService } from './../../../../services/especialidades.service';
 import { ActualizarAgregarEmpleado } from './../../../../models/empleados';
 import { EmpleadosService } from './../../../../services/empleados.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DatosEspecialidades } from 'app/models/especialidades';
+import { DatosRenglones } from 'app/models/renglones';
 
 declare var $:any;
 
@@ -21,16 +25,18 @@ export class DialogoEmpleadoComponent implements OnInit {
 
   //Selects
   // puestos: DatosPuestos;
-  // especialidades: DatosEspecialidades;
+  especialidades: DatosEspecialidades;
   // servicios: DatosServicios;
-  // renglones: DatosRenglones;
+  renglones: DatosRenglones;
   // instituciones: DatosInstituciones;
 
   constructor(
     public dialogo: MatDialogRef<DialogoEmpleadoComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: any,
     private router: Router,
-    private empleadosService: EmpleadosService
+    private empleadosService: EmpleadosService,
+    private especialidadesService: EspecialidadesService,
+    private renglonesService: RenglonesService
   ) { }
 
   ngOnInit(): void {
@@ -73,13 +79,13 @@ export class DialogoEmpleadoComponent implements OnInit {
     //   this.Mensaje(error.statusText, 4, 1, 1);
     // });
 
-    //especialidad
-    // this.especialidadesService.ServicioObtenerEspecialidades().subscribe(resultado => {
-    //   this.especialidades = resultado;
-    // },
-    // error => {
-    //   this.Mensaje(error.statusText, 4, 1, 1);
-    // });
+    // especialidad
+    this.especialidadesService.ServicioObtenerEspecialidades().subscribe(resultado => {
+      this.especialidades = resultado;
+    },
+    error => {
+      this.Mensaje(error.statusText, 4, 1, 1);
+    });
 
     //servicio
     // this.serviciosService.ServicioObtenerServicios().subscribe(resultado => {
@@ -89,13 +95,13 @@ export class DialogoEmpleadoComponent implements OnInit {
     //   this.Mensaje(error.statusText, 4, 1, 1);
     // });
 
-    //renglon
-    // this.renglonesService.ServicioObtenerRenglones().subscribe(resultado => {
-    //   this.renglones = resultado;
-    // },
-    // error => {
-    //   this.Mensaje(error.statusText, 4, 1, 1);
-    // });
+    // renglon
+    this.renglonesService.ServicioObtenerRenglones().subscribe(resultado => {
+      this.renglones = resultado;
+    },
+    error => {
+      this.Mensaje(error.statusText, 4, 1, 1);
+    });
 
     //institucion
     // this.institucionesService.ServicioObtenerinstituciones().subscribe(resultado => {
