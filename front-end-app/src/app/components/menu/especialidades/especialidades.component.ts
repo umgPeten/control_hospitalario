@@ -1,5 +1,6 @@
+import { DialogoEspecialidadComponent } from './../../emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
+import { DatosEspecialidades } from 'app/models/especialidades';
 import { EspecialidadesService } from './../../../services/especialidades.service';
-import { DatosEspecialidades } from './../../../models/especialidades';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatPaginator } from '@angular/material/paginator';
@@ -31,6 +32,7 @@ export class EspecialidadesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEspecialidades();
   }
 
@@ -96,9 +98,35 @@ export class EspecialidadesComponent implements OnInit {
             this.Mensaje(error.statusText, 4, 1, 1);
           })
         } else {
-          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
         }
       });
+  }
+
+  agregarespecialidad(){
+    this.dialogo.open(DialogoEspecialidadComponent).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Especialidad ' ${resultado} ' ingresada exitosamente`, 2, 1, 3);
+        this.cargarEspecialidades();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+      }
+    });
+  }
+
+  actualizarespecialidad(especialidad: DatosEspecialidades){
+    this.dialogo.open(DialogoEspecialidadComponent, {
+      data: especialidad.IdEspecialidad
+    }).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Empleado '${especialidad.TxtEspecialidad}' modificado exitosamente`, 2, 1, 3);
+        this.cargarEspecialidades();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+      }
+    });
   }
 
   Mensaje(mensaje: any, color: number, posY:number, posX: number){
