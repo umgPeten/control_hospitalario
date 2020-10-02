@@ -44,6 +44,7 @@ import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-e
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
+import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 
 @NgModule({
   imports: [
@@ -89,7 +90,8 @@ import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-re
     CrearEvaluacionComponent,
     ServiciosComponent,
     DialogoEmpleadoComponent,
-    DialogoRenglonComponent
+    DialogoRenglonComponent,
+    DialogoEspecialidadComponent
   ],
   providers: [],
   entryComponents: [
@@ -98,7 +100,8 @@ import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-re
     DialogAgregarUsuarioComponent,
     DialogoNosotrosComponent,
     DialogoEmpleadoComponent,
-    DialogoRenglonComponent
+    DialogoRenglonComponent,
+    DialogoEspecialidadComponent
   ],
   bootstrap: [AppComponent],
   schemas: [

@@ -84,7 +84,7 @@ export class EmpleadosComponent implements OnInit {
         this.cargarEmpleados();
       }
       else{
-        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
       }
     });
   }
@@ -98,7 +98,7 @@ export class EmpleadosComponent implements OnInit {
         this.cargarEmpleados();
       }
       else{
-        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
       }
     });
   }
@@ -133,7 +133,7 @@ export class EmpleadosComponent implements OnInit {
             this.Mensaje(error.statusText, 4, 1, 1);
           })
         } else {
-          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
         }
       });
   }
