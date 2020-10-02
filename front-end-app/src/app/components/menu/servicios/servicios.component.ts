@@ -1,3 +1,4 @@
+import { DialogoServicioComponent } from './../../emergentes/menu/dialogo-servicio/dialogo-servicio.component';
 import { ServiciosService } from './../../../services/servicios.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -33,6 +34,7 @@ export class ServiciosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarServicios();
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
   }
 
   applyFilter(event: Event) {
@@ -101,9 +103,34 @@ export class ServiciosComponent implements OnInit {
             this.Mensaje(error.statusText, 4, 1, 1);
           })
         } else {
-          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
         }
       });
+  }
+  agregarServicio(){
+    this.dialogo.open(DialogoServicioComponent).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Servicio ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        this.cargarServicios();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+      }
+    });
+  }
+
+  actualizarServicio(servicio: DatosServicios){
+    this.dialogo.open(DialogoServicioComponent, {
+      data: servicio.IdServicio
+    }).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Servicio '${servicio.TxtServicio} ' modificado exitosamente`, 2, 1, 3);
+        this.cargarServicios();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+      }
+    });
   }
 
 
