@@ -94,8 +94,8 @@
                                                 <mat-label>Servicio</mat-label>
                                                 <mat-select [(value)]="servicio">
                                                     <mat-option disabled [value]="0">seleccione un servicio</mat-option>
-                                                    <mat-option [value]="1">seleccion1</mat-option>
-                                                    <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                                    <!-- <mat-option [value]="1">seleccion1</mat-option> -->
+                                                    <mat-option *ngFor="let option of servicios" [value]="option.IdServicio"> {{ option.TxtServicio }} </mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>

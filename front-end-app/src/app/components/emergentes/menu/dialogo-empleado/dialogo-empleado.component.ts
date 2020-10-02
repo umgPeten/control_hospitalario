@@ -1,3 +1,5 @@
+import { ServiciosService } from './../../../../services/servicios.service';
+import { DatosServicios } from './../../../../models/servicios';
 import { RenglonesService } from './../../../../services/renglones.service';
 import { EspecialidadesService } from './../../../../services/especialidades.service';
 import { ActualizarAgregarEmpleado } from './../../../../models/empleados';
@@ -26,7 +28,7 @@ export class DialogoEmpleadoComponent implements OnInit {
   //Selects
   // puestos: DatosPuestos;
   especialidades: DatosEspecialidades;
-  // servicios: DatosServicios;
+  servicios: DatosServicios;
   renglones: DatosRenglones;
   // instituciones: DatosInstituciones;
 
@@ -36,7 +38,8 @@ export class DialogoEmpleadoComponent implements OnInit {
     private router: Router,
     private empleadosService: EmpleadosService,
     private especialidadesService: EspecialidadesService,
-    private renglonesService: RenglonesService
+    private renglonesService: RenglonesService,
+    private serviciosService: ServiciosService
   ) { }
 
   ngOnInit(): void {
@@ -88,12 +91,12 @@ export class DialogoEmpleadoComponent implements OnInit {
     });
 
     //servicio
-    // this.serviciosService.ServicioObtenerServicios().subscribe(resultado => {
-    //   this.servicios = resultado;
-    // },
-    // error => {
-    //   this.Mensaje(error.statusText, 4, 1, 1);
-    // });
+    this.serviciosService.ServicioObtenerServicios().subscribe(resultado => {
+      this.servicios = resultado;
+    },
+    error => {
+      this.Mensaje(error.statusText, 4, 1, 1);
+    });
 
     // renglon
     this.renglonesService.ServicioObtenerRenglones().subscribe(resultado => {
