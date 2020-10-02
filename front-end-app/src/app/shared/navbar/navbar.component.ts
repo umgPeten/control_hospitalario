@@ -76,8 +76,13 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-      return 'Usuarios';
+
+      return this.capitalize(titlee.replace('/','').replace('-',' '));
     }
+
+    capitalize(word: string) {
+        return word[0].toUpperCase() + word.slice(1);
+      }
 
     deslogueo(){
         sessionStorage.setItem("DatosUsuario", "");
