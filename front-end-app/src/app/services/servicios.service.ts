@@ -14,7 +14,7 @@ export class ServiciosService {
   constructor(
     private httpClient: HttpClient,
   ) { }
-  ServicioObtenerServicios(): Observable<ny>{
+  ServicioObtenerServicios(): Observable<any>{
     this.servicio.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerServicios`, this.servicio);

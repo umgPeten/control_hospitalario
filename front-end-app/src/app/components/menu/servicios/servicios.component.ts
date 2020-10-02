@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DatosServicios } from 'app/models/servicios';
+import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 
 declare var $:any;
 
@@ -16,7 +17,7 @@ declare var $:any;
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
-  displayedColumns: string[] = ['TxtNombres', 'TxtDireccion', 'TxtEmail', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtServicio', 'FechaIngreso',  'opciones'];
   dataSource: MatTableDataSource<DatosServicios>;
  
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -66,8 +67,47 @@ export class ServiciosComponent implements OnInit {
       this.spinner.hide();
       this.Mensaje(error.statusText, 4, 1, 1);
     });
-
   }
+
+
+  eliminarServicio(servicio: DatosServicios){
+  
+     
+    this.dialogo.open(DialogoConfirmacionComponent, {
+        data: `eliminar servicio '${servicio.TxtServicio}'`
+      }).afterClosed().subscribe((confirmado: Boolean) => {
+        if (confirmado) {
+          this.ServiciosService.ServerEliminarServicio(servicio).subscribe(resultado =>{
+            if(resultado !== 0){
+              if(resultado[0].EstadoToken !== '0'){
+                this.Mensaje(`Usuario '${servicio.TxtServicio}' eliminado`, 2, 1, 3);
+                this.cargarServicios();
+                
+                this.spinner.hide();
+              }
+              else{
+                this.spinner.hide();
+                sessionStorage.setItem("DatosUsuario", "");
+                sessionStorage.setItem("SessionStarted", "0");
+                this.router.navigate(['/login']);
+                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+              }
+            }
+            else{
+              this.Mensaje("Error del servidor", 3, 1, 1);
+            }
+          },
+          error =>{
+            this.Mensaje(error.statusText, 4, 1, 1);
+          })
+        } else {
+          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        }
+      });
+  }
+
+
+  
   Mensaje(mensaje: any, color: number, posY:number, posX: number){
     const type = ['','info','success','warning','danger'];
     const from = ['', 'top', 'bottom'];
