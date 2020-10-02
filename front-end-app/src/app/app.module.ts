@@ -43,6 +43,7 @@ import { ServiciosComponent } from './components/menu/servicios/servicios.compon
 import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 
 @NgModule({
   imports: [
@@ -87,7 +88,8 @@ import { environment } from '../environments/environment';
     EmpleadosComponent,
     CrearEvaluacionComponent,
     ServiciosComponent,
-    DialogoEmpleadoComponent
+    DialogoEmpleadoComponent,
+    DialogoRenglonComponent
   ],
   providers: [],
   entryComponents: [
@@ -95,7 +97,8 @@ import { environment } from '../environments/environment';
     DialogoModificarComponent,
     DialogAgregarUsuarioComponent,
     DialogoNosotrosComponent,
-    DialogoEmpleadoComponent
+    DialogoEmpleadoComponent,
+    DialogoRenglonComponent
   ],
   bootstrap: [AppComponent],
   schemas: [

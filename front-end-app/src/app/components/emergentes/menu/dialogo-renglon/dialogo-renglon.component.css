@@ -1,0 +1,42 @@
+.input{
+    width: 100%;
+}
+.input{
+    width: 100%;
+}
+
+.content{
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+.formulario{
+    max-height: 450px;
+}
+
+.content::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+  
+.content::-webkit-scrollbar:vertical {
+  width:10px;
+}
+  
+.content::-webkit-scrollbar-button:increment,.content::-webkit-scrollbar-button {
+  display: none;
+} 
+  
+.content::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+  
+.content::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+  
+.content::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}

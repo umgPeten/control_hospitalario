@@ -1,3 +1,4 @@
+import { DialogoRenglonComponent } from './../../emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 import { RenglonesService } from './../../../services/renglones.service';
 import { DatosRenglones } from './../../../models/renglones';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -32,6 +33,7 @@ export class RenglonesComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarRenglones();
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
   }
 
   applyFilter(event: Event) {
@@ -87,7 +89,7 @@ export class RenglonesComponent implements OnInit {
                 sessionStorage.setItem("DatosUsuario", "");
                 sessionStorage.setItem("SessionStarted", "0");
                 this.router.navigate(['/login']);
-                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                this.Mensaje("Token del usuario activo inválido", 4, 1, 1);
               }
             }
             else{
@@ -98,9 +100,35 @@ export class RenglonesComponent implements OnInit {
             this.Mensaje(error.statusText, 4, 1, 1);
           })
         } else {
-          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
         }
       });
+  }
+
+  agregarRenglon(){
+    this.dialogo.open(DialogoRenglonComponent).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Renglón ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        this.cargarRenglones();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+      }
+    });
+  }
+
+  actualizarRenglon(renglon: DatosRenglones){
+    this.dialogo.open(DialogoRenglonComponent, {
+      data: renglon.IdRenglon
+    }).afterClosed().subscribe(resultado => {
+      if(resultado){
+        this.Mensaje(`Empleado '${renglon.TxtRenglon}' modificado exitosamente`, 2, 1, 3);
+        this.cargarRenglones();
+      }
+      else{
+        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+      }
+    });
   }
 
   Mensaje(mensaje: any, color: number, posY:number, posX: number){
