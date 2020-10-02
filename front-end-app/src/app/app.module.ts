@@ -43,8 +43,8 @@ import { ServiciosComponent } from './components/menu/servicios/servicios.compon
 import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
-
+import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
+import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
 
 @NgModule({
@@ -91,8 +91,8 @@ import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-s
     CrearEvaluacionComponent,
     ServiciosComponent,
     DialogoEmpleadoComponent,
-
-
+    DialogoRenglonComponent,
+    DialogoEspecialidadComponent,
     DialogoServicioComponent
   ],
   providers: [],
@@ -102,8 +102,8 @@ import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-s
     DialogAgregarUsuarioComponent,
     DialogoNosotrosComponent,
     DialogoEmpleadoComponent,
-
-    
+    DialogoRenglonComponent,
+    DialogoEspecialidadComponent,
     DialogoServicioComponent
   ],
   bootstrap: [AppComponent],
