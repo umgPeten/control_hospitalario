@@ -77,8 +77,8 @@
                                                 <mat-label>Especialidad</mat-label>
                                                 <mat-select [(value)]="especialidad">
                                                     <mat-option disabled [value]="0">seleccione una especialidad</mat-option>
-                                                    <mat-option [value]="1">seleccion1</mat-option>
-                                                    <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                                    <!-- <mat-option [value]="1">seleccion1</mat-option> -->
+                                                    <mat-option *ngFor="let option of especialidades" [value]="option.IdEspecialidad"> {{ option.TxtEspecialidad }} </mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
@@ -107,8 +107,8 @@
                                                 <mat-label>Renglon</mat-label>
                                                 <mat-select [(value)]="renglon">
                                                     <mat-option disabled [value]="0">seleccione un renglon</mat-option>
-                                                    <mat-option [value]="1">seleccion1</mat-option>
-                                                    <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                                    <!-- <mat-option [value]="1">seleccion1</mat-option> -->
+                                                    <mat-option *ngFor="let option of renglones" [value]="option.IdRenglon"> {{ option.TxtRenglon }} </mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
