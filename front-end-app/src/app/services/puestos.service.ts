@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PuestosService {
   puesto = {
-    IdPueso: 0,
+    IdPuesto: 0,
     TxtToken: ''
   };
 
@@ -24,14 +24,14 @@ export class PuestosService {
   }
 
   ServicioObtenerDatosPuesto(id: number): Observable<any>{
-    this.puesto.IdPueso = id;
+    this.puesto.IdPuesto = id;
     this.puesto.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosPuesto`, this.puesto);
   }
 
   ServerEliminarPuesto(puesto: DatosPuestos): Observable<any>{
-    this.puesto.IdPueso = puesto.IdPuesto;
+    this.puesto.IdPuesto = puesto.IdPuesto;
     this.puesto.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}EliminarPuesto`, this.puesto);
