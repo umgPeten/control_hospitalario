@@ -1,3 +1,5 @@
+import { DatosPuestos } from './../../../../models/puestos';
+import { PuestosService } from './../../../../services/puestos.service';
 import { ServiciosService } from './../../../../services/servicios.service';
 import { DatosServicios } from './../../../../models/servicios';
 import { RenglonesService } from './../../../../services/renglones.service';
@@ -26,7 +28,7 @@ export class DialogoEmpleadoComponent implements OnInit {
   institucion = 0;
 
   //Selects
-  // puestos: DatosPuestos;
+  puestos: DatosPuestos;
   especialidades: DatosEspecialidades;
   servicios: DatosServicios;
   renglones: DatosRenglones;
@@ -39,7 +41,8 @@ export class DialogoEmpleadoComponent implements OnInit {
     private empleadosService: EmpleadosService,
     private especialidadesService: EspecialidadesService,
     private renglonesService: RenglonesService,
-    private serviciosService: ServiciosService
+    private serviciosService: ServiciosService,
+    private puestosService: PuestosService
   ) { }
 
   ngOnInit(): void {
@@ -75,12 +78,12 @@ export class DialogoEmpleadoComponent implements OnInit {
   
   cargarDatosSelects(){
     //puestos
-    // this.puestosService.ServicioObtenerPuestos().subscribe(resultado => {
-    //   this.puestos = resultado;
-    // },
-    // error => {
-    //   this.Mensaje(error.statusText, 4, 1, 1);
-    // });
+    this.puestosService.ServicioObtenerPuestos().subscribe(resultado => {
+      this.puestos = resultado;
+    },
+    error => {
+      this.Mensaje(error.statusText, 4, 1, 1);
+    });
 
     // especialidad
     this.especialidadesService.ServicioObtenerEspecialidades().subscribe(resultado => {

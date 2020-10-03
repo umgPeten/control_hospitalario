@@ -64,8 +64,8 @@
                                                 <mat-label>Puesto</mat-label>
                                                 <mat-select [(value)]="puesto">
                                                     <mat-option disabled [value]="0">seleccione un puesto</mat-option>
-                                                    <mat-option [value]="1">seleccion1</mat-option>
-                                                    <!-- <mat-option *ngFor="let option of resultado" value="{{ option.IdPuesto }}"> {{ option.TxtPuesto }} </mat-option> -->
+                                                    <!-- <mat-option [value]="1">seleccion1</mat-option> -->
+                                                    <mat-option *ngFor="let option of puestos" [value]="option.IdPuesto"> {{ option.TxtPuesto }} </mat-option>
                                                 </mat-select>
                                             </mat-form-field>
                                         </div>
