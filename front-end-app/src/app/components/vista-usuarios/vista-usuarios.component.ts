@@ -10,8 +10,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-vista-usuarios',
@@ -69,12 +70,13 @@ export class VistaUsuariosComponent implements OnInit  {
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
-        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        // this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        this.alert('info', "Token del usuario activo invalido");
       }
     },
     error =>{
       this.spinner.hide();
-      this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     });
   }
 
@@ -88,7 +90,8 @@ export class VistaUsuariosComponent implements OnInit  {
           this.usuariosService.ServerEliminarUsuario(this.IdUser).subscribe(resultado =>{
             if(resultado !== 0){
               if(resultado[0].EstadoToken !== '0'){
-                this.Mensaje(`Usuario '${user.TxtNombres}' eliminado`, 2, 1, 3);
+                // this.Mensaje(`Usuario '${user.TxtNombres}' eliminado`, 2, 1, 3);
+                this.alert('success', `Usuario '${user.TxtNombres}' eliminado`);
                 this.cargarUsuarios();
                 
                 this.spinner.hide();
@@ -98,18 +101,22 @@ export class VistaUsuariosComponent implements OnInit  {
                 sessionStorage.setItem("DatosUsuario", "");
                 sessionStorage.setItem("SessionStarted", "0");
                 this.router.navigate(['/login']);
-                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                // this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                this.alert('info', "Token del usuario activo invalido");
               }
             }
             else{
-              this.Mensaje("Error del servidor", 3, 1, 1);
+              // this.Mensaje("Error del servidor", 3, 1, 1);
+              this.alert('error', "Error del servidor");
             }
           },
           error =>{
-            this.Mensaje(error.statusText, 4, 1, 1);
+            // this.Mensaje(error.statusText, 4, 1, 1);
+            this.alert('error',error.statusText);
           })
         } else {
-          this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          // this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+          this.alert('info', "No se ha realizado ninguna accion");
         }
       });
   }
@@ -119,11 +126,13 @@ export class VistaUsuariosComponent implements OnInit  {
       data: IdUsuario
     }).afterClosed().subscribe((resultado: Boolean) =>{
       if(resultado){
-        this.Mensaje("Usuario modificado exitosamente", 2, 1, 3);
+        // this.Mensaje("Usuario modificado exitosamente", 2, 1, 3);
+        this.alert('success', "Usuario modificado exitosamente");
         this.cargarUsuarios();
       }
       else{
-        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        // this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
@@ -131,30 +140,51 @@ export class VistaUsuariosComponent implements OnInit  {
   AgregarUsuario(){
     this.dialogo.open(DialogAgregarUsuarioComponent).afterClosed().subscribe((resultado: string) =>{
       if(resultado){
-        this.Mensaje("Usuario '" + resultado + "' ingresado exitosamente", 2, 1, 3);
+        // this.Mensaje("Usuario '" + resultado + "' ingresado exitosamente", 2, 1, 3);
+        this.alert('success', "Usuario '" + resultado + "' ingresado exitosamente");
         this.cargarUsuarios();
       }
       else{
-        this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        // this.Mensaje("No se a realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     })
   }
 
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
-
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
+
+  // Mensaje(mensaje: any, color: number, posY:number, posX: number){
+  //   const type = ['','info','success','warning','danger'];
+  //   const from = ['', 'top', 'bottom'];
+  //   const align = ['', 'left', 'center', 'right'];
+
+  //   $.notify({
+  //       icon: "",
+  //       message: mensaje
+  //   },{
+  //       type: type[color],
+  //       timer: 1000,
+  //       placement: {
+  //           from: from[posY],
+  //           align: align[posX]
+  //       }
+  //   });
+  // }
 }

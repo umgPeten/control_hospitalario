@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DatosServicios } from 'app/models/servicios';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-servicios',
@@ -62,12 +63,12 @@ export class ServiciosComponent implements OnInit {
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
-        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        this.alert('info', "Token del usuario activo invalido");
       }
     },
     error =>{
       this.spinner.hide();
-      this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     });
   }
 
@@ -82,7 +83,8 @@ export class ServiciosComponent implements OnInit {
           this.ServiciosService.ServerEliminarServicio(servicio).subscribe(resultado =>{
             if(resultado !== 0){
               if(resultado[0].EstadoToken !== '0'){
-                this.Mensaje(`Usuario '${servicio.TxtServicio}' eliminado`, 2, 1, 3);
+                // this.Mensaje(`Usuario '${servicio.TxtServicio}' eliminado`, 2, 1, 3);
+                this.alert('success', `Servicio '${servicio.TxtServicio}' eliminado`);
                 this.cargarServicios();
                 
                 this.spinner.hide();
@@ -92,29 +94,30 @@ export class ServiciosComponent implements OnInit {
                 sessionStorage.setItem("DatosUsuario", "");
                 sessionStorage.setItem("SessionStarted", "0");
                 this.router.navigate(['/login']);
-                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                this.alert('info', "Token del usuario activo invalido");
               }
             }
             else{
-              this.Mensaje("Error del servidor", 3, 1, 1);
+              this.alert('error', "Error del servidor");
             }
           },
           error =>{
-            this.Mensaje(error.statusText, 4, 1, 1);
+            this.alert('error',error.statusText);
           })
         } else {
-          this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+          this.alert('info', "No se ha realizado ninguna accion");
         }
       });
   }
   agregarServicio(){
     this.dialogo.open(DialogoServicioComponent).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Servicio ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Servicio ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        this.alert('success', `Servicio ' ${resultado} ' ingresado exitosamente`);
         this.cargarServicios();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
@@ -124,33 +127,35 @@ export class ServiciosComponent implements OnInit {
       data: servicio.IdServicio
     }).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Servicio '${servicio.TxtServicio} ' modificado exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Servicio '${servicio.TxtServicio} ' modificado exitosamente`, 2, 1, 3);
+        this.alert('success', `Servicio '${servicio.TxtServicio} ' modificado exitosamente`);
         this.cargarServicios();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna acción", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
 
 
   
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
-
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
 
 }

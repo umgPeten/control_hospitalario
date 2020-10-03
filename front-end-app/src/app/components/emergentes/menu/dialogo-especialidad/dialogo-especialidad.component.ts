@@ -3,8 +3,9 @@ import { EspecialidadesService } from './../../../../services/especialidades.ser
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-dialogo-especialidad',
@@ -38,11 +39,11 @@ export class DialogoEspecialidadComponent implements OnInit {
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
-        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        this.alert('info', "Token del usuario activo invalido");
       }
     },
     error => {
-      this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     });
   }
 
@@ -66,15 +67,15 @@ export class DialogoEspecialidadComponent implements OnInit {
           sessionStorage.setItem("DatosUsuario", "");
           sessionStorage.setItem("SessionStarted", "0");
           this.router.navigate(['/login']);
-          this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+          this.alert('info', "Token del usuario activo invalido");
         }
       },
       error => {
-        this.Mensaje(error.statusText, 4, 1, 1);
+        this.alert('error',error.statusText);
       });
     }
     else{
-      this.Mensaje("Por favor completar todos los campos", 3, 1, 1);
+      this.alert('warning', "Por favor completar todos los campos");
     }
   }
 
@@ -89,15 +90,15 @@ export class DialogoEspecialidadComponent implements OnInit {
             sessionStorage.setItem("DatosUsuario", "");
             sessionStorage.setItem("SessionStarted", "0");
             this.router.navigate(['/login']);
-            this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+            this.alert('info', "Token del usuario activo invalido");
         }
       },
       error => {
-        this.Mensaje(error.statusText, 4, 1, 1);
+        this.alert('error',error.statusText);
       });
     }
     else{
-      this.Mensaje("Por favor completar todos los campos", 3, 1, 1);
+      this.alert('warning', "Por favor completar todos los campos");
     }
   }
 
@@ -110,21 +111,22 @@ export class DialogoEspecialidadComponent implements OnInit {
     }
   }
 
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
-
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
 }

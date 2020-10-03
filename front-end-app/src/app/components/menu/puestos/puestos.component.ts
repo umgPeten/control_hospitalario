@@ -9,8 +9,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-puestos',
@@ -60,12 +61,14 @@ export class PuestosComponent implements OnInit {
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
-        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        // this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        this.alert('info', "Token del usuario activo invalido");
       }
     },
     error =>{
       this.spinner.hide();
-      this.Mensaje(error.statusText, 4, 1, 1);
+      // this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     });
   }
 
@@ -77,7 +80,8 @@ export class PuestosComponent implements OnInit {
           this.puestosService.ServerEliminarPuesto(puesto).subscribe(resultado =>{
             if(resultado !== 0){
               if(resultado[0].EstadoToken !== '0'){
-                this.Mensaje(`Especialidad '${puesto.TxtPuesto}' eliminada`, 2, 1, 3);
+                // this.Mensaje(`Especialidad '${puesto.TxtPuesto}' eliminada`, 2, 1, 3);
+                this.alert('success', `Especialidad '${puesto.TxtPuesto}' eliminada`);
                 this.cargarPuestos();
                 
                 this.spinner.hide();
@@ -87,18 +91,19 @@ export class PuestosComponent implements OnInit {
                 sessionStorage.setItem("DatosUsuario", "");
                 sessionStorage.setItem("SessionStarted", "0");
                 this.router.navigate(['/login']);
-                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                this.alert('info', "Token del usuario activo invalido");
               }
             }
             else{
-              this.Mensaje("Error del servidor", 3, 1, 1);
+              this.alert('error', "Error del servidor");
             }
           },
           error =>{
-            this.Mensaje(error.statusText, 4, 1, 1);
+            this.alert('error',error.statusText);
           })
         } else {
-          this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+          // this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+          this.alert('info', "No se ha realizado ninguna accion");
         }
       });
   }
@@ -106,11 +111,12 @@ export class PuestosComponent implements OnInit {
   agregarPuesto(){
     this.dialogo.open(DialogoPuestoComponent).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Especialidad ' ${resultado} ' ingresada exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Especialidad ' ${resultado} ' ingresada exitosamente`, 2, 1, 3);
+        this.alert('success', `Especialidad ' ${resultado} ' ingresada exitosamente`);
         this.cargarPuestos();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
@@ -120,31 +126,51 @@ export class PuestosComponent implements OnInit {
       data: puesto.IdPuesto
     }).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Empleado '${puesto.TxtPuesto}' modificado exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Empleado '${puesto.TxtPuesto}' modificado exitosamente`, 2, 1, 3);
+        this.alert('success', `Empleado '${puesto.TxtPuesto}' modificado exitosamente`);
         this.cargarPuestos();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
 
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
-
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
+
+  // Mensaje(mensaje: any, color: number, posY:number, posX: number){
+  //   const type = ['','info','success','warning','danger'];
+  //   const from = ['', 'top', 'bottom'];
+  //   const align = ['', 'left', 'center', 'right'];
+
+  //   $.notify({
+  //       icon: "",
+  //       message: mensaje
+  //   },{
+  //       type: type[color],
+  //       timer: 1000,
+  //       placement: {
+  //           from: from[posY],
+  //           align: align[posX]
+  //       }
+  //   });
+  // }
 
 }

@@ -6,8 +6,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-permisos-menu',
@@ -55,7 +56,7 @@ export class PermisosMenuComponent implements OnInit {
     },
     error =>{
       this.spinner.hide();
-      this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     })
   }
 
@@ -68,21 +69,40 @@ export class PermisosMenuComponent implements OnInit {
     }
   }
 
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
+  // Mensaje(mensaje: any, color: number, posY:number, posX: number){
+  //   const type = ['','info','success','warning','danger'];
+  //   const from = ['', 'top', 'bottom'];
+  //   const align = ['', 'left', 'center', 'right'];
 
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  //   $.notify({
+  //       icon: "",
+  //       message: mensaje
+  //   },{
+  //       type: type[color],
+  //       timer: 1000,
+  //       placement: {
+  //           from: from[posY],
+  //           align: align[posX]
+  //       }
+  //   });
+  // }
+
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
 }

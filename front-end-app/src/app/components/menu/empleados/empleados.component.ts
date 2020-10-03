@@ -10,8 +10,9 @@ import { DatosEmpleado } from 'app/models/empleados';
 import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import Swal from 'sweetalert2'
 
-declare var $:any;
+// declare var $:any;
 
 @Component({
   selector: 'app-empleados',
@@ -68,23 +69,27 @@ export class EmpleadosComponent implements OnInit {
         sessionStorage.setItem("DatosUsuario", "");
         sessionStorage.setItem("SessionStarted", "0");
         this.router.navigate(['/login']);
-        this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        // this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+        this.alert('info', "Token del usuario activo invalido");
       }
     },
     error => {
       this.spinner.hide();
-      this.Mensaje(error.statusText, 4, 1, 1);
+      // this.Mensaje(error.statusText, 4, 1, 1);
+      this.alert('error',error.statusText);
     });
   }
 
   agregarEmpleado(){
     this.dialogo.open(DialogoEmpleadoComponent).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Empleado ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Empleado ' ${resultado} ' ingresado exitosamente`, 2, 1, 3);
+        this.alert('success', `Empleado ' ${resultado} ' ingresado exitosamente`);
         this.cargarEmpleados();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        // this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
@@ -94,11 +99,13 @@ export class EmpleadosComponent implements OnInit {
       data: empleado.IdEmpleado
     }).afterClosed().subscribe(resultado => {
       if(resultado){
-        this.Mensaje(`Empleado '${empleado.TxtNombres} ${empleado.TxtApellidos}' modificado exitosamente`, 2, 1, 3);
+        // this.Mensaje(`Empleado '${empleado.TxtNombres} ${empleado.TxtApellidos}' modificado exitosamente`, 2, 1, 3);
+        this.alert('success', `Empleado '${empleado.TxtNombres} ${empleado.TxtApellidos}' modificado exitosamente`);
         this.cargarEmpleados();
       }
       else{
-        this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        // this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+        this.alert('info', "No se ha realizado ninguna accion");
       }
     });
   }
@@ -114,7 +121,8 @@ export class EmpleadosComponent implements OnInit {
           this.empleadosService.ServerEliminarEmpleado(empleado).subscribe(resultado =>{
             if(resultado !== 0){
               if(resultado[0].EstadoToken !== '0'){
-                this.Mensaje(`Empleado '${empleado.TxtNombres}' eliminado`, 2, 1, 3);
+                // this.Mensaje(`Empleado '${empleado.TxtNombres}' eliminado`, 2, 1, 3);
+                this.alert('success', `Empleado '${empleado.TxtNombres}' eliminado`);
                 this.cargarEmpleados();
               }
               else{
@@ -122,18 +130,22 @@ export class EmpleadosComponent implements OnInit {
                 sessionStorage.setItem("DatosUsuario", "");
                 sessionStorage.setItem("SessionStarted", "0");
                 this.router.navigate(['/login']);
-                this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                // this.Mensaje("Token del usuario activo invalido", 4, 1, 1);
+                this.alert('info', "Token del usuario activo invalido");
               }
             }
             else{
-              this.Mensaje("Error del servidor", 3, 1, 1);
+              // this.Mensaje("Error del servidor", 3, 1, 1);
+              this.alert('error', "Error del servidor");
             }
           },
           error =>{
-            this.Mensaje(error.statusText, 4, 1, 1);
+            // this.Mensaje(error.statusText, 4, 1, 1);
+            this.alert('error',error.statusText);
           })
         } else {
-          this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+          // this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
+          this.alert('info', "No se ha realizado ninguna accion");
         }
       });
   }
@@ -147,21 +159,40 @@ export class EmpleadosComponent implements OnInit {
     }
   }
 
-  Mensaje(mensaje: any, color: number, posY:number, posX: number){
-    const type = ['','info','success','warning','danger'];
-    const from = ['', 'top', 'bottom'];
-    const align = ['', 'left', 'center', 'right'];
-
-    $.notify({
-        icon: "",
-        message: mensaje
-    },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-            from: from[posY],
-            align: align[posX]
-        }
-    });
+  alert(icon: any, title: string){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: icon,
+      title: title
+    })
   }
+
+  // Mensaje(mensaje: any, color: number, posY:number, posX: number){
+  //   const type = ['','info','success','warning','danger'];
+  //   const from = ['', 'top', 'bottom'];
+  //   const align = ['', 'left', 'center', 'right'];
+
+  //   $.notify({
+  //       icon: "",
+  //       message: mensaje
+  //   },{
+  //       type: type[color],
+  //       timer: 1000,
+  //       placement: {
+  //           from: from[posY],
+  //           align: align[posX]
+  //       }
+  //   });
+  // }
 }
