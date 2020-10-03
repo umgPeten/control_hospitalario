@@ -1,1 +1,38 @@
-<p>dialogo-puesto works!</p>
+<div class="formulario">
+    <div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+
+                        <div class="header" *ngIf="mensaje">
+                            <h4 class="title">Actualizar puesto {{ puesto.TxtPuesto }}</h4>
+                        </div>
+                        <div class="header" *ngIf="!mensaje">
+                            <h4 class="title">Agregar nuevo puesto</h4>
+                        </div>
+
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Puesto</mat-label>
+                                            <input matInput placeholder="Puesto" [(ngModel)]="puesto.TxtPuesto">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
