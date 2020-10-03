@@ -46,6 +46,7 @@ import { environment } from '../environments/environment';
 import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
+import { DialogoPuestoComponent } from './components/emergentes/menu/dialogo-puesto/dialogo-puesto.component';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-s
     DialogoEmpleadoComponent,
     DialogoRenglonComponent,
     DialogoEspecialidadComponent,
-    DialogoServicioComponent
+    DialogoServicioComponent,
+    DialogoPuestoComponent
   ],
   providers: [],
   entryComponents: [
@@ -104,7 +106,8 @@ import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-s
     DialogoEmpleadoComponent,
     DialogoRenglonComponent,
     DialogoEspecialidadComponent,
-    DialogoServicioComponent
+    DialogoServicioComponent,
+    DialogoPuestoComponent
   ],
   bootstrap: [AppComponent],
   schemas: [
