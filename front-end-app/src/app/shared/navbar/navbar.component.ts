@@ -1,7 +1,7 @@
 import { SpotifyService } from '../../services/spotify.service';
 import { DialogoNosotrosComponent } from './../../components/emergentes/dialogo-nosotros/dialogo-nosotros.component';
 import { Component, OnInit, ElementRef, Inject } from '@angular/core';
-import { ROUTES } from '../../sidebar/sidebar.component';
+import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DOCUMENT } from '@angular/common';

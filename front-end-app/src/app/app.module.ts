@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
-// import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 // import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxSpinnerModule } from "ngx-spinner";
 // import { MatTableModule } from '@angular/material/table';
@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FooterModule } from './shared/footer/footer.module';
-import { SidebarModule } from './sidebar/sidebar.module';
+import { SidebarModule } from './shared/sidebar/sidebar.module';
 
 import { AppComponent } from './app.component';
 
@@ -59,7 +59,7 @@ import { environment } from '../environments/environment';
     SidebarModule,
     AppRoutingModule,
     MatDialogModule,
-    // MatButtonModule,
+    MatButtonModule,
     // MatCheckboxModule,
     NgxSpinnerModule,
     BrowserModule,
