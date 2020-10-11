@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  AUTH_SERVER: "http://localhost:51366/api/"
+  AUTH_SERVER: "http://api-sosa.cetcom.edu.gt/api/"
 };
