@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  AUTH_SERVER: "http://api-sosa.cetcom.edu.gt/api/"
+  AUTH_SERVER: "https://api-sosa.cetcom.edu.gt/api/"
 };
