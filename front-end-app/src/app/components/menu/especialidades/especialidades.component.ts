@@ -73,6 +73,7 @@ export class EspecialidadesComponent implements OnInit {
   }
 
   eliminarEspecialidad(especialidad: DatosEspecialidades){
+    this.spinner.show();
     this.dialogo.open(DialogoConfirmacionComponent, {
         data: `eliminar especialidad '${especialidad.TxtEspecialidad}'`
       }).afterClosed().subscribe((confirmado: Boolean) => {
@@ -104,7 +105,8 @@ export class EspecialidadesComponent implements OnInit {
             // this.Mensaje(error.statusText, 4, 1, 1);
             this.alert('error',error.statusText);
           })
-        } else {
+        } 
+        else {
           // this.Mensaje("No se ha realizado ninguna accion", 3, 1, 1);
           this.alert('info', "No se ha realizado ninguna accion");
         }
