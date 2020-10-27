@@ -9,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { DatosFactores } from 'app/models/factores';
+import { DialogoFactoresComponent } from 'app/components/emergentes/dialogo-factores/dialogo-factores.component';
 
 @Component({
   selector: 'app-factores',
@@ -59,7 +60,7 @@ export class FactoresComponent implements OnInit {
     });
   }
 
-  eliminarFactor(factor: any){
+  eliminarFactor(factor: DatosFactores){
     this.spinner.show();
     this.dialogo.open(DialogoConfirmacionComponent,{
       data: `eliminar Factor '${factor.TxtFactor}'`
@@ -95,11 +96,29 @@ export class FactoresComponent implements OnInit {
   }
 
   agregarFactor(){
-    console.log("Agregar Factor");
+    this.dialogo.open(DialogoFactoresComponent).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Factor ' ${resultado} ' ingresado exitosamente`);
+        this.cargarFactores();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
-  actualizarFactro(factor: any){
-    console.log("Actualizar Factor", factor.TxtFactor);
+  actualizarFactro(factor: DatosFactores){
+    this.dialogo.open(DialogoFactoresComponent, {
+      data: factor.IdFactor
+    }).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Factor '${factor.TxtFactor}' modificado exitosamente`);
+        this.cargarFactores();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   applyFilter(event: Event) {

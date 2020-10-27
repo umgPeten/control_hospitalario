@@ -133,7 +133,7 @@ export class EspecialidadesComponent implements OnInit {
     }).afterClosed().subscribe(resultado => {
       if(resultado){
         // this.Mensaje(`Empleado '${especialidad.TxtEspecialidad}' modificado exitosamente`, 2, 1, 3);
-        this.alert('success', `Empleado '${especialidad.TxtEspecialidad}' modificado exitosamente`);
+        this.alert('success', `Especialidad '${especialidad.TxtEspecialidad}' modificada exitosamente`);
         this.cargarEspecialidades();
       }
       else{
