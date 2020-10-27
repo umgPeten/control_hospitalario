@@ -1,0 +1,50 @@
+<div class="formulario">
+    <div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+
+                        <div class="header" *ngIf="mensaje">
+                            <h4 class="title">Actualizar subfactor {{ subFactor.TxtSubFactor }}</h4>
+                        </div>
+                        <div class="header" *ngIf="!mensaje">
+                            <h4 class="title">Agregar nuevo subfactor</h4>
+                        </div>
+
+                        <div class="content">
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>SubFactor</mat-label>
+                                            <input matInput placeholder="SubFactor" [(ngModel)]="subFactor.TxtSubFactor">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput placeholder="Descripcion" [(ngModel)]="subFactor.TxtDescripcion">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

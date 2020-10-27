@@ -43,6 +43,7 @@ export class ActualizarAgregarFactores implements IActualizarAgregarFactores{
 export interface IDatosSubFactores{
     IdSubFactor: number;
     IdFactor: number;
+    TxtFactor: string;
     TxtSubFactor: string;
     TxtDescripcion: string;
     FechaIngreso: string;
@@ -51,6 +52,7 @@ export interface IDatosSubFactores{
 export class DatosSubFactores implements IDatosSubFactores{
     IdSubFactor: number;
     IdFactor: number;
+    TxtFactor: string;
     TxtSubFactor: string;
     TxtDescripcion: string;
     FechaIngreso: string;
@@ -58,6 +60,7 @@ export class DatosSubFactores implements IDatosSubFactores{
     constructor(){
         this.IdSubFactor = 0;
         this.IdFactor = 0;
+        this.TxtFactor = '';
         this.TxtSubFactor = '';
         this.TxtDescripcion = '';
         this.FechaIngreso = '';

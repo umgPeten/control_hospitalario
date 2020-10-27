@@ -17,33 +17,33 @@ export class SubFactoresService {
     private httpClient: HttpClient
   ) { }
 
-  ServicioObtenerFactores(): Observable<any>{
+  ServicioObtenerSubFactores(): Observable<any>{
     this.subfactor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerSubFactores`, this.subfactor);
   }
 
-  ServicioObtenerDatosFactor(id: number): Observable<any>{
+  ServicioObtenerDatosSubFactor(id: number): Observable<any>{
     this.subfactor.IdSubFactor = id;
     this.subfactor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosSubFactor`, this.subfactor);
   }
 
-  ServerEliminarFactor(subfactor: DatosSubFactores): Observable<any>{
+  ServerEliminarSubFactor(subfactor: DatosSubFactores): Observable<any>{
     this.subfactor.IdSubFactor = subfactor.IdSubFactor;
     this.subfactor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}EliminarSubFactor`, this.subfactor);
   }
 
-  ServerAgregarFactor(subfactor: ActualizarAgregarSubFactores): Observable<any>{
+  ServerAgregarSubFactor(subfactor: ActualizarAgregarSubFactores): Observable<any>{
     subfactor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}AgregarSubFactor`, subfactor);
   }
 
-  ServerActualizarFactor(subfactor: ActualizarAgregarSubFactores): Observable<any>{
+  ServerActualizarSubFactor(subfactor: ActualizarAgregarSubFactores): Observable<any>{
     subfactor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ActualizarSubFactor`, subfactor);

@@ -58,6 +58,7 @@ import { EvaluacionesDetalleComponent } from 'app/components/menu/evaluaciones-d
 import { EvaluacionesAplicadasEncabezadoComponent } from './../../components/menu/evaluaciones-aplicadas-encabezado/evaluaciones-aplicadas-encabezado.component';
 import { EvaluacionesAplicadasDetalleComponent } from 'app/components/menu/evaluaciones-aplicadas-detalle/evaluaciones-aplicadas-detalle.component';
 import { DialogoFactoresComponent } from './../../components/emergentes/dialogo-factores/dialogo-factores.component';
+import { DialogoSubFactoresComponent } from 'app/components/emergentes/menu/dialogo-sub-factores/dialogo-sub-factores.component';
 
 @NgModule({
   imports: [
@@ -114,6 +115,7 @@ import { DialogoFactoresComponent } from './../../components/emergentes/dialogo-
     EvaluacionesAplicadasEncabezadoComponent,
     EvaluacionesAplicadasDetalleComponent,
     DialogoFactoresComponent,
+    DialogoSubFactoresComponent
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
@@ -125,7 +127,8 @@ import { DialogoFactoresComponent } from './../../components/emergentes/dialogo-
     DialogoEspecialidadComponent,
     DialogoServicioComponent,
     DialogoPuestoComponent,
-    DialogoFactoresComponent
+    DialogoFactoresComponent,
+    DialogoSubFactoresComponent,
   ],
 })
 
