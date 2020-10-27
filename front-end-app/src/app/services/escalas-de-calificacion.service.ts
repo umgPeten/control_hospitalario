@@ -29,6 +29,13 @@ export class EscalasDeCalificacionService {
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosEscalasDeCalificacion`, this.escalaDeCalificacion);
   }
 
+  ServerEliminarEscalaDeCalificacion(escalaDeCalificacion: any): Observable<any>{
+    this.escalaDeCalificacion.IdEscalaDeCalificacion = escalaDeCalificacion.IdEscalaDeCalificacion;
+    this.escalaDeCalificacion.TxtToken = this.getToken().TxtToken;
+
+    return this.httpClient.post(`${environment.AUTH_SERVER}EliminarEscalasDeCalificacion`, this.escalaDeCalificacion);
+  }
+
   getToken(){
     return JSON.parse(sessionStorage.getItem("DatosUsuario"));
   }
