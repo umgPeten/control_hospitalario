@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment.prod';
+import { ActualizarAgregarEscalaDeCalificacion, DatosEscalaDeCalificacion } from 'app/models/escalasDeCalificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -29,20 +30,20 @@ export class EscalasDeCalificacionService {
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosEscalasDeCalificacion`, this.escalaDeCalificacion);
   }
 
-  ServerEliminarEscalaDeCalificacion(escalaDeCalificacion: any): Observable<any>{
+  ServerEliminarEscalaDeCalificacion(escalaDeCalificacion: DatosEscalaDeCalificacion): Observable<any>{
     this.escalaDeCalificacion.IdEscalaDeCalificacion = escalaDeCalificacion.IdEscalaDeCalificacion;
     this.escalaDeCalificacion.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}EliminarEscalasDeCalificacion`, this.escalaDeCalificacion);
   }
 
-  ServerAgregarEscalaDeCalificacion(escalaDeCalificacion: any): Observable<any>{
+  ServerAgregarEscalaDeCalificacion(escalaDeCalificacion: ActualizarAgregarEscalaDeCalificacion): Observable<any>{
     escalaDeCalificacion.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}AgregarEscalasDeCalificacion`, escalaDeCalificacion);
   }
 
-  ServerActualizarEscalaDeCalificacion(escalaDeCalificacion: any): Observable<any>{
+  ServerActualizarEscalaDeCalificacion(escalaDeCalificacion: ActualizarAgregarEscalaDeCalificacion): Observable<any>{
     escalaDeCalificacion.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ActualizarEscalasDeCalificacion`, escalaDeCalificacion);
