@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment.prod';
+import { ActualizarAgregarFactores, DatosFactores } from 'app/models/factores';
 
 @Injectable({
   providedIn: 'root'
@@ -29,20 +30,20 @@ export class FactoresService {
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerDatosFactor`, this.factor);
   }
 
-  ServerEliminarFactor(factor: any): Observable<any>{
+  ServerEliminarFactor(factor: DatosFactores): Observable<any>{
     this.factor.IdFactor = factor.IdFactor;
     this.factor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}EliminarFactor`, this.factor);
   }
 
-  ServerAgregarFactor(factor: any): Observable<any>{
+  ServerAgregarFactor(factor: ActualizarAgregarFactores): Observable<any>{
     factor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}AgregarFactor`, factor);
   }
 
-  ServerActualizarFactor(factor: any): Observable<any>{
+  ServerActualizarFactor(factor: ActualizarAgregarFactores): Observable<any>{
     factor.TxtToken = this.getToken().TxtToken;
 
     return this.httpClient.post(`${environment.AUTH_SERVER}ActualizarFactor`, factor);

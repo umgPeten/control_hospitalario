@@ -43,14 +43,6 @@ import { NoimagePipe } from './pipes/noimage/noimage.pipe';
 // import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { FactoresComponent } from './components/menu/factores/factores.component';
-import { SubFactoresComponent } from './components/menu/sub-factores/sub-factores.component';
-import { EscalaDeCalificacionComponent } from './components/menu/escala-de-calificacion/escala-de-calificacion.component';
-import { TiposDeEvaluacionesComponent } from './components/menu/tipos-de-evaluaciones/tipos-de-evaluaciones.component';
-import { EvaluacionesEncabezadoComponent } from './components/menu/evaluaciones-encabezado/evaluaciones-encabezado.component';
-import { EvaluacionesDetalleComponent } from './components/menu/evaluaciones-detalle/evaluaciones-detalle.component';
-import { EvaluacionesAplicadasEncabezadoComponent } from './components/menu/evaluaciones-aplicadas-encabezado/evaluaciones-aplicadas-encabezado.component';
-import { EvaluacionesAplicadasDetalleComponent } from './components/menu/evaluaciones-aplicadas-detalle/evaluaciones-aplicadas-detalle.component';
 // import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 // import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 // import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
@@ -92,14 +84,6 @@ import { EvaluacionesAplicadasDetalleComponent } from './components/menu/evaluac
     // DialogoNosotrosComponent,
     DomseguroPipe,
     NoimagePipe,
-    FactoresComponent,
-    SubFactoresComponent,
-    EscalaDeCalificacionComponent,
-    TiposDeEvaluacionesComponent,
-    EvaluacionesEncabezadoComponent,
-    EvaluacionesDetalleComponent,
-    EvaluacionesAplicadasEncabezadoComponent,
-    EvaluacionesAplicadasDetalleComponent,
     // PermisosMenuComponent,
     // EspecialidadesComponent,
     // PuestosComponent,

@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { DatosFactores } from 'app/models/factores';
 
 @Component({
   selector: 'app-factores',
@@ -16,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class FactoresComponent implements OnInit {
   displayedColumns: string[] = ['TxtFactor', 'TxtDescripcion', 'FechaIngreso', 'opciones'];
-  dataSource: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<DatosFactores>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

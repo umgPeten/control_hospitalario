@@ -49,7 +49,14 @@ import { DialogoRenglonComponent } from 'app/components/emergentes/menu/dialogo-
 import { DialogoEspecialidadComponent } from 'app/components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 import { DialogoServicioComponent } from 'app/components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
 import { DialogoPuestoComponent } from 'app/components/emergentes/menu/dialogo-puesto/dialogo-puesto.component';
-
+import { FactoresComponent } from 'app/components/menu/factores/factores.component';
+import { SubFactoresComponent } from 'app/components/menu/sub-factores/sub-factores.component';
+import { EscalaDeCalificacionComponent } from 'app/components/menu/escala-de-calificacion/escala-de-calificacion.component';
+import { TiposDeEvaluacionesComponent } from 'app/components/menu/tipos-de-evaluaciones/tipos-de-evaluaciones.component';
+import { EvaluacionesEncabezadoComponent } from 'app/components/menu/evaluaciones-encabezado/evaluaciones-encabezado.component';
+import { EvaluacionesDetalleComponent } from 'app/components/menu/evaluaciones-detalle/evaluaciones-detalle.component';
+import { EvaluacionesAplicadasEncabezadoComponent } from './../../components/menu/evaluaciones-aplicadas-encabezado/evaluaciones-aplicadas-encabezado.component';
+import { EvaluacionesAplicadasDetalleComponent } from 'app/components/menu/evaluaciones-aplicadas-detalle/evaluaciones-aplicadas-detalle.component';
 
 @NgModule({
   imports: [
@@ -96,7 +103,15 @@ import { DialogoPuestoComponent } from 'app/components/emergentes/menu/dialogo-p
     DialogoRenglonComponent,
     DialogoEspecialidadComponent,
     DialogoServicioComponent,
-    DialogoPuestoComponent
+    DialogoPuestoComponent,
+    FactoresComponent,
+    SubFactoresComponent,
+    EscalaDeCalificacionComponent,
+    TiposDeEvaluacionesComponent,
+    EvaluacionesEncabezadoComponent,
+    EvaluacionesDetalleComponent,
+    EvaluacionesAplicadasEncabezadoComponent,
+    EvaluacionesAplicadasDetalleComponent,
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
