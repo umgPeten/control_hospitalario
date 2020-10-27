@@ -1,9 +1,14 @@
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DatosEscalaDeCalificacion } from 'app/models/escalasDeCalificacion';
+import { EscalasDeCalificacionService } from 'app/services/escalas-de-calificacion.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-escala-de-calificacion',
@@ -17,9 +22,75 @@ export class EscalaDeCalificacionComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  constructor(
+    private escalasDeCalificacionService: EscalasDeCalificacionService,
+    private spinner: NgxSpinnerService,
+    public dialogo: MatDialog,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
+    this.cargarEscalasDeCalificacion();
+  }
+
+  cargarEscalasDeCalificacion(){
+    this.spinner.show();
+    this.escalasDeCalificacionService.ServicioObtenerEscalasDeCalificacion().subscribe(resultado =>{
+      if(resultado[0].EstadoToken !== '0'){
+        this.dataSource = new MatTableDataSource(resultado);
+        
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.spinner.hide();
+      }
+      else{
+        this.spinner.hide();
+        sessionStorage.setItem("DatosUsuario", "");
+        sessionStorage.setItem("SessionStarted", "0");
+        this.router.navigate(['/login']);
+        this.alert('info', "Token del usuario activo invalido");
+      }
+    },
+    error =>{
+      this.spinner.hide();
+      this.alert('error',error.statusText);
+    })
+  }
+
+  eliminarEscalaDeCalificacion(escalaDeCalificacion: DatosEscalaDeCalificacion){
+    this.spinner.show();
+    this.dialogo.open(DialogoConfirmacionComponent,{
+      data: `eliminar la escala de calificaion '${escalaDeCalificacion.TxtEscalaDeCalificacion}'`
+    }).afterClosed().subscribe((confirmado: boolean) => {
+      if (confirmado) {
+        this.escalasDeCalificacionService.ServerEliminarEscalaDeCalificacion(escalaDeCalificacion).subscribe(resultado =>{
+          if(resultado !== 0){
+            if(resultado[0].EstadoToken !== '0'){
+              this.alert('success', `Escala de calificacion '${escalaDeCalificacion.TxtEscalaDeCalificacion}' eliminado`);
+              this.cargarEscalasDeCalificacion();
+              this.spinner.hide();
+            }
+            else{
+              this.spinner.hide();
+              sessionStorage.setItem("DatosUsuario", "");
+              sessionStorage.setItem("SessionStarted", "0");
+              this.router.navigate(['/login']);
+              this.alert('info', "Token del usuario activo invalido");
+            }
+          }
+          else{
+            this.alert('error', "Error del servidor");
+          }
+        },
+        error =>{
+          this.alert('error',error.statusText);
+        })
+      }
+      else {
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   alert(icon: any, title: string){
