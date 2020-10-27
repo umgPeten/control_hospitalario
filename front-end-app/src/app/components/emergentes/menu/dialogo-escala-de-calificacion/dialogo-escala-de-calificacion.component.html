@@ -1,1 +1,61 @@
-<p>dialogo-escala-de-calificacion works!</p>
+<div class="formulario">
+    <div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+
+                        <div class="header" *ngIf="mensaje">
+                            <h4 class="title">Actualizar escala de calificacion {{ escalaDeCalificacion.TxtEscalaDeCalificacion }}</h4>
+                        </div>
+                        <div class="header" *ngIf="!mensaje">
+                            <h4 class="title">Agregar nueva escala de calificacion</h4>
+                        </div>
+
+                        <div class="content">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Escala de calificacion</mat-label>
+                                            <input matInput placeholder="Escala de calificacion" [(ngModel)]="escalaDeCalificacion.TxtEscalaDeCalificacion">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Punteo</mat-label>
+                                            <input matInput placeholder="Punteo" [(ngModel)]="escalaDeCalificacion.DblPunteo" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Descripcion</mat-label>
+                                            <input matInput placeholder="Descripcion" [(ngModel)]="escalaDeCalificacion.TxtDescripcion">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
