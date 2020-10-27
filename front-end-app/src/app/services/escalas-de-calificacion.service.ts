@@ -16,10 +16,10 @@ export class EscalasDeCalificacionService {
     private httpClient: HttpClient
   ) { }
 
-  ServicioObtenerFactores(): Observable<any>{
+  ServicioObtenerEscalasDeCalificacion(): Observable<any>{
     this.escalaDeCalificacion.TxtToken = this.getToken().TxtToken;
 
-    return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerFactores`, this.escalaDeCalificacion);
+    return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerEscalasDeCalificacion`, this.escalaDeCalificacion);
   }
 
   getToken(){
