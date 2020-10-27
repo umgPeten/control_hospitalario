@@ -93,6 +93,41 @@ export class EscalaDeCalificacionComponent implements OnInit {
     });
   }
 
+  agregarSubFactor(){
+    // this.dialogo.open(DialogoSubFactoresComponent).afterClosed().subscribe(resultado =>{
+    //   if(resultado){
+    //     this.alert('success', `Escalas de calificacion ' ${resultado} ' ingresado exitosamente`);
+    //     this.cargarEscalasDeCalificacion();
+    //   }
+    //   else{
+    //     this.alert('info', "No se ha realizado ninguna accion");
+    //   }
+    // });
+  }
+
+  actualizarSubFactro(escalasDeCalificacion: DatosEscalaDeCalificacion){
+    // this.dialogo.open(DialogoSubFactoresComponent, {
+    //   data: escalasDeCalificacion.IdEscalaDeCalificacion
+    // }).afterClosed().subscribe(resultado =>{
+    //   if(resultado){
+    //     this.alert('success', `Escala de calificacion '${escalasDeCalificacion.TxtEscalaDeCalificacion}' modificado exitosamente`);
+    //     this.cargarEscalasDeCalificacion();
+    //   }
+    //   else{
+    //     this.alert('info', "No se ha realizado ninguna accion");
+    //   }
+    // });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   alert(icon: any, title: string){
     const Toast = Swal.mixin({
       toast: true,
