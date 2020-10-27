@@ -9,6 +9,7 @@ import { EscalasDeCalificacionService } from 'app/services/escalas-de-calificaci
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/menu/dialogo-escala-de-calificacion/dialogo-escala-de-calificacion.component';
 
 @Component({
   selector: 'app-escala-de-calificacion',
@@ -94,29 +95,29 @@ export class EscalaDeCalificacionComponent implements OnInit {
   }
 
   agregarEscalaDeCalificacion(){
-    // this.dialogo.open(DialogoSubFactoresComponent).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Escalas de calificacion ' ${resultado} ' ingresado exitosamente`);
-    //     this.cargarEscalasDeCalificacion();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoEscalaDeCalificacionComponent).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Escalas de calificacion ' ${resultado} ' ingresado exitosamente`);
+        this.cargarEscalasDeCalificacion();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   actualizarEscalaDeCalificacion(escalasDeCalificacion: DatosEscalaDeCalificacion){
-    // this.dialogo.open(DialogoSubFactoresComponent, {
-    //   data: escalasDeCalificacion.IdEscalaDeCalificacion
-    // }).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Escala de calificacion '${escalasDeCalificacion.TxtEscalaDeCalificacion}' modificado exitosamente`);
-    //     this.cargarEscalasDeCalificacion();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoEscalaDeCalificacionComponent, {
+      data: escalasDeCalificacion.IdEscalaDeCalificacion
+    }).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Escala de calificacion '${escalasDeCalificacion.TxtEscalaDeCalificacion}' modificado exitosamente`);
+        this.cargarEscalasDeCalificacion();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   applyFilter(event: Event) {
