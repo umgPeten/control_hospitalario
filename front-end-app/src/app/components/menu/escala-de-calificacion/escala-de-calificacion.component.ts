@@ -16,7 +16,7 @@ import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-
   styleUrls: ['./escala-de-calificacion.component.css']
 })
 export class EscalaDeCalificacionComponent implements OnInit {
-  displayedColumns: string[] = ['TxtSubFactor', 'TxtFactor', 'TxtDescripcion', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtEscalaDeCalificacion', 'DblPunteo', 'TxtDescripcion', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEscalaDeCalificacion>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -93,7 +93,7 @@ export class EscalaDeCalificacionComponent implements OnInit {
     });
   }
 
-  agregarSubFactor(){
+  agregarEscalaDeCalificacion(){
     // this.dialogo.open(DialogoSubFactoresComponent).afterClosed().subscribe(resultado =>{
     //   if(resultado){
     //     this.alert('success', `Escalas de calificacion ' ${resultado} ' ingresado exitosamente`);
@@ -105,7 +105,7 @@ export class EscalaDeCalificacionComponent implements OnInit {
     // });
   }
 
-  actualizarSubFactro(escalasDeCalificacion: DatosEscalaDeCalificacion){
+  actualizarEscalaDeCalificacion(escalasDeCalificacion: DatosEscalaDeCalificacion){
     // this.dialogo.open(DialogoSubFactoresComponent, {
     //   data: escalasDeCalificacion.IdEscalaDeCalificacion
     // }).afterClosed().subscribe(resultado =>{
