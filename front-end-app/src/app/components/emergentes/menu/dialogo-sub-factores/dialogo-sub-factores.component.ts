@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActualizarAgregarSubFactores } from 'app/models/factores';
+import { ActualizarAgregarSubFactores, DatosFactores } from 'app/models/factores';
 import Swal from 'sweetalert2';
 import { SubFactoresService } from 'app/services/sub-factores.service';
+import { FactoresService } from 'app/services/factores.service';
 
 @Component({
   selector: 'app-dialogo-sub-factores',
@@ -13,15 +14,21 @@ import { SubFactoresService } from 'app/services/sub-factores.service';
 export class DialogoSubFactoresComponent implements OnInit {
   subFactor: ActualizarAgregarSubFactores;
 
+  factor = 0;
+  factores: DatosFactores;
+
   constructor(
     public dialogo: MatDialogRef<DialogoSubFactoresComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: any,
     private router: Router,
-    private subFactoresService: SubFactoresService
+    private subFactoresService: SubFactoresService,
+    private factoresService: FactoresService
   ) { }
 
   ngOnInit(): void {
     this.subFactor = new ActualizarAgregarSubFactores;
+    this.cargarSelects();
+
     if(this.mensaje){
       this.cargarSubFactores();
     }
@@ -31,6 +38,7 @@ export class DialogoSubFactoresComponent implements OnInit {
     this.subFactoresService.ServicioObtenerDatosSubFactor(this.mensaje).subscribe(resultado =>{
       if(resultado[0].EstadoToken !== '0'){
         this.subFactor = resultado[0];
+        this.factor = this.subFactor.IdFactor;
       }
       else{
         this.dialogo.close();
@@ -45,7 +53,17 @@ export class DialogoSubFactoresComponent implements OnInit {
     })
   }
 
+  cargarSelects(){
+    this.factoresService.ServicioObtenerFactores().subscribe(resultado =>{
+      this.factores = resultado;
+    },
+    error =>{
+      this.alert('error',error.statusText);
+    });
+  }
+
   enviarFormulario(){
+    this.subFactor.IdFactor = this.factor;
     if(this.mensaje){
       this.actualizarSubFactor();
     }
@@ -102,7 +120,8 @@ export class DialogoSubFactoresComponent implements OnInit {
 
   comprobarCampos(){
     if(this.subFactor.TxtSubFactor !== '' && 
-      this.subFactor.TxtDescripcion !== '' 
+      this.subFactor.TxtDescripcion !== '' &&
+      this.subFactor.IdFactor !== 0
     ){
       return true;
     }
