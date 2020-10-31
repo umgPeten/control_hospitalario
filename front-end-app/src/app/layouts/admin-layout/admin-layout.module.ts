@@ -60,6 +60,7 @@ import { EvaluacionesAplicadasDetalleComponent } from 'app/components/menu/evalu
 import { DialogoFactoresComponent } from './../../components/emergentes/dialogo-factores/dialogo-factores.component';
 import { DialogoSubFactoresComponent } from 'app/components/emergentes/menu/dialogo-sub-factores/dialogo-sub-factores.component';
 import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/menu/dialogo-escala-de-calificacion/dialogo-escala-de-calificacion.component';
+import { DialogoTiposDeEvaluacionComponent } from 'app/components/emergentes/menu/dialogo-tipos-de-evaluacion/dialogo-tipos-de-evaluacion.component';
 
 @NgModule({
   imports: [
@@ -118,6 +119,7 @@ import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/
     DialogoFactoresComponent,
     DialogoSubFactoresComponent,
     DialogoEscalaDeCalificacionComponent,
+    DialogoTiposDeEvaluacionComponent,
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
@@ -131,7 +133,8 @@ import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/
     DialogoPuestoComponent,
     DialogoFactoresComponent,
     DialogoSubFactoresComponent,
-    DialogoEscalaDeCalificacionComponent
+    DialogoEscalaDeCalificacionComponent,
+    DialogoTiposDeEvaluacionComponent,
   ],
 })
 

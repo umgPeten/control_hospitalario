@@ -1,36 +1,36 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ActualizarAgregarTipoDeEvaluacion } from 'app/models/tipos-de-evaluaciones';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActualizarAgregarEscalaDeCalificacion } from 'app/models/escalasDeCalificacion';
-import { EscalasDeCalificacionService } from 'app/services/escalas-de-calificacion.service';
+import { TiposDeEvaluacionesService } from 'app/services/tipos-de-evaluaciones.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-dialogo-escala-de-calificacion',
-  templateUrl: './dialogo-escala-de-calificacion.component.html',
-  styleUrls: ['./dialogo-escala-de-calificacion.component.css']
+  selector: 'app-dialogo-tipos-de-evaluacion',
+  templateUrl: './dialogo-tipos-de-evaluacion.component.html',
+  styleUrls: ['./dialogo-tipos-de-evaluacion.component.css']
 })
-export class DialogoEscalaDeCalificacionComponent implements OnInit {
-  escalaDeCalificacion: ActualizarAgregarEscalaDeCalificacion;
+export class DialogoTiposDeEvaluacionComponent implements OnInit {
+  tipoDeEvaluacion: ActualizarAgregarTipoDeEvaluacion;
 
   constructor(
-    public dialogo: MatDialogRef<DialogoEscalaDeCalificacionComponent>,
+    public dialogo: MatDialogRef<DialogoTiposDeEvaluacionComponent>,
     @Inject(MAT_DIALOG_DATA) public mensaje: any,
     private router: Router,
-    private escalasDeCalificacionService: EscalasDeCalificacionService
+    private tiposDeEvaluacionesService: TiposDeEvaluacionesService
   ) { }
 
   ngOnInit(): void {
-    this.escalaDeCalificacion = new ActualizarAgregarEscalaDeCalificacion;
+    this.tipoDeEvaluacion = new ActualizarAgregarTipoDeEvaluacion;
     if(this.mensaje){
-      this.cargarEscalaDeCalificacion();
+      this.cargarTipoDeEvaluacion();
     }
   }
 
-  cargarEscalaDeCalificacion(){
-    this.escalasDeCalificacionService.ServicioObtenerDatosEscalaDeCalificacion(this.mensaje).subscribe(resultado =>{
+  cargarTipoDeEvaluacion(){
+    this.tiposDeEvaluacionesService.ServicioObtenerDatosTipoDeEvaluacion(this.mensaje).subscribe(resultado =>{
       if(resultado[0].EstadoToken !== '0'){
-        this.escalaDeCalificacion = resultado[0];
+        this.tipoDeEvaluacion = resultado[0];
       }
       else{
         this.dialogo.close();
@@ -47,16 +47,16 @@ export class DialogoEscalaDeCalificacionComponent implements OnInit {
 
   enviarFormulario(){
     if(this.mensaje){
-      this.actualizarEscalaDeCalificacion();
+      this.actualizarTipoDeEvaluacion();
     }
     else{
-      this.agregarEscalaDeCalificacion();
+      this.agregarTipoDeEvaluacion();
     }
   }
 
-  actualizarEscalaDeCalificacion(){
+  actualizarTipoDeEvaluacion(){
     if(this.comprobarCampos()){
-      this.escalasDeCalificacionService.ServerActualizarEscalaDeCalificacion(this.escalaDeCalificacion).subscribe( resultado => {
+      this.tiposDeEvaluacionesService.ServerActualizarTipoDeEvaluacion(this.tipoDeEvaluacion).subscribe( resultado => {
         if(resultado[0].EstadoToken !== '0'){
           this.dialogo.close(true);
         }
@@ -77,11 +77,11 @@ export class DialogoEscalaDeCalificacionComponent implements OnInit {
     }
   }
 
-  agregarEscalaDeCalificacion(){
+  agregarTipoDeEvaluacion(){
     if(this.comprobarCampos()){
-      this.escalasDeCalificacionService.ServerAgregarEscalaDeCalificacion(this.escalaDeCalificacion).subscribe( resultado => {
+      this.tiposDeEvaluacionesService.ServerAgregarTipoDeEvaluacion(this.tipoDeEvaluacion).subscribe( resultado => {
         if(resultado[0].EstadoToken !== '0'){
-          this.dialogo.close(this.escalaDeCalificacion.TxtEscalaDeCalificacion);
+          this.dialogo.close(this.tipoDeEvaluacion.TxtTipoDeEvaluacion);
         }
         else{
             this.dialogo.close();
@@ -101,10 +101,7 @@ export class DialogoEscalaDeCalificacionComponent implements OnInit {
   }
 
   comprobarCampos(){
-    if(this.escalaDeCalificacion.TxtEscalaDeCalificacion !== '' &&
-       this.escalaDeCalificacion.DblPunteo !== 0 &&
-       this.escalaDeCalificacion.TxtDescripcion !== ''
-      ){
+    if(this.tipoDeEvaluacion.TxtTipoDeEvaluacion !== ''){
       return true;
     }
     else{

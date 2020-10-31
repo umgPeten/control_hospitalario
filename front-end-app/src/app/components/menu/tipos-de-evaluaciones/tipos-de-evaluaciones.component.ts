@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TiposDeEvaluacionesService } from 'app/services/tipos-de-evaluaciones.service';
 import Swal from 'sweetalert2';
+import { DialogoTiposDeEvaluacionComponent } from 'app/components/emergentes/menu/dialogo-tipos-de-evaluacion/dialogo-tipos-de-evaluacion.component';
 
 @Component({
   selector: 'app-tipos-de-evaluaciones',
@@ -94,29 +95,29 @@ export class TiposDeEvaluacionesComponent implements OnInit {
   }
 
   agregarTipoDeEvaluacion(){
-    // this.dialogo.open(DialogoEscalaDeCalificacionComponent).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Tipo de evaluacion ' ${resultado} ' ingresado exitosamente`);
-    //     this.cargarTiposDeEvaluacion();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoTiposDeEvaluacionComponent).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Tipo de evaluacion ' ${resultado} ' ingresado exitosamente`);
+        this.cargarTiposDeEvaluacion();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   actualizarTipoDeEvaluacion(tipoDeEvaluacion: DatosTipoDeEvaluacion){
-    // this.dialogo.open(DialogoEscalaDeCalificacionComponent, {
-    //   data: tipoDeEvaluacion.IdTipoDeEvaluacion
-    // }).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Tipo de evaluacion '${tipoDeEvaluacion.TxtTipoDeEvaluacion}' modificado exitosamente`);
-    //     this.cargarTiposDeEvaluacion();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoTiposDeEvaluacionComponent, {
+      data: tipoDeEvaluacion.IdTipoDeEvaluacion
+    }).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Tipo de evaluacion '${tipoDeEvaluacion.TxtTipoDeEvaluacion}' modificado exitosamente`);
+        this.cargarTiposDeEvaluacion();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   applyFilter(event: Event) {
