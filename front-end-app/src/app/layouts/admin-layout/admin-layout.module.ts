@@ -61,6 +61,10 @@ import { DialogoFactoresComponent } from './../../components/emergentes/dialogo-
 import { DialogoSubFactoresComponent } from 'app/components/emergentes/menu/dialogo-sub-factores/dialogo-sub-factores.component';
 import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/menu/dialogo-escala-de-calificacion/dialogo-escala-de-calificacion.component';
 import { DialogoTiposDeEvaluacionComponent } from 'app/components/emergentes/menu/dialogo-tipos-de-evaluacion/dialogo-tipos-de-evaluacion.component';
+import { DialogoEvaluacionEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-encabezado/dialogo-evaluacion-encabezado.component';
+import { DialogoEvaluacionDetalleComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-detalle/dialogo-evaluacion-detalle.component';
+import { DialogoEvaluacionAplicadaEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-encabezado/dialogo-evaluacion-aplicada-encabezado.component';
+import { DialogoEvaluacionAplicadaDetalleComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-detalle/dialogo-evaluacion-aplicada-detalle.component';
 
 @NgModule({
   imports: [
@@ -120,6 +124,10 @@ import { DialogoTiposDeEvaluacionComponent } from 'app/components/emergentes/men
     DialogoSubFactoresComponent,
     DialogoEscalaDeCalificacionComponent,
     DialogoTiposDeEvaluacionComponent,
+    DialogoEvaluacionEncabezadoComponent,
+    DialogoEvaluacionDetalleComponent,
+    DialogoEvaluacionAplicadaEncabezadoComponent,
+    DialogoEvaluacionAplicadaDetalleComponent,
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
@@ -135,6 +143,10 @@ import { DialogoTiposDeEvaluacionComponent } from 'app/components/emergentes/men
     DialogoSubFactoresComponent,
     DialogoEscalaDeCalificacionComponent,
     DialogoTiposDeEvaluacionComponent,
+    DialogoEvaluacionEncabezadoComponent,
+    DialogoEvaluacionDetalleComponent,
+    DialogoEvaluacionAplicadaEncabezadoComponent,
+    DialogoEvaluacionAplicadaDetalleComponent,
   ],
 })
 
