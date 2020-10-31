@@ -23,7 +23,7 @@ export class EvaluacionesEncabezadoService {
     return this.httpClient.post(`${environment.AUTH_SERVER}ObtenerEvaluacionesencabezado`, this.evaluacionEncabezado);
   }
 
-  ServicioObtenerDatosTipoDeEvaluacion(id: number): Observable<any>{
+  ServicioObtenerDatosEvaluacionEncabezado(id: number): Observable<any>{
     this.evaluacionEncabezado.IdEvaluacionEncabezado = id;
     this.evaluacionEncabezado.TxtToken = this.getToken().TxtToken;
 

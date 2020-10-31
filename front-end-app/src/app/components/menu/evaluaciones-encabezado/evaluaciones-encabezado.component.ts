@@ -9,6 +9,7 @@ import { DatosEvaluacionEncabezado } from 'app/models/evaluaciones-encabezado';
 import { EvaluacionesEncabezadoService } from 'app/services/evaluaciones-encabezado.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { DialogoEvaluacionEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-encabezado/dialogo-evaluacion-encabezado.component';
 
 @Component({
   selector: 'app-evaluaciones-encabezado',
@@ -94,29 +95,29 @@ export class EvaluacionesEncabezadoComponent implements OnInit {
   }
 
   agregarEvaluacionEncabezado(){
-    // this.dialogo.open(DialogoTiposDeEvaluacionComponent).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Evaluacion encabezado ' ${resultado} ' registrada exitosamente`);
-    //     this.cargarEvaluacionesencabezado();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoEvaluacionEncabezadoComponent).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Evaluacion encabezado ' ${resultado} ' registrada exitosamente`);
+        this.cargarEvaluacionesEncabezado();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   actualizarEvaluacionEncabezado(evaluacionEncabezado: DatosEvaluacionEncabezado){
-    // this.dialogo.open(DialogoTiposDeEvaluacionComponent, {
-    //   data: evaluacionEncabezado.IdEvaluacionEncabezado
-    // }).afterClosed().subscribe(resultado =>{
-    //   if(resultado){
-    //     this.alert('success', `Evaluacion encabezado '${evaluacionEncabezado.TxtTipoDeEvaluacion}' modificada exitosamente`);
-    //     this.cargarEvaluacionesEncabezado();
-    //   }
-    //   else{
-    //     this.alert('info', "No se ha realizado ninguna accion");
-    //   }
-    // });
+    this.dialogo.open(DialogoEvaluacionEncabezadoComponent, {
+      data: evaluacionEncabezado.IdEvaluacionEncabezado
+    }).afterClosed().subscribe(resultado =>{
+      if(resultado){
+        this.alert('success', `Evaluacion encabezado '${evaluacionEncabezado.TxtTipoDeEvaluacion}' modificada exitosamente`);
+        this.cargarEvaluacionesEncabezado();
+      }
+      else{
+        this.alert('info', "No se ha realizado ninguna accion");
+      }
+    });
   }
 
   applyFilter(event: Event) {
