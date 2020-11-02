@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -10,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DialogoEscalaDeCalificacionComponent } from 'app/components/emergentes/menu/dialogo-escala-de-calificacion/dialogo-escala-de-calificacion.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-escala-de-calificacion',
@@ -23,16 +25,36 @@ export class EscalaDeCalificacionComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
     private escalasDeCalificacionService: EscalasDeCalificacionService,
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private router: Router,
-  ) { }
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEscalasDeCalificacion();
+  }
+  
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   cargarEscalasDeCalificacion(){
