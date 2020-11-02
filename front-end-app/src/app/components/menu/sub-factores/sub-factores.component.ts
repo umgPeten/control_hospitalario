@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import Swal from 'sweetalert2';
 import { DialogoSubFactoresComponent } from 'app/components/emergentes/menu/dialogo-sub-factores/dialogo-sub-factores.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sub-factores',
@@ -23,16 +25,36 @@ export class SubFactoresComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
     private subFactoresService: SubFactoresService,
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private router: Router,
-  ) { }
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarSubFactores();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   cargarSubFactores(){
