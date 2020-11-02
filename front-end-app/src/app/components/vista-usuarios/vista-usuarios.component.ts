@@ -1,3 +1,4 @@
+import { ExporterService } from './../../services/exporter.service';
 import { DialogoModificarComponent } from './../emergentes/dialogo-modificar/dialogo-modificar.component';
 import { DialogoConfirmacionComponent } from '../emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DatosUsuarios } from '../../models/usuarios';
@@ -31,11 +32,14 @@ export class VistaUsuariosComponent implements OnInit  {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  filtrado: boolean = false;
+
   constructor(
     private usuariosService: UsuariosServiceService,
     public dialogo: MatDialog,
     private spinner: NgxSpinnerService,
     private router: Router,
+    private exporterService: ExporterService,
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +51,7 @@ export class VistaUsuariosComponent implements OnInit  {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -82,6 +87,7 @@ export class VistaUsuariosComponent implements OnInit  {
 
   eliminarUsuario(user: DatosUsuarios){
     this.IdUser.IdUsuario = user.IdUsuario;
+    this.spinner.show();
     
     this.dialogo.open(DialogoConfirmacionComponent, {
         data: `eliminar usuario '${user.TxtNombres}'`
@@ -168,6 +174,17 @@ export class VistaUsuariosComponent implements OnInit  {
       icon: icon,
       title: title
     })
+  }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Usuarios');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Usuarios');
+    }
+    this.spinner.hide();
   }
 
   // Mensaje(mensaje: any, color: number, posY:number, posX: number){
