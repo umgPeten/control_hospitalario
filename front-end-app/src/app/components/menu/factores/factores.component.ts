@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { DatosFactores } from 'app/models/factores';
 import { DialogoFactoresComponent } from 'app/components/emergentes/dialogo-factores/dialogo-factores.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-factores',
@@ -23,16 +25,36 @@ export class FactoresComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
     private factoresService: FactoresService,
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private router: Router,
-  ) { }
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarFactores();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   cargarFactores(){
