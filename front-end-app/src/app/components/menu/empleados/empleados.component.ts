@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { Router } from '@angular/router';
 import { DialogoEmpleadoComponent } from './../../emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { EmpleadosService } from './../../../services/empleados.service';
@@ -11,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import Swal from 'sweetalert2'
+import { Location } from '@angular/common';
 
 // declare var $:any;
 
@@ -42,16 +44,36 @@ export class EmpleadosComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private empleadosService: EmpleadosService,
-    private router: Router
-  ) { }
+    private router: Router,
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEmpleados();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   cargarEmpleados(){
