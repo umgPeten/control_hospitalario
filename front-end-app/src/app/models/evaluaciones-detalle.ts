@@ -3,6 +3,7 @@ export interface IDatosEvaluacionDetalle{
     TxtTipoDeEvaluacion: string;
     TxtFactor: string;
     TxtSubFactor: string;
+    Anio: number;
     FechaIngreso: string;
 }
 
@@ -11,6 +12,7 @@ export class DatosEvaluacionDetalle implements IDatosEvaluacionDetalle{
     TxtTipoDeEvaluacion: string;
     TxtFactor: string;
     TxtSubFactor: string;
+    Anio: number;
     FechaIngreso: string;
 
     constructor(){
@@ -18,6 +20,7 @@ export class DatosEvaluacionDetalle implements IDatosEvaluacionDetalle{
         this.TxtTipoDeEvaluacion = '';
         this.TxtFactor = '';
         this.TxtSubFactor = '';
+        this.Anio = 0;
         this.FechaIngreso = '';
     }
 }

@@ -34,6 +34,11 @@
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Factor </th>
                                 <td mat-cell *matCellDef="let row"> {{row.TxtSubFactor}} </td>
                             </ng-container>
+
+                            <ng-container matColumnDef="Anio" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
+                                <td mat-cell *matCellDef="let row"> {{row.Anio}} </td>
+                            </ng-container>
                       
                             <ng-container matColumnDef="FechaIngreso">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>

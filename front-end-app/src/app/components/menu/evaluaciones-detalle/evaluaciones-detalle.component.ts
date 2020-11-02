@@ -17,7 +17,7 @@ import { DialogoEvaluacionDetalleComponent } from 'app/components/emergentes/men
   styleUrls: ['./evaluaciones-detalle.component.css']
 })
 export class EvaluacionesDetalleComponent implements OnInit {
-  displayedColumns: string[] = ['TxtTipoDeEvaluacion', 'TxtFactor', 'TxtSubFactor', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtTipoDeEvaluacion', 'TxtFactor', 'TxtSubFactor', 'Anio', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEvaluacionDetalle>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
