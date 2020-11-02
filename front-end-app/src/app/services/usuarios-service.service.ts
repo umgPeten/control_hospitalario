@@ -84,17 +84,14 @@ export class UsuariosServiceService {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     var path = this.location.prepareExternalUrl(this.location.path());
     const menu = JSON.parse(sessionStorage.getItem("Menu"));
-    console.log("path", path);
     
     for(let url of menu){
-      console.log("Menu", url.TxtLink);
       url.TxtLink = '/'+url.TxtLink;
       if(url.TxtLink === path){
         return true;
       }
     }
     for(let url of this.listTitles){
-      console.log("Sistema", url.path );
       if(url.path === path){
         return true;
       }

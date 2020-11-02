@@ -1,3 +1,4 @@
+import { ROUTES } from './../../../shared/sidebar/sidebar.component';
 import { DialogoEspecialidadComponent } from './../../emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 import { DatosEspecialidades } from 'app/models/especialidades';
 import { EspecialidadesService } from './../../../services/especialidades.service';
@@ -9,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import { Menu } from 'app/models/usuarios';
+import { Location } from '@angular/common';
 import Swal from 'sweetalert2'
 
 // declare var $:any;
@@ -19,6 +22,10 @@ import Swal from 'sweetalert2'
   styleUrls: ['./especialidades.component.css']
 })
 export class EspecialidadesComponent implements OnInit {
+  menu: Menu;
+  location: Location;
+  permisos: Menu;
+
   displayedColumns: string[] = ['TxtEspecialidad', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEspecialidades>;
 
@@ -27,14 +34,31 @@ export class EspecialidadesComponent implements OnInit {
 
   constructor(
     public dialogo: MatDialog,
+    location: Location,
     private spinner: NgxSpinnerService,
     private router: Router,
     private especialidadesService: EspecialidadesService
-  ) { }
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.menu = new Menu;
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEspecialidades();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   applyFilter(event: Event) {
