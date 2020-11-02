@@ -22,7 +22,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./especialidades.component.css']
 })
 export class EspecialidadesComponent implements OnInit {
-  menu: Menu;
+  menu: Menu[];
   location: Location;
   permisos: Menu;
 
@@ -43,7 +43,6 @@ export class EspecialidadesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.menu = new Menu;
     this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEspecialidades();
