@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { DialogoRenglonComponent } from './../../emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 import { RenglonesService } from './../../../services/renglones.service';
 import { DatosRenglones } from './../../../models/renglones';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import Swal from 'sweetalert2'
+import { Location } from '@angular/common';
 
 // declare var $:any;
 
@@ -25,16 +27,36 @@ export class RenglonesComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
     public dialogo: MatDialog,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private renglonesService: RenglonesService
-  ) { }
+    private renglonesService: RenglonesService,
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.cargarRenglones();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   applyFilter(event: Event) {
