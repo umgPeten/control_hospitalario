@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { DialogoServicioComponent } from './../../emergentes/menu/dialogo-servicio/dialogo-servicio.component';
 import { ServiciosService } from './../../../services/servicios.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -10,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DatosServicios } from 'app/models/servicios';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import Swal from 'sweetalert2'
+import { Location } from '@angular/common';
 
 // declare var $:any;
 
@@ -25,17 +27,36 @@ export class ServiciosComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+
   constructor(
-  
     public dialogo: MatDialog,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private ServiciosService : ServiciosService
-  ) { }
+    private ServiciosService : ServiciosService,
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.cargarServicios();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+      }
+    }
   }
 
   applyFilter(event: Event) {
