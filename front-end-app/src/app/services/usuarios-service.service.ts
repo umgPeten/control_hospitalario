@@ -1,8 +1,10 @@
+import { ROUTES } from './../shared/sidebar/sidebar.component';
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { NewUser, Login, ModUsuario, ObtenerMenu } from '../models/usuarios';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,19 @@ export class UsuariosServiceService {
   // AUTH_SERVER: string = "http://localhost:50708/api/";
   // private TxtToken: String;
   public intentoDeAcceso = "";
+  location: Location;
+  private listTitles: any[];
   IdUser = {
     IdUsuario: 0,
     TxtToken: ''
   };
 
   constructor(
+    location: Location,
     private HttpClient: HttpClient
-  ) { }
+  ) { 
+    this.location = location;
+  }
 
   ServerInicioDeSesion(login: Login): Observable<any>{
     return this.HttpClient.post(`${environment.AUTH_SERVER}InicioDeSesion`, login); 
@@ -71,5 +78,31 @@ export class UsuariosServiceService {
       return false;
     }
     return true;
+  }
+
+  permisosMenu(){
+    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    var path = this.location.prepareExternalUrl(this.location.path());
+    const menu = JSON.parse(sessionStorage.getItem("Menu"));
+    console.log("path", path);
+    
+    for(let url of menu){
+      console.log("Menu", url.TxtLink);
+      url.TxtLink = '/'+url.TxtLink;
+      if(url.TxtLink === path){
+        return true;
+      }
+    }
+    for(let url of this.listTitles){
+      console.log("Sistema", url.path );
+      if(url.path === path){
+        return true;
+      }
+    }
+
+    if(path === '/login'){
+      return true;
+    }
+    return false;
   }
 }

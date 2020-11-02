@@ -48,14 +48,14 @@ export class SidebarComponent implements OnInit {
   }
   
   cargarUserMenu(){
-
     this.usuario = JSON.parse(sessionStorage.getItem("DatosUsuario"));
     this.obtener.IdModulo = 1; //TODO: obtener el moulo
     this.obtener.TxtToken = this.usuario.TxtToken;
-
+    
     this.usuariosService.ServerMenuUsuario(this.obtener).subscribe( resultado =>{
       // console.log(resultado);
       this.menuItemsUsers = resultado;
+      sessionStorage.setItem("Menu", JSON.stringify(this.menuItemsUsers));
     },
     error =>{
       // console.log(error)
