@@ -1,3 +1,6 @@
+import { FactoresService } from 'app/services/factores.service';
+import { DatosSubFactores } from 'app/models/factores';
+import { DatosFactores } from './../../../../models/factores';
 import { EvaluacionesDetalleService } from 'app/services/evaluaciones-detalle.service';
 import { ActualizarAgregarEvaluacionDetalle } from 'app/models/evaluaciones-detalle';
 import { Router } from '@angular/router';
@@ -5,8 +8,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DatosEvaluacionEncabezado } from 'app/models/evaluaciones-encabezado';
 import { Component, OnInit, Inject } from '@angular/core';
 import { EvaluacionesEncabezadoService } from 'app/services/evaluaciones-encabezado.service';
-import { TiposDeEvaluacionesService } from 'app/services/tipos-de-evaluaciones.service';
 import Swal from 'sweetalert2';
+import { SubFactoresService } from 'app/services/sub-factores.service';
 
 @Component({
   selector: 'app-dialogo-evaluacion-detalle',
@@ -17,9 +20,13 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
   evaluacionDetalle: ActualizarAgregarEvaluacionDetalle;
 
   evaluacionEncabezado = 0;
-  EvaluacionesEncabezado: DatosEvaluacionEncabezado;
+  evaluacionesEncabezado: DatosEvaluacionEncabezado;
 
+  factor = 0;
+  factores: DatosFactores;
 
+  subFactor = 0;
+  subFactores: DatosSubFactores;
 
   constructor(
     public dialogo: MatDialogRef<DialogoEvaluacionDetalleComponent>,
@@ -27,7 +34,8 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
     private router: Router,
     private evaluacionesDetalleService: EvaluacionesDetalleService,
     private evaluacionesEncabezadoService: EvaluacionesEncabezadoService,
-    private tiposDeEvaluacionesService: TiposDeEvaluacionesService
+    private factoresService: FactoresService,
+    private subFactoresService: SubFactoresService
   ) { }
 
   ngOnInit(): void {
@@ -39,12 +47,30 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
   }
 
   cargarDatosSelects(){
-    // this.tiposDeEvaluacionesService.ServicioObtenerTiposDeEvaluacionesService().subscribe(resultado => {
-    //   this.tiposEvaluacion = resultado;
-    // },
-    // error =>{
-    //   this.alert('error',error.statusText);
-    // });
+    //Encabezado
+    this.evaluacionesEncabezadoService.ServicioObtenerEvaluacionesEncabezado().subscribe(resultado => {
+      this.evaluacionesEncabezado = resultado;
+      console.log(this.evaluacionesEncabezado);
+    },
+    error =>{
+      this.alert('error',error.statusText);
+    });
+
+    //Factores
+    this.factoresService.ServicioObtenerFactores().subscribe(resultado => {
+      this.factores = resultado;
+    },
+    error =>{
+      this.alert('error',error.statusText);
+    });
+
+    //SubFactores
+    this.subFactoresService.ServicioObtenerSubFactores().subscribe(resultado => {
+      this.subFactores = resultado;
+    },
+    error =>{
+      this.alert('error',error.statusText);
+    });
   }
 
   cargarEvaluacionDetalle(){
@@ -52,6 +78,8 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
       if(resultado[0].EstadoToken !== '0'){
         this.evaluacionDetalle = resultado[0];
         this.evaluacionEncabezado = this.evaluacionDetalle.IdEvaluacionEncabezado;
+        this.factor = this.evaluacionDetalle.IdFactor;
+        this.subFactor = this.evaluacionDetalle.IdSubFactor;
       }
       else{
         this.dialogo.close();
@@ -68,6 +96,8 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
 
   enviarFormulario(){
     this.evaluacionDetalle.IdEvaluacionEncabezado = this.evaluacionEncabezado;
+    this.evaluacionDetalle.IdFactor = this.factor;
+    this.evaluacionDetalle.IdSubFactor = this.subFactor;
 
     if(this.mensaje){
       this.actualizarEvaluacionEncabezado();
@@ -104,7 +134,7 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
     if(this.comprobarCampos()){
       this.evaluacionesDetalleService.ServerAgregarEvaluacionDetalle(this.evaluacionDetalle).subscribe( resultado => {
         if(resultado[0].EstadoToken !== '0'){
-          this.dialogo.close(this.evaluacionDetalle.IdEvaluacionDetalle);
+          this.dialogo.close(true);
         }
         else{
             this.dialogo.close(false);
