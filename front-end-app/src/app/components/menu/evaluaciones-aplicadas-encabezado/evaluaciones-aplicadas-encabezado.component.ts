@@ -10,15 +10,25 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-evaluaciones-aplicadas-encabezado',
   templateUrl: './evaluaciones-aplicadas-encabezado.component.html',
-  styleUrls: ['./evaluaciones-aplicadas-encabezado.component.css']
+  styleUrls: ['./evaluaciones-aplicadas-encabezado.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
-  displayedColumns: string[] = ['TxtTipoDeEvaluacion', 'TxtFactor', 'TxtSubFactor', 'Anio', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtEmpleado', 'TxtInstitucion', 'DblPunteoTotal', 'FechaDeAplicacion', 'FechaIngreso', 'opciones'];
+  headers: string[] = [''];
   dataSource: MatTableDataSource<DatosEvaluacionAplicadaEncabezado>;
+  expandedElement: DatosEvaluacionAplicadaEncabezado | null;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -32,10 +42,10 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
-    this.cargarEvaluacionesDetalle();
+    this.cargarEvaluacionesAplicadasEncabezado();
   }
 
-  cargarEvaluacionesDetalle(){
+  cargarEvaluacionesAplicadasEncabezado(){
     this.spinner.show();
     this.evaluacionesAplicadasEncabezadoService.ServicioObtenerEvaluacionesAplicadasEncabezado().subscribe(resultado =>{
       if(resultado[0].EstadoToken !== '0'){
@@ -59,7 +69,7 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
     })
   }
 
-  eliminarEvaluacionDetalle(evaluacionAplicadaEncabezado: DatosEvaluacionAplicadaEncabezado){
+  eliminarEvaluacionAplicadaEncabezado(evaluacionAplicadaEncabezado: DatosEvaluacionAplicadaEncabezado){
     this.spinner.show();
     this.dialogo.open(DialogoConfirmacionComponent,{
       data: `eliminar la evaluacion aplicada encabezado`
@@ -69,7 +79,7 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
           if(resultado !== 0){
             if(resultado[0].EstadoToken !== '0'){
               this.alert('success', `Evaluacion detalle eliminada`);
-              this.cargarEvaluacionesDetalle();
+              this.cargarEvaluacionesAplicadasEncabezado();
               this.spinner.hide();
             }
             else{
@@ -94,11 +104,11 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
     });
   }
 
-  agregarEvaluacionDetalle(){
+  agregarEvaluacionAplicadaEncabezado(){
     this.dialogo.open(DialogoEvaluacionAplicadaEncabezadoComponent).afterClosed().subscribe(resultado =>{
       if(resultado){
         this.alert('success', `Evaluacion aplicada encabezado registrada exitosamente`);
-        this.cargarEvaluacionesDetalle();
+        this.cargarEvaluacionesAplicadasEncabezado();
       }
       else{
         this.alert('info', "No se ha realizado ninguna accion");
@@ -106,13 +116,13 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
     });
   }
 
-  actualizarEvaluacionDetalle(evaluacionAplicadaEncabezado: DatosEvaluacionAplicadaEncabezado){
+  actualizarEvaluacionAplicadaEncabezado(evaluacionAplicadaEncabezado: DatosEvaluacionAplicadaEncabezado){
     this.dialogo.open(DialogoEvaluacionAplicadaEncabezadoComponent, {
       data: evaluacionAplicadaEncabezado.IdEvaluacionAplicadaEncabezado
     }).afterClosed().subscribe(resultado =>{
       if(resultado){
         this.alert('success', `Evaluacion aplicada encabezado modificada exitosamente`);
-        this.cargarEvaluacionesDetalle();
+        this.cargarEvaluacionesAplicadasEncabezado();
       }
       else{
         this.alert('info', "No se ha realizado ninguna accion");
