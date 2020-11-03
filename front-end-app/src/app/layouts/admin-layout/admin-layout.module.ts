@@ -30,6 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // componentes 
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
@@ -85,6 +87,8 @@ import { DialogoEvaluacionAplicadaDetalleComponent } from 'app/components/emerge
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: [
     // HomeComponent,

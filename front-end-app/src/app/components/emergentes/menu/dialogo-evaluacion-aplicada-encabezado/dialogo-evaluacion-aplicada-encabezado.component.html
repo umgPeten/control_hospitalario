@@ -1,1 +1,141 @@
-<p>dialogo-evaluacion-aplicada-encabezado works!</p>
+<div class="formulario">
+    <div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+
+                        <div class="header" *ngIf="mensaje">
+                            <h4 class="title">Actualizar evaluacion aplicada encabezado</h4>
+                        </div>
+                        <div class="header" *ngIf="!mensaje">
+                            <h4 class="title">Agregar una nueva evaluacion aplicada encabezado</h4>
+                        </div>
+
+                        <div class="content">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Fecha de aplicacion</mat-label>
+                                            <input matInput [matDatepicker]="picker1" [(ngModel)]="evaluacionAplicadaEncabezado.FechaDeAplicacion">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Fecha inicial</mat-label>
+                                            <input matInput [matDatepicker]="picker2" [(ngModel)]="evaluacionAplicadaEncabezado.FechaInicial">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Fecha final</mat-label>
+                                            <input matInput [matDatepicker]="picker3" [(ngModel)]="evaluacionAplicadaEncabezado.FechaFinal">
+                                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker3></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Empleado</mat-label>
+                                            <mat-select [(value)]="empleado">
+                                                <mat-option disabled [value]="0">seleccione empleado</mat-option>
+                                                <mat-option *ngFor="let option of empleados" [value]="option.IdEmpleado"> {{ option.TxtNombres }} {{ option.TxtApellidos }} </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Evaluacion Encabezado</mat-label>
+                                            <mat-select [(value)]="evaluacionEncabezado">
+                                                <mat-option disabled [value]="0">seleccione un tipo de evaluacion</mat-option>
+                                                <mat-option *ngFor="let option of evaluacionesEncabezado" [value]="option.IdEvaluacionEncabezado"> {{ option.TxtTipoDeEvaluacion }}, {{ option.Anio }} </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Institucion</mat-label>
+                                            <mat-select [(value)]="institucion">
+                                                <mat-option disabled [value]="0">seleccione una institucion</mat-option>
+                                                <!-- <mat-option *ngFor="let option of Instituciones" [value]="option.IdTipoDeEvaluacion"> {{ option.TxtTipoDeEvaluacion }} </mat-option> -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Observaciones de jefe</mat-label>
+                                            <textarea  matInput placeholder="Fecha inicial" [(ngModel)]="evaluacionAplicadaEncabezado.TxtObservacionesDeJefe"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Observaciones de empleado</mat-label>
+                                            <textarea  matInput placeholder="Fecha final" [(ngModel)]="evaluacionAplicadaEncabezado.TxtObservacionesDelEmpleado"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Punteo total</mat-label>
+                                            <input  matInput placeholder="Punteo total" [(ngModel)]="evaluacionAplicadaEncabezado.DblPunteoTotal" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Necesita plan de mejora</mat-label>
+                                            <input  matInput placeholder="Necesita plan de mejora" [(ngModel)]="evaluacionAplicadaEncabezado.IntNecesitaPlanDeMejora" type="number">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
