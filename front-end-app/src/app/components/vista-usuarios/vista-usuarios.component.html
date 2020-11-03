@@ -8,10 +8,34 @@
 
 <button class="btn btn-success btn-fill btn-lg center-block" (click)="imprimirExel()">
     <i class="fas fa-print"></i>
-    Imprimir
+    Imprimir Exel
 </button>
 
-<div class="main-content">
+<button class="btn btn-success btn-fill btn-lg center-block" (click)="imprimirPDF()">
+    <i class="fas fa-print"></i>
+    Imprimir PDF
+</button>
+
+<!-- <div #pdfTable>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Luis</td>
+                <td>Pablo</td>
+                <td>22</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<div class="main-content" #pdfTable>
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">

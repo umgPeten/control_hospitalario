@@ -3,7 +3,7 @@ import { DialogoModificarComponent } from './../emergentes/dialogo-modificar/dia
 import { DialogoConfirmacionComponent } from '../emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { DatosUsuarios } from '../../models/usuarios';
 import { UsuariosServiceService } from '../../services/usuarios-service.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAgregarUsuarioComponent } from '../emergentes/dialog-agregar-usuario/dialog-agregar-usuario.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,6 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import * as jsPDF from 'jspdf';
 
 // declare var $:any;
 
@@ -31,6 +32,7 @@ export class VistaUsuariosComponent implements OnInit  {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('pdfTable') pdfTable: ElementRef;
 
   filtrado: boolean = false;
 
@@ -186,6 +188,28 @@ export class VistaUsuariosComponent implements OnInit  {
     }
     this.spinner.hide();
   }
+
+  imprimirPDF(){
+    var doc = new jsPDF('p', 'pt', 'letter');
+    // const doc = new jsPDF();
+
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    const pdfTable = this.pdfTable.nativeElement;
+
+    doc.fromHTML(pdfTable.innerHTML, 15, 15, {
+      width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    // window.open(doc.output('bloburl', `Usuarios_export_${new Date().getTime()}.pdf`));
+    doc.save(`Usuarios_export_${new Date().getTime()}.pdf`);
+  }
+  
 
   // Mensaje(mensaje: any, color: number, posY:number, posX: number){
   //   const type = ['','info','success','warning','danger'];
