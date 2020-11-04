@@ -1,3 +1,4 @@
+import { Menu } from './../../../models/usuarios';
 import { EvaluacionesAplicadasEncabezadoService } from './../../../services/evaluaciones-aplicadas-encabezado.service';
 import { DatosEvaluacionAplicadaEncabezado } from 'app/models/evaluaciones-aplicadas-encabezado';
 import { DialogoEvaluacionAplicadaEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-encabezado/dialogo-evaluacion-aplicada-encabezado.component';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-evaluaciones-aplicadas-encabezado',
@@ -33,16 +35,46 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+  acceso = false;
+
   constructor(
     private evaluacionesAplicadasEncabezadoService: EvaluacionesAplicadasEncabezadoService,
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private router: Router,
-  ) { }
+    location: Location,
+    ) { 
+      this.location = location;
+    }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEvaluacionesAplicadasEncabezado();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+        this.acceso = true;
+        break;
+      }
+    }
+
+    if(this.acceso){
+      
+    }
+    else{
+      this.router.navigate(['/usuarios']);
+    }
   }
 
   cargarEvaluacionesAplicadasEncabezado(){

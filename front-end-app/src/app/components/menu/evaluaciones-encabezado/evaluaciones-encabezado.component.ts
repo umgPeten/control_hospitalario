@@ -1,3 +1,4 @@
+import { Menu } from 'app/models/usuarios';
 import { DialogoConfirmacionComponent } from 'app/components/emergentes/dialogo-confirmacion/dialogo-confirmacion.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,6 +11,7 @@ import { EvaluacionesEncabezadoService } from 'app/services/evaluaciones-encabez
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { DialogoEvaluacionEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-encabezado/dialogo-evaluacion-encabezado.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-evaluaciones-encabezado',
@@ -23,16 +25,46 @@ export class EvaluacionesEncabezadoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  menu: Menu[];
+  location: Location;
+  permisos: Menu;
+  acceso = false;
+
   constructor(
     private evaluacionesEncabezadoService: EvaluacionesEncabezadoService,
     private spinner: NgxSpinnerService,
     public dialogo: MatDialog,
     private router: Router,
-  ) { }
+    location: Location,
+  ) { 
+    this.location = location;
+  }
 
   ngOnInit(): void {
+    this.verificarPermisos();
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
     this.cargarEvaluacionesEncabezado();
+  }
+
+  verificarPermisos(){
+    var path = this.location.prepareExternalUrl(this.location.path());
+    this.menu = JSON.parse(sessionStorage.getItem("Menu"));
+
+    for(let item of this.menu){
+      item.TxtLink = '/'+item.TxtLink;
+      if(item.TxtLink === path){
+        this.permisos = item;
+        this.acceso = true;
+        break;
+      }
+    }
+
+    if(this.acceso){
+      
+    }
+    else{
+      this.router.navigate(['/usuarios']);
+    }
   }
 
   cargarEvaluacionesEncabezado(){

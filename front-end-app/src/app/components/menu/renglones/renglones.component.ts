@@ -30,6 +30,7 @@ export class RenglonesComponent implements OnInit {
   menu: Menu[];
   location: Location;
   permisos: Menu;
+  acceso = false;
 
   constructor(
     public dialogo: MatDialog,
@@ -55,7 +56,16 @@ export class RenglonesComponent implements OnInit {
       item.TxtLink = '/'+item.TxtLink;
       if(item.TxtLink === path){
         this.permisos = item;
+        this.acceso = true;
+        break;
       }
+    }
+
+    if(this.acceso){
+      
+    }
+    else{
+      this.router.navigate(['/usuarios']);
     }
   }
 

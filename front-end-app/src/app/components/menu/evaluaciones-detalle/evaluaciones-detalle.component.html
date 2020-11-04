@@ -18,7 +18,7 @@
                     </mat-form-field>
 
                     <div class="mat-elevation-z8">
-                        <table mat-table [dataSource]="dataSource" matSort>
+                        <table mat-table [dataSource]="dataSource" matSort *ngIf="!permisos.consultar">
                       
                             <ng-container matColumnDef="TxtTipoDeEvaluacion" sticky>
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de evaluacion </th>
@@ -53,11 +53,11 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item (click)="actualizarEvaluacionDetalle(row)">
+                                        <button mat-menu-item [disabled]="!permisos.ModificarActualizar" (click)="actualizarEvaluacionDetalle(row)">
                                             <i class="fas fa-user-edit"></i>
                                             <span> Modificar</span>
                                         </button>
-                                        <button mat-menu-item (click)="eliminarEvaluacionDetalle(row)">
+                                        <button mat-menu-item [disabled]="!permisos.Eliminar" (click)="eliminarEvaluacionDetalle(row)">
                                             <i class="fas fa-user-times"></i>
                                             <span> Eliminar</span>
                                         </button>
@@ -77,10 +77,16 @@
                         <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
                     </div>
 
+                    <div *ngIf="permisos.consultar">
+                        <h1>
+                            No tiene permiso para visualizar este contenido
+                        </h1>
+                    </div>
+
                 </div>
 
                 <div class="col-md-offset-5">
-                    <button class="btn btn-primary btn-fill btn-lg" (click)="agregarEvaluacionDetalle()">
+                    <button class="btn btn-primary btn-fill btn-lg" [disabled]="!permisos.Agregar" (click)="agregarEvaluacionDetalle()">
                         <i class="fas fa-user-plus"></i>
                     </button>
                 </div>

@@ -28,6 +28,7 @@ export class TiposDeEvaluacionesComponent implements OnInit {
   menu: Menu[];
   location: Location;
   permisos: Menu;
+  acceso = false;
 
   constructor(
     private tiposDeEvaluacionesService: TiposDeEvaluacionesService,
@@ -53,7 +54,16 @@ export class TiposDeEvaluacionesComponent implements OnInit {
       item.TxtLink = '/'+item.TxtLink;
       if(item.TxtLink === path){
         this.permisos = item;
+        this.acceso = true;
+        break;
       }
+    }
+
+    if(this.acceso){
+      
+    }
+    else{
+      this.router.navigate(['/usuarios']);
     }
   }
 

@@ -79,28 +79,4 @@ export class UsuariosServiceService {
     }
     return true;
   }
-
-  permisosMenu(){
-    // this.listTitles = ROUTES.filter(listTitle => listTitle);
-    // var path = this.location.prepareExternalUrl(this.location.path());
-    // const menu = JSON.parse(sessionStorage.getItem("Menu"));
-    
-    // for(let url of menu){
-    //   url.TxtLink = '/'+url.TxtLink;
-    //   if(url.TxtLink === path){
-    //     return true;
-    //   }
-    // }
-    // for(let url of this.listTitles){
-    //   if(url.path === path){
-    //     return true;
-    //   }
-    // }
-
-    // if(path === '/login'){
-    //   return true;
-    // }
-    // return false;
-    return true;
-  }
 }

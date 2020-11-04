@@ -25,6 +25,7 @@ export class EspecialidadesComponent implements OnInit {
   menu: Menu[];
   location: Location;
   permisos: Menu;
+  acceso = false;
 
   displayedColumns: string[] = ['TxtEspecialidad', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEspecialidades>;
@@ -56,7 +57,16 @@ export class EspecialidadesComponent implements OnInit {
       item.TxtLink = '/'+item.TxtLink;
       if(item.TxtLink === path){
         this.permisos = item;
+        this.acceso = true;
+        break;
       }
+    }
+
+    if(this.acceso){
+      
+    }
+    else{
+      this.router.navigate(['/usuarios']);
     }
   }
 
