@@ -1,1 +1,68 @@
-<p>dialogo-evaluacion-aplicada-detalle works!</p>
+<div class="formulario">
+    <div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+
+                        <div class="header" *ngIf="mensaje">
+                            <h4 class="title">Actualizar evaluacion aplicada detalle</h4>
+                        </div>
+                        <div class="header" *ngIf="!mensaje">
+                            <h4 class="title">Agregar una nueva evaluacion aplicada detalle</h4>
+                        </div>
+
+                        <div class="content">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <mat-form-field appearance="fill" class="input">
+                                        <mat-label>Evaluacion encabezado</mat-label>
+                                        <mat-select [(value)]="escalaDeCalificacion">
+                                            <mat-option disabled [value]="0">seleccione una evaluacion encabezado</mat-option>
+                                            <mat-option *ngFor="let option of escalasDeCalificacion" [value]="option.IdEscalaDeCalificacion"> {{ option.TxtEscalaDeCalificacion }} </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Evaluacion aplicada encabezado</mat-label>
+                                            <mat-select [(value)]="evaluacionAplicadaEnccabezado">
+                                                <mat-option disabled [value]="0">Evaluacion aplicada encabezado</mat-option>
+                                                <mat-option *ngFor="let option of evaluacionesAplicadasEncabezado" [value]="option.IdEvaluacionAplicadaEncabezado"> {{ option.TxtEmpleado }} </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill" class="input">
+                                            <mat-label>Evaluacion detalle</mat-label>
+                                            <mat-select [(value)]="evaluacionDetalle">
+                                                <mat-option disabled [value]="0">Evaluacion detalle</mat-option>
+                                                <mat-option *ngFor="let option of evaluacionesDetalle" [value]="option.IdEvaluacionDetalle"> {{ option.TxtTipoDeEvaluacion }}, {{ option.Anio }} </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-info btn-fill pull-right" (click)="enviarFormulario()">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

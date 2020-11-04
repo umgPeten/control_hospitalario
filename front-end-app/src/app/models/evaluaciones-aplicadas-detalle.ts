@@ -45,7 +45,6 @@ export class ActualizarAgregarEvaluacionAplicadaDetalle implements IActualizarAg
         this.IdEvaluacionAplicadaDetalle = 0;
         this.IdEvaluacionAplicadaEncabezado = 0;
         this.IdEvaluacionDetalle = 0;
-        this.IdEvaluacionDetalle = 0;
         this.IdEscalaDeCalificacion = 0;
         this.TxtToken = '';
     }
