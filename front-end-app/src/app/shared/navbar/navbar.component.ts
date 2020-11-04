@@ -76,8 +76,8 @@ export class NavbarComponent implements OnInit{
               return this.listTitles[item].title;
           }
       }
-
-      return this.capitalize(titlee.replace('/','').replace('-',' '));
+      var re = /-/g
+      return this.capitalize(titlee.replace('/','').replace(re,' '));
     }
 
     capitalize(word: string) {
