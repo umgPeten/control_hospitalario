@@ -43,6 +43,7 @@ import { NoimagePipe } from './pipes/noimage/noimage.pipe';
 // import { DialogoEmpleadoComponent } from './components/emergentes/menu/dialogo-empleado/dialogo-empleado.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 // import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 // import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 // import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
@@ -84,6 +85,7 @@ import { environment } from '../environments/environment';
     // DialogoNosotrosComponent,
     DomseguroPipe,
     NoimagePipe,
+    PaginaNoEncontradaComponent,
     // PermisosMenuComponent,
     // EspecialidadesComponent,
     // PuestosComponent,

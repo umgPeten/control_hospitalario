@@ -1,5 +1,6 @@
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { CanActivateGuard } from './guards/can-activate.guard';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ const routes: Routes =[
     ]
   },
   { path: 'login',  component: LoginComponent},
+  { path: 'error404', component: PaginaNoEncontradaComponent},
   { path: '**', redirectTo: 'usuarios' }
 ];
 
