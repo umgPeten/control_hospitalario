@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { Router } from '@angular/router';
 import { DialogoEmpleadoComponent } from './../../emergentes/menu/dialogo-empleado/dialogo-empleado.component';
@@ -40,6 +41,7 @@ export class EmpleadosComponent implements OnInit {
   headers: string[] = [''];
   dataSource: MatTableDataSource<DatosEmpleado>;
   expandedElement: DatosEmpleado | null;
+  filtrado: boolean = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -55,6 +57,7 @@ export class EmpleadosComponent implements OnInit {
     private empleadosService: EmpleadosService,
     private router: Router,
     location: Location,
+    private exporterService: ExporterService,
   ) { 
     this.location = location;
   }
@@ -185,6 +188,7 @@ export class EmpleadosComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -208,6 +212,17 @@ export class EmpleadosComponent implements OnInit {
       icon: icon,
       title: title
     })
+  }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
   }
 
   // Mensaje(mensaje: any, color: number, posY:number, posX: number){

@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { DialogoEvaluacionAplicadaDetalleComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-detalle/dialogo-evaluacion-aplicada-detalle.component';
 import { Router } from '@angular/router';
@@ -29,6 +30,7 @@ export class EvaluacionesAplicadasDetalleComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   constructor(
     private evaluacionesAplicadasDetalleService: EvaluacionesAplicadasDetalleService,
@@ -36,6 +38,7 @@ export class EvaluacionesAplicadasDetalleComponent implements OnInit {
     public dialogo: MatDialog,
     private router: Router,
     location: Location,
+    private exporterService: ExporterService,
     ) { 
       this.location = location;
     }
@@ -155,6 +158,7 @@ export class EvaluacionesAplicadasDetalleComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -178,5 +182,16 @@ export class EvaluacionesAplicadasDetalleComponent implements OnInit {
       icon: icon,
       title: title
     })
+  }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
   }
 }

@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { EvaluacionesAplicadasEncabezadoService } from './../../../services/evaluaciones-aplicadas-encabezado.service';
 import { DatosEvaluacionAplicadaEncabezado } from 'app/models/evaluaciones-aplicadas-encabezado';
@@ -39,6 +40,7 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   constructor(
     private evaluacionesAplicadasEncabezadoService: EvaluacionesAplicadasEncabezadoService,
@@ -46,6 +48,7 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
     public dialogo: MatDialog,
     private router: Router,
     location: Location,
+    private exporterService: ExporterService,
     ) { 
       this.location = location;
     }
@@ -165,6 +168,7 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -188,5 +192,16 @@ export class EvaluacionesAplicadasEncabezadoComponent implements OnInit {
       icon: icon,
       title: title
     })
+  }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
   }
 }

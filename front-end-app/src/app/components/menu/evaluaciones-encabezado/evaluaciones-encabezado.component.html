@@ -75,10 +75,20 @@
 
                 </div>
 
-                <div class="col-md-offset-5">
-                    <button class="btn btn-primary btn-fill btn-lg" [disabled]="!permisos.Agregar" (click)="agregarEvaluacionEncabezado()">
-                        <i class="fas fa-user-plus"></i>
-                    </button>
+                <div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-success btn-fill btn-lg" (click)="imprimirExel()">
+                                <i class="fas fa-print"></i>
+                                Imprimir Exel
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-fill btn-lg" [disabled]="!permisos.Agregar" (click)="agregarEvaluacionEncabezado()">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

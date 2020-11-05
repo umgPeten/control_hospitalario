@@ -6,10 +6,10 @@
     [fullScreen] = "true">
 </ngx-spinner>
 
-<button class="btn btn-success btn-fill btn-lg center-block" (click)="imprimirExel()">
+<!-- <button class="btn btn-success btn-fill btn-lg center-block" (click)="imprimirExel()">
     <i class="fas fa-print"></i>
     Imprimir Exel
-</button>
+</button> -->
 
 <button class="btn btn-success btn-fill btn-lg center-block" (click)="imprimirPDF()">
     <i class="fas fa-print"></i>
@@ -148,11 +148,19 @@
                     </div>
                     
                 </div>
-                <div>
-                    <button class="btn btn-primary btn-fill btn-lg center-block" (click)="AgregarUsuario()">
-                        <!-- <i class="pe-7s-add-user"></i> -->
-                        <i class="fas fa-user-plus"></i>
-                    </button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-success btn-fill btn-lg" (click)="imprimirExel()">
+                            <i class="fas fa-print"></i>
+                            Imprimir Exel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-fill btn-lg" (click)="AgregarUsuario()">
+                            <!-- <i class="pe-7s-add-user"></i> -->
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

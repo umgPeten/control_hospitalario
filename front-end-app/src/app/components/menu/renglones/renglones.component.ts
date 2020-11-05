@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { DialogoRenglonComponent } from './../../emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 import { RenglonesService } from './../../../services/renglones.service';
@@ -31,6 +32,7 @@ export class RenglonesComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   constructor(
     public dialogo: MatDialog,
@@ -38,6 +40,7 @@ export class RenglonesComponent implements OnInit {
     private router: Router,
     private renglonesService: RenglonesService,
     location: Location,
+    private exporterService: ExporterService,
   ) { 
     this.location = location;
   }
@@ -72,6 +75,7 @@ export class RenglonesComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -186,4 +190,14 @@ export class RenglonesComponent implements OnInit {
     })
   }
 
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
+  }
 }

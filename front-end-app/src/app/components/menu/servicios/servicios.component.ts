@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { DialogoServicioComponent } from './../../emergentes/menu/dialogo-servicio/dialogo-servicio.component';
 import { ServiciosService } from './../../../services/servicios.service';
@@ -31,6 +32,7 @@ export class ServiciosComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   constructor(
     public dialogo: MatDialog,
@@ -38,6 +40,7 @@ export class ServiciosComponent implements OnInit {
     private router: Router,
     private ServiciosService : ServiciosService,
     location: Location,
+    private exporterService: ExporterService,
   ) { 
     this.location = location;
   }
@@ -72,6 +75,7 @@ export class ServiciosComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -189,4 +193,14 @@ export class ServiciosComponent implements OnInit {
     })
   }
 
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
+  }
 }

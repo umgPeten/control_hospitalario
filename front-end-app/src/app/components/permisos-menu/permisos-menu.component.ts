@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2'
+import { ExporterService } from 'app/services/exporter.service';
 
 // declare var $:any;
 
@@ -18,6 +19,7 @@ import Swal from 'sweetalert2'
 export class PermisosMenuComponent implements OnInit {
   obtener: ObtenerMenu;
   usuario: AfterLogin;
+  filtrado: boolean = false;
   
   displayedColumns: string[] = ['TxtNombre', 'Agregar', 'Modificar/Actualizar', 'Eliminar', 'Consultar', 'Imprimir', 'Aprobar', 'Reversa', 'Finalizar'];
   headers: string[] = ['Agregar', 'Eliminar', 'Consultar', 'Imprimir', 'Aprobar', 'Reversa', 'Finalizar']
@@ -29,6 +31,7 @@ export class PermisosMenuComponent implements OnInit {
   constructor(
     private usuariosService: UsuariosServiceService,
     private spinner: NgxSpinnerService,
+    private exporterService: ExporterService,
   ) { }
 
   ngOnInit(): void {
@@ -63,6 +66,7 @@ export class PermisosMenuComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -86,6 +90,17 @@ export class PermisosMenuComponent implements OnInit {
   //       }
   //   });
   // }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
+  }
 
   alert(icon: any, title: string){
     const Toast = Swal.mixin({

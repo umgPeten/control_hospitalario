@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { Menu } from './../../../models/usuarios';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -29,6 +30,7 @@ export class SubFactoresComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   constructor(
     private subFactoresService: SubFactoresService,
@@ -36,6 +38,7 @@ export class SubFactoresComponent implements OnInit {
     public dialogo: MatDialog,
     private router: Router,
     location: Location,
+    private exporterService: ExporterService,
   ) { 
     this.location = location;
   }
@@ -155,6 +158,7 @@ export class SubFactoresComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -180,4 +184,14 @@ export class SubFactoresComponent implements OnInit {
     })
   }
 
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
+  }
 }

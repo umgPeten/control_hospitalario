@@ -1,3 +1,4 @@
+import { ExporterService } from 'app/services/exporter.service';
 import { ROUTES } from './../../../shared/sidebar/sidebar.component';
 import { DialogoEspecialidadComponent } from './../../emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 import { DatosEspecialidades } from 'app/models/especialidades';
@@ -26,6 +27,7 @@ export class EspecialidadesComponent implements OnInit {
   location: Location;
   permisos: Menu;
   acceso = false;
+  filtrado: boolean = false;
 
   displayedColumns: string[] = ['TxtEspecialidad', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEspecialidades>;
@@ -38,7 +40,8 @@ export class EspecialidadesComponent implements OnInit {
     location: Location,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private especialidadesService: EspecialidadesService
+    private especialidadesService: EspecialidadesService,
+    private exporterService: ExporterService,
   ) { 
     this.location = location;
   }
@@ -73,6 +76,7 @@ export class EspecialidadesComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filtrado = true;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -193,6 +197,17 @@ export class EspecialidadesComponent implements OnInit {
       icon: icon,
       title: title
     })
+  }
+
+  imprimirExel(){
+    this.spinner.show();
+    if(this.filtrado){
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+    }
+    else{
+      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+    }
+    this.spinner.hide();
   }
 
   // Mensaje(mensaje: any, color: number, posY:number, posX: number){
