@@ -187,10 +187,10 @@ export class SubFactoresComponent implements OnInit {
   imprimirExel(){
     this.spinner.show();
     if(this.filtrado){
-      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Sub factores');  
     }
     else{
-      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+      this.exporterService.exportToExel(this.dataSource.data, 'Sub factores');
     }
     this.spinner.hide();
   }

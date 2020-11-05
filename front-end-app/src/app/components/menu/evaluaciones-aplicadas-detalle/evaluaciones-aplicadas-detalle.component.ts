@@ -187,10 +187,10 @@ export class EvaluacionesAplicadasDetalleComponent implements OnInit {
   imprimirExel(){
     this.spinner.show();
     if(this.filtrado){
-      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Evaluaciones aplicadas detalle');  
     }
     else{
-      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+      this.exporterService.exportToExel(this.dataSource.data, 'Evaluaciones aplicadas detalle');
     }
     this.spinner.hide();
   }

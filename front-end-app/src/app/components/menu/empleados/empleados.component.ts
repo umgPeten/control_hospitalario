@@ -217,10 +217,10 @@ export class EmpleadosComponent implements OnInit {
   imprimirExel(){
     this.spinner.show();
     if(this.filtrado){
-      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Empleados');  
     }
     else{
-      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+      this.exporterService.exportToExel(this.dataSource.data, 'Empleados');
     }
     this.spinner.hide();
   }

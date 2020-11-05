@@ -202,10 +202,10 @@ export class EspecialidadesComponent implements OnInit {
   imprimirExel(){
     this.spinner.show();
     if(this.filtrado){
-      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Especialidades');  
     }
     else{
-      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+      this.exporterService.exportToExel(this.dataSource.data, 'Especialidades');
     }
     this.spinner.hide();
   }

@@ -168,10 +168,10 @@ export class EscalaDeCalificacionComponent implements OnInit {
   imprimirExel(){
     this.spinner.show();
     if(this.filtrado){
-      this.exporterService.exportToExel(this.dataSource.filteredData, 'Permisos');  
+      this.exporterService.exportToExel(this.dataSource.filteredData, 'Escala de calificacion');  
     }
     else{
-      this.exporterService.exportToExel(this.dataSource.data, 'Permisos');
+      this.exporterService.exportToExel(this.dataSource.data, 'Escala de calificacion');
     }
     this.spinner.hide();
   }
