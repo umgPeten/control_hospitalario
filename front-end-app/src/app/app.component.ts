@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
     },
     error =>{
-      console.log(error);
+      // console.log(error);
     });
 
     setInterval(() => {
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
             sessionStorage.setItem('spotify', `Bearer ${resultado['access_token']}`);
         },
         error =>{
-          console.log(error);
+          // console.log(error);
         });
     }, 6 * 10000 * 30);// tiempo en milisegundos ( 6 * 10000 * 30) = 1800000 = 30 minutos
   }

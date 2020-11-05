@@ -50,7 +50,7 @@ export class DialogoEvaluacionDetalleComponent implements OnInit {
     //Encabezado
     this.evaluacionesEncabezadoService.ServicioObtenerEvaluacionesEncabezado().subscribe(resultado => {
       this.evaluacionesEncabezado = resultado;
-      console.log(this.evaluacionesEncabezado);
+      // console.log(this.evaluacionesEncabezado);
     },
     error =>{
       this.alert('error',error.statusText);
