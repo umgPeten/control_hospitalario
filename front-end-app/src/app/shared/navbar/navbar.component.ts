@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit{
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
     //   this.obtenerTokenSpotify();
-    this.onFullScreen();
+    // this.onFullScreen();
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
