@@ -24,6 +24,7 @@ import { TiposDeEvaluacionesComponent } from 'app/components/menu/tipos-de-evalu
 import { EvaluacionesDetalleComponent } from 'app/components/menu/evaluaciones-detalle/evaluaciones-detalle.component';
 import { EvaluacionesAplicadasDetalleComponent } from 'app/components/menu/evaluaciones-aplicadas-detalle/evaluaciones-aplicadas-detalle.component';
 import { EvaluacionesEncabezadoComponent } from 'app/components/menu/evaluaciones-encabezado/evaluaciones-encabezado.component';
+import { AccesoDenegadoComponent } from 'app/components/menu/acceso-denegado/acceso-denegado.component';
 
 export const AdminLayoutRoutes: Routes = [
     // { path: 'dashboard', component: HomeComponent },
@@ -36,6 +37,7 @@ export const AdminLayoutRoutes: Routes = [
     // { path: 'upgrade', component: UpgradeComponent },
     { path: 'usuarios', component: VistaUsuariosComponent},
     { path: 'menus', component: PermisosMenuComponent},
+    { path: 'acceso-denegado', component: AccesoDenegadoComponent},
     // urls de el api
     { path: 'especialidades', component: EspecialidadesComponent},
     { path: 'puestos', component: PuestosComponent},
