@@ -34,7 +34,7 @@
     "core-js": "2.6.9",
     "file-saver": "^2.0.2",
     "googleapis": "33.0.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jspdf": "^1.5.3",
     "ngx-spinner": "^10.0.1",
     "perfect-scrollbar": "1.4.0",
