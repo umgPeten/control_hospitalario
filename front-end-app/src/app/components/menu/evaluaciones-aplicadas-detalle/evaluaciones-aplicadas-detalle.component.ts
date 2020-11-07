@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./evaluaciones-aplicadas-detalle.component.css']
 })
 export class EvaluacionesAplicadasDetalleComponent implements OnInit {
-  displayedColumns: string[] = ['TxtTipoDeEvaluacion', 'Anio', 'FechaIngreso', 'opciones'];
+  displayedColumns: string[] = ['TxtEmpleado', 'TxtEvaluacionEncabezado', 'TxtFactor', 'DblPunteoTotal', 'DblPunteo', 'TxtEscalaDeCalificacion', 'FechaIngreso', 'opciones'];
   dataSource: MatTableDataSource<DatosEvaluacionAplicadaDetalle>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

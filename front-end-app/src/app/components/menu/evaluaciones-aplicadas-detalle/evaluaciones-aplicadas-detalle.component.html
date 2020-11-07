@@ -20,14 +20,34 @@
                     <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource" matSort *ngIf="!permisos.consultar">
                       
-                            <ng-container matColumnDef="TxtTipoDeEvaluacion" sticky>
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de evaluacion </th>
-                                <td mat-cell *matCellDef="let row">  </td>
+                            <ng-container matColumnDef="TxtEmpleado" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Empleado </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.TxtEmpleado }} </td>
                             </ng-container>
 
-                            <ng-container matColumnDef="Anio" sticky>
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Año </th>
-                                <td mat-cell *matCellDef="let row">  </td>
+                            <ng-container matColumnDef="TxtEvaluacionEncabezado" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Encabezado </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.TxtEvaluacionEncabezado }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="TxtFactor" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Factor </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.TxtFactor }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="DblPunteoTotal" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Punteo total </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.DblPunteoTotal }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="DblPunteo" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Punteo </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.DblPunteo }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="TxtEscalaDeCalificacion" sticky>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Escala de calificacion </th>
+                                <td mat-cell *matCellDef="let row"> {{ row.TxtEscalaDeCalificacion }} </td>
                             </ng-container>
                       
                             <ng-container matColumnDef="FechaIngreso">

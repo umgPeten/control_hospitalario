@@ -9,9 +9,9 @@ table {
     min-width: 650PX;
   }
       
-  td, th {
+  /* td, th {
     width: 30%;
-  }
+  } */
     
   mat-paginator{
     width: 100%;
