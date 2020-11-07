@@ -1,4 +1,9 @@
 export interface IDatosEvaluacionAplicadaDetalle {
+    DblPunteo: number;
+    DblPunteoTotal: number;
+    TxtEmpleado: string;
+    TxtEvaluacionEncabezado: string;
+    TxtFactor: string;
     IdEvaluacionAplicadaDetalle: number;
     IdEvaluacionAplicadaEncabezado: number;
     IdEvaluacionDetalle: number;
@@ -8,6 +13,11 @@ export interface IDatosEvaluacionAplicadaDetalle {
 }
 
 export class DatosEvaluacionAplicadaDetalle implements IDatosEvaluacionAplicadaDetalle{
+    DblPunteo: number;
+    DblPunteoTotal: number;
+    TxtEmpleado: string;
+    TxtEvaluacionEncabezado: string;
+    TxtFactor: string;
     IdEvaluacionAplicadaDetalle: number;
     IdEvaluacionAplicadaEncabezado: number;
     IdEvaluacionDetalle: number;
@@ -16,6 +26,11 @@ export class DatosEvaluacionAplicadaDetalle implements IDatosEvaluacionAplicadaD
     FechaIngreso: string;
 
     constructor(){
+        this.DblPunteo = 0;
+        this.DblPunteoTotal = 0;
+        this.TxtEmpleado = '';
+        this.TxtEvaluacionEncabezado = '';
+        this.TxtFactor = '';
         this.IdEvaluacionAplicadaDetalle = 0;
         this.IdEvaluacionAplicadaEncabezado = 0;
         this.IdEvaluacionDetalle = 0;
