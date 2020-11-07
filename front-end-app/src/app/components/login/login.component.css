@@ -150,6 +150,10 @@ body {
     margin-bottom: 15px;
 }
 
+.center-block{
+	margin-right: 15%;
+}
+
 .form-control,
 .border-line {
     background-color: #ffffffb6;
