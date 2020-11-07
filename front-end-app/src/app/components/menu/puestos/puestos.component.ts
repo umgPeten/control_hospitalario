@@ -68,7 +68,7 @@ export class PuestosComponent implements OnInit {
       
     }
     else{
-      this.router.navigate(['/usuarios']);
+      this.router.navigate(['/acceso-denegado']);
     }
   }
 
