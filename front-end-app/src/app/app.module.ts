@@ -44,6 +44,7 @@ import { NoimagePipe } from './pipes/noimage/noimage.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { AccesoDenegadoComponent } from './components/menu/acceso-denegado/acceso-denegado.component';
 // import { DialogoRenglonComponent } from './components/emergentes/menu/dialogo-renglon/dialogo-renglon.component';
 // import { DialogoEspecialidadComponent } from './components/emergentes/menu/dialogo-especialidad/dialogo-especialidad.component';
 // import { DialogoServicioComponent } from './components/emergentes/menu/dialogo-servicio/dialogo-servicio.component';
@@ -86,6 +87,7 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
     DomseguroPipe,
     NoimagePipe,
     PaginaNoEncontradaComponent,
+    AccesoDenegadoComponent,
     // PermisosMenuComponent,
     // EspecialidadesComponent,
     // PuestosComponent,
