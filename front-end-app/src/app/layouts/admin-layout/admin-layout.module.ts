@@ -67,6 +67,7 @@ import { DialogoEvaluacionEncabezadoComponent } from 'app/components/emergentes/
 import { DialogoEvaluacionDetalleComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-detalle/dialogo-evaluacion-detalle.component';
 import { DialogoEvaluacionAplicadaEncabezadoComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-encabezado/dialogo-evaluacion-aplicada-encabezado.component';
 import { DialogoEvaluacionAplicadaDetalleComponent } from 'app/components/emergentes/menu/dialogo-evaluacion-aplicada-detalle/dialogo-evaluacion-aplicada-detalle.component';
+import { AccesoDenegadoComponent } from 'app/components/menu/acceso-denegado/acceso-denegado.component';
 
 @NgModule({
   imports: [
@@ -132,6 +133,7 @@ import { DialogoEvaluacionAplicadaDetalleComponent } from 'app/components/emerge
     DialogoEvaluacionDetalleComponent,
     DialogoEvaluacionAplicadaEncabezadoComponent,
     DialogoEvaluacionAplicadaDetalleComponent,
+    AccesoDenegadoComponent
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
